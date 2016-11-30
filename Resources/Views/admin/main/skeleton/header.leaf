@@ -1,0 +1,55 @@
+<header class="header">
+	<div class="topbar-collapse topbar-block hidden-lg-up" >
+		<button class="collapse-btn" id="sidebar-collapse-btn">
+			<i class="fa fa-bars"></i>
+		</button>
+	</div>
+
+	<div class="topbar topbar-left">
+		<ul>
+			<li>
+			  <a href="/">
+			    <i class="fa fa-home"></i> Home
+			  </a>
+			</li>
+
+			<li>
+			  <a href="/">
+			    <i class="fa fa-info-circle"></i> Novel
+			  </a>
+			</li>
+
+			<li>
+			  <a href="/">
+			    <i class="fa fa-github-alt"></i> GitHub
+			  </a>
+			</li>
+
+			<li>
+				<a href="https://github.com/hyperoslo">
+					<i class="fa fa-book"></i> Docs
+				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="topbar topbar-right">
+		<ul>
+			<li class="profile">
+			  <a href="#(adminProfilePath)">
+			    <div class="img" style="background-image: url('https://avatars2.githubusercontent.com/u/10529867?v=3&s=40')">
+			    </div>
+			    <span class="name">
+			      Admin
+			    </span>
+			  </a>
+			</li>
+
+			<li>
+			  <a href="#adminLogoutPath()">
+			    <i class="fa fa-sign-out"></i> Signout
+			  </a>
+			</li>
+		</ul>
+	</div>
+</header>

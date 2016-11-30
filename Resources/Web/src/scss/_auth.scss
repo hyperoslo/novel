@@ -1,0 +1,85 @@
+.auth {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	background-color: $color-bg;
+	overflow-x: hidden;
+	overflow-y: auto;
+
+	h1 {
+		text-align: center;
+		color: $color-text-light;
+		margin-top: 30px;
+		padding: 0 10px;
+		line-height: 30px;
+		font-size: 28px;
+	}
+
+	label {
+		color: $color-text-light;
+	}
+
+	.container {
+		position: absolute;
+		width: 450px;
+		min-height: 330px;
+		top: 50%;
+		left: 50%;
+		transform: translateY(-60%) translateX(-50%);
+
+		@include media-down(sm) {
+			position: relative;
+			width: 100%;
+			left: 0;
+			top: 0;
+			transform: inherit;
+			margin: 0;
+			margin-bottom: 10px;
+		}
+
+		.content {
+			padding: 20px 50px 30px 50px;
+			min-height: 250px;
+
+			@include media-down(sm) {
+				padding: 30px 25px;
+			}
+		}
+
+		a {
+			color: $color-primary !important;
+		}
+	}
+
+	.login {
+		input[type=text], input[type=password] {
+			padding: 14px 16px;
+			border-color: $color-divider;
+		}
+
+		#username {
+			border-radius: 4px 4px 0 0;
+  		border-width: 1px;
+		}
+
+		#password {
+			border-radius: 0px 0px 4px 4px;
+  		border-width: 0 1px 1px 1px !important;
+		}
+
+		.forgot-btn {
+			line-height: 28px;
+		}
+	}
+
+	.signup {
+		.card {
+			margin-top: 30px;
+		}
+
+		.submit-group {
+			margin-top: 40px;
+		}
+	}
+}

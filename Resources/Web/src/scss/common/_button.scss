@@ -1,0 +1,52 @@
+.btn {
+	background-image: none;
+	margin-bottom: 5px;
+
+	&.btn-primary {
+		@include button-variant($color-inverse, $color-primary, $color-primary);
+	}
+
+	&.btn-secondary {
+		@include button-variant($color-primary, $color-inverse, $color-primary);
+	}
+
+	&.btn-success {
+		@include button-variant($color-inverse, $color-success, $color-success);
+	}
+
+	&.btn-info {
+		@include button-variant($color-inverse, $color-info, $color-info);
+	}
+
+	&.btn-warning {
+		@include button-variant($color-inverse, $color-warning, $color-warning);
+	}
+
+	&.btn-danger {
+		@include button-variant($color-inverse, $color-danger, $color-danger);
+	}
+
+	&.btn-primary-outline {
+		@include button-outline-variant($color-primary);
+	}
+
+	&.btn-secondary-outline {
+		@include button-outline-variant($color-divider);
+	}
+
+	&.btn-info-outline {
+		@include button-outline-variant($color-info);
+	}
+
+	&.btn-success-outline {
+		@include button-outline-variant($color-success);
+	}
+
+	&.btn-warning-outline {
+		@include button-outline-variant($color-warning);
+	}
+
+	&.btn-danger-outline {
+		@include button-outline-variant($color-danger);
+	}
+}

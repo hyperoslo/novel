@@ -1,0 +1,54 @@
+h1 {
+	font-size: 24px;
+	font-weight: lighter;
+}
+
+h2 {
+	font-size: 18px;
+	font-weight: lighter;
+}
+
+a {
+	color: $color-primary;
+}
+
+a:hover {
+	color: darken($color-primary, 10%);
+}
+
+.brand {
+	font-family: 'Nothing You Could Do', cursive;
+}
+
+.title {
+	font-size: 1.45rem;
+	font-weight: 600;
+	margin-bottom: 0;
+
+	&.l {
+		font-size: 1.6rem;
+	}
+
+	&.s {
+		font-size: 1.4rem;
+	}
+
+	.card & {
+		font-size: 1.1rem;
+		color: $color-text;
+	}
+}
+
+.text-primary {
+	color: $color-primary;
+}
+
+.text-muted {
+	color: lighten($color-text-light, 10%)
+}
+
+pre {
+	padding: 0;
+	border: none;
+	background: none;
+}

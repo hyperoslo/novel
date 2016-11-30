@@ -1,0 +1,24 @@
+.alert {
+	background-image: none;
+	text-align: center;
+
+	&.alert-primary {
+		@include alert-variant(transparent, transparent, $color-primary);
+	}
+
+	&.alert-success {
+		@include alert-variant(transparent, transparent, $color-success);
+	}
+
+	&.alert-info {
+		@include alert-variant(transparent, transparent, $color-info);
+	}
+
+	&.alert-warning {
+		@include alert-variant(transparent, transparent, $color-warning);
+	}
+
+	&.alert-danger {
+		@include alert-variant(transparent, transparent, $color-danger);
+	}
+}

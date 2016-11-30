@@ -1,0 +1,40 @@
+.footer {
+	position: absolute;
+	left: $sidebar-width;
+	right: 0;
+	bottom: 0;
+	height: $footer-height;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-align: right;
+
+	@include media-down(md) {
+		left: 0;
+	}
+
+	.footer-container {
+		width: 100%;
+
+		ul {
+			vertical-align: middle;
+			margin-left: 20px;
+			margin-right: 20px;
+			margin-bottom: 0px;
+			padding: 0;
+			list-style: none;
+
+			li {
+				display: inline-block;
+
+				&:after {
+					content: "•";
+				}
+
+				&:last-child:after {
+					content: "";
+				}
+			}
+		}
+	}
+}

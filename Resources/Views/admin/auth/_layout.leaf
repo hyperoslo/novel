@@ -1,0 +1,7 @@
+#extend("admin/_layout")
+
+#export("body") {
+	<div class="auth">
+		#import("body")
+	</div>
+}

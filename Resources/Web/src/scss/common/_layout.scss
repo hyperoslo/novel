@@ -1,0 +1,46 @@
+html,
+body {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	min-height: 100%;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	color: $color-text;
+	overflow-x: hidden;
+	background-color: $color-bg;
+}
+
+.row {
+	.col {
+		padding-left: $grid-gutter-width-base/2;
+		padding-right: $grid-gutter-width-base/2;
+		float: left;
+	}
+}
+
+.table {
+	label {
+		margin-bottom: 0;
+	}
+
+	.checkbox + span {
+		margin-bottom: 0;
+		&:before {
+			line-height: 20px;
+		}
+	}
+}
+
+.card {
+	background-color: #fff;
+	box-shadow: 1px 1px 5px fade-out($color-text-light, 0.9);
+
+	.card {
+		box-shadow: none;
+	}
+
+	margin-bottom: 10px;
+	border-radius: 5px;
+	border: none;
+}

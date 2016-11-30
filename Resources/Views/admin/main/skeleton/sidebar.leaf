@@ -1,0 +1,31 @@
+<aside id="sidebar" class="sidebar">
+	<div class="sidebar-container">
+		<nav class="menu">
+			<ul class="nav" id="sidebar-menu">
+				<li>
+					<a href="#adminPath()">
+						<i class="fa fa-tachometer"></i> Dashboard
+					</a>
+				</li>
+
+				<li>
+					<a href="#adminPath("chapters")">
+						<i class="fa fa-th-large"></i> Chapters
+					</a>
+				</li>
+
+				<li>
+					<a href="#adminPath("entries")">
+						<i class="fa fa-pencil-square-o"></i> Entries
+					</a>
+				</li>
+
+				<li>
+					<a href="#adminPath("settings")">
+						<i class="fa fa-cog"></i> Settings
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</aside>

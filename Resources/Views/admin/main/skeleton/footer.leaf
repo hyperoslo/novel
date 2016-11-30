@@ -1,0 +1,17 @@
+<footer class="footer">
+	<div class="footer-container">
+		<ul>
+			<li>
+				Novel CMS 0.1
+			</li>
+			<li>
+				© <a href="https://github.com/hyperoslo">Hyper</a>
+			</li>
+			<li>
+				<a href="https://github.com/hyperoslo">
+					<i class="fa fa-github-alt"></i> GitHub
+				</a>
+			</li>
+		</ul>
+	</div>
+</footer>

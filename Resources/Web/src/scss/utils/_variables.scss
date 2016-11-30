@@ -1,0 +1,30 @@
+// Colors
+
+$color-primary: #81518D !default;
+$brand-primary: $color-primary !default;
+$color-divider: #d7dde4 !default;
+$color-bg: #F2F2F2 !default;
+$color-inverse: #fff !default;
+$color-text: #333333 !default;
+$color-text-light: #7e8e9f !default;
+$color-success: #35C94A !default;
+$color-info: #61BD84 !default;
+$color-warning: #F1AD32 !default;
+$color-danger: #da5a47 !default;
+
+// Header
+$header-height: 32px !default;
+$header-height-xs: 32px !default;
+
+// Sidebar
+$sidebar-width: 160px !default;
+
+// Footer
+$footer-height: 32px !default;
+
+// Bar
+$bar-color-primary: #333333 !default;
+$bar-color-secondary: darken($bar-color-primary, 6%) !default;
+
+$bar-color-text: $color-divider !default;
+$bar-color-text-active: $color-inverse;

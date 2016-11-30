@@ -1,0 +1,16 @@
+#extend("admin/_layout")
+
+#export("body") {
+  <div class="wrapper">
+    <div class="app" id="app">
+      #embed("admin/main/skeleton/header")
+      #embed("admin/main/skeleton/sidebar")
+
+      <article class="content">
+        #import("body")
+      </article>
+
+      #embed("admin/main/skeleton/footer")
+    </div>
+  </div>
+}

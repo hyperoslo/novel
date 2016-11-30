@@ -1,0 +1,37 @@
+@import 'bootstrap/scss/mixins';
+
+@mixin media($name) {
+	@include media-breakpoint-only($name) {
+		@content;
+	};
+}
+
+@mixin media-up($name) {
+	@include media-breakpoint-up($name) {
+		@content;
+	};
+}
+
+@mixin media-down($name) {
+	@include media-breakpoint-down($name) {
+		@content;
+	};
+}
+
+@mixin placeholder() {
+	&::-webkit-input-placeholder {
+		@content;
+	}
+
+	&:-moz-placeholder {
+		@content;
+	}
+
+	&::-moz-placeholder {
+		@content;
+	}
+
+	&:-ms-input-placeholder {
+		@content;
+	}
+}

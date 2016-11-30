@@ -1,0 +1,27 @@
+# OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+#XCode
+xcuserdata
+*.xcodeproj
+
+# SPM
+Packages
+.build
+
+# Configs
+Config/secrets
+.envrc
+
+# Web
+/Public
+.sass-cache
+*.css.map
+bower_components
+node_modules

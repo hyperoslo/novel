@@ -1,0 +1,74 @@
+#extend("admin/main/_layout")
+
+#export("body") {
+  <ol class="breadcrumb box">
+    <li class="breadcrumb-item active">
+      <a href="#adminPath("chapters")">Chapters</a>
+    </li>
+    <li class="breadcrumb-item active">New</li>
+  </ol>
+
+  <form method="post" action="#adminPath("chapters")" accept-charset="UTF-8">
+    <div class="box page-header">
+      <div class="page-title">
+        <h1>New chapter</h1>
+      </div>
+      <div class="page-actions">
+        <button type="submit" class="btn btn-primary">
+          <i class="fa fa-floppy-o"></i> Save
+        </button>
+      </div>
+    </div>
+
+    <div class="box segment">
+      #embed("admin/common/flash")
+      <div class="row">
+        <div class="form-group col-sm-6 required row #if(errors.name) { has-error }">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" name="name" value="#(data.name)" aria-describedby="name-help" placeholder="Enter name">
+          #if(errors.name) {
+            <span class="has-error">#(errors.name)</span>
+          }
+          <small id="name-help" class="form-text text-muted">
+            This is how the new chapter will be called in the system.
+          </small>
+        </div>
+        <div class="form-group col-sm-6 required row #if(errors.handle) { has-error }">
+          <label for="handle">Handle</label>
+          <input type="text" class="form-control" id="handle" name="handle" value="#(data.handle)" aria-describedby="handle-help" placeholder="Enter handle">
+          #if(errors.handle) {
+            <span class="has-error">#(errors.handle)</span>
+          }
+          <small id="handle-help" class="form-text text-muted">
+            This is how the new chapter will be refered in the templates.
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" value="#(data.description)" aria-describedby="description-help" placeholder="Enter description" rows="2" cols="50"></textarea>
+        <small id="description-help" class="form-text text-muted">
+          Short helper text to describe the new chapter.
+        </small>
+      </div>
+    </div>
+
+    <div class="box">
+      <h2>Fields</h2>
+    </div>
+
+    <div id="field-section" class="box segment">
+      #if(data.fields) {
+        #loop(data.fields, "field") {
+          #embed("admin/main/chapter/field", ["field": field, "errors": errors])
+        }
+      } ##else() {
+        #embed("admin/main/chapter/field")
+      }
+      <a href="#adminPath("chapters/new")" id="new-field-btn" class="btn btn-primary-outline">
+        <i class="fa fa-plus"></i> New field
+      </a>
+    </div>
+  </form>
+}

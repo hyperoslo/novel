@@ -1,0 +1,39 @@
+{
+  "name": "dashboard",
+  "authors": [
+    "Vadym Markov <markov.vadym@gmail.com>"
+  ],
+  "description": "Novel admin panel",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.5",
+    "font-awesome": "~4.3.0",
+    "quill": "~1.1.5"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/css/bootstrap-theme.css",
+        "dist/js/bootstrap.js"
+      ]
+    },
+    "quill": {
+      "main": [
+        "dist/quill.js",
+        "dist/quill.base.css",
+        "dist/quill.snow.css"
+      ]
+    }
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

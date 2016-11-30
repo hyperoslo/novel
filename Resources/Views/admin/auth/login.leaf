@@ -1,0 +1,37 @@
+#extend("admin/auth/_layout")
+
+#export("body") {
+  <div class="container login">
+    <header>
+      <h1 class="brand">
+        Novel CMS
+      </h1>
+    </header>
+    <div class="content">
+      #embed("admin/common/flash")
+      <form id="login-form" method="POST">
+        <div class="form-group">
+          <input type="text" name="username" id="username" value="#(data.username)" class="form-control" placeholder="Username or Email" required>
+          <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+        </div>
+
+        <div class="form-group">
+          <label for="remember">
+            <input class="checkbox" id="remember" type="checkbox">
+            <span>Remember me</span>
+          </label>
+          <a href="#adminResetPath()" class="forgot-btn pull-right">Lost your password?</a>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-block btn-primary btn-lg">Login</button>
+        </div>
+      </form>
+    </div>
+    <div class="text-xs-center">
+      <a href="/" class="btn btn-secondary btn-sm">
+        <i class="fa fa-arrow-left"></i> Back to website
+      </a>
+    </div>
+  </div>
+}

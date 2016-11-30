@@ -1,0 +1,36 @@
+<div class="field-group card row">
+  <button aria-label="Close" class="close remove-field-btn" type="button">
+    <span aria-hidden="true">×</span>
+  </button>
+  <div class="form-group col-sm-4 required #index(errors.fields, field.index) { has-error }">
+    <label>Name</label>
+    <input type="text" class="form-control" name="field_names[]" value="#(field.name)" placeholder="Enter name">
+    #index(errors.fields, field.index) {
+      <span class="has-error">#(self.name)</span>
+    }
+    <small class="form-text text-muted">
+      This is how the new field will be called in the entry.
+    </small>
+  </div>
+  <div class="form-group col-sm-4 required #index(errors.fields, field.index) { has-error }">
+    <label>Handle</label>
+    <input type="text" class="form-control" name="field_handles[]" value="#(field.handle)" placeholder="Enter handle">
+    #index(errors.fields, field.index) {
+      <span class="has-error">#(self.handle)</span>
+    }
+    <small class="form-text text-muted">
+      This is how the new field will be refered in the templates.
+    </small>
+  </div>
+  <div class="form-group col-sm-4 required">
+    <label for="name">Type</label>
+    <select class="form-control" name="field_kinds[]">
+      #loop(kinds, "kind") {
+        <option value="#(kind.id)" #equal(kind.id, field.kind) { selected }>#(kind.title)</option>
+      }
+    </select>
+    <small class="form-text text-muted">
+      The type of the new field.
+    </small>
+  </div>
+</div>
