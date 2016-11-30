@@ -20,7 +20,7 @@ struct RouteConfigurator: Configurator {
     return request.auth.isAuthenticated
   }
 
-  func configure(drop: Droplet) {
+  func configure(drop: Droplet) throws {
     let loginController = LoginController(drop: drop)
 
     // Setup
