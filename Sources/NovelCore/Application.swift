@@ -16,11 +16,11 @@ public final class Application {
     drop = Droplet()
   }
 
-  public func start() {
+  public func start() throws {
     let allConfigurators = coreConfigurators + configurators
 
-    allConfigurators.forEach { configurator in
-      configurator.configure(drop: drop)
+    for configurator in allConfigurators {
+      try configurator.configure(drop: drop)
     }
 
     drop.run()

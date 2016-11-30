@@ -4,4 +4,4 @@ import NovelAdmin
 
 let app = Application()
 app.configurators = [AdminConfigurator()]
-app.start()
+try app.start()

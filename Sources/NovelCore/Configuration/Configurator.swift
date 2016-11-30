@@ -1,5 +1,5 @@
 import Vapor
 
 public protocol Configurator {
-  func configure(drop: Droplet)
+  func configure(drop: Droplet) throws
 }

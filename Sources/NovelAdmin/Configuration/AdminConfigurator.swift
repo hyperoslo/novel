@@ -6,14 +6,14 @@ public struct AdminConfigurator: Configurator {
 
   public init() {}
 
-  public func configure(drop: Droplet) {
+  public func configure(drop: Droplet) throws {
     let configurators: [Configurator] = [
       RouteConfigurator(),
       LeafConfigurator()
     ]
 
-    configurators.forEach { configurator in
-      configurator.configure(drop: drop)
+    for configurator in configurators {
+      try configurator.configure(drop: drop)
     }
   }
 }
