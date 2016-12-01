@@ -10,11 +10,21 @@ h2 {
 
 a {
 	color: $color-primary;
+
+	&.danger {
+		color: $color-danger;
+	}
 }
 
 a:hover {
 	color: darken($color-primary, 10%);
+
+	&.danger {
+		color: darken($color-danger, 10%);
+	}
 }
+
+
 
 .brand {
 	font-family: 'Nothing You Could Do', cursive;
