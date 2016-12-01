@@ -33,9 +33,52 @@
     background-color: #ffffff;
   }
 
+  .panel {
+    display: flex;
+
+    .submenu {
+      flex-shrink: 0;
+      width: $submenu-width;
+      padding: 20px 15px;
+      background-color: $color-bg-secondary;
+
+      .nav {
+    		li {
+          a {
+            padding: 7px 10px 7px 20px;
+            border-radius: .25rem;
+    			  color: $color-text;
+    		    text-decoration: none;
+          }
+
+          a:hover {
+            text-decoration: underline;
+          }
+
+          &.active > a, &.active > a:hover {
+            background-color: $color-primary !important;
+    				color: $color-inverse !important;
+    				position: relative;
+            text-decoration: none;
+    			}
+    		}
+    	}
+    }
+
+    .segment {
+      flex-grow: 1;
+    }
+  }
+
   table {
     th {
       border-top: 0;
+    }
+
+    td.action {
+      a {
+        padding: 0 20px 0 0;
+      }
     }
   }
 }
