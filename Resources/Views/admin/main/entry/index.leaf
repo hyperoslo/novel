@@ -10,62 +10,62 @@
       <h1>Entries</h1>
     </div>
     <div class="page-actions">
-      <a href="#adminPath("entries/new")" class="btn btn-primary">
-        <i class="fa fa-plus"></i> New entry
-      </a>
+      #embed("admin/main/entry/actions")
     </div>
   </div>
 
   <div class="panel">
-    <div class="submenu">
+    <div id="submenu" class="submenu">
       <nav class="menu">
   			<ul class="nav">
-  				<li class="active">
-  					<a href="#adminPath("chapters")"> All
-  					</a>
-  				</li>
-
   				<li>
-  					<a href="#adminPath("chapters")"> Post
-  					</a>
+  					<a href="#adminPath("entries")"> All entries</a>
   				</li>
+          #loop(chapters, "item") {
+    				<li>
+    					<a href="/admin/chapters/#(item.id)/entries">#(item.name)</a>
+    				</li>
+          }
   			</ul>
   		</nav>
     </div>
     <div class="box segment">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Chapter</th>
-            <th>Publish date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>12</td>
-            <td>Test</td>
-            <td>Post</td>
-            <td>01/12/2016</td>
-            <td class="action">
-              <a href="#adminPath("chapters")"><i class="fa fa-eye"></i></a>
-              <a class="danger" href="#adminPath("chapters")"><i class="fa fa-trash"></i></a>
-            </td>
-          </tr>
-          <tr>
-            <td>13</td>
-            <td>Demo</td>
-            <td>Post</td>
-            <td>01/12/2016</td>
-            <td class="action">
-              <a href="#adminPath("chapters")"><i class="fa fa-eye"></i></a>
-              <a class="danger" href="#adminPath("chapters")"><i class="fa fa-trash"></i></a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      #index(entries, "0") {
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Chapter</th>
+              <th>Publish date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            #loop(entries, "item") {
+              <tr>
+                <td>#(item.id)</td>
+                <td>#(item.title)</td>
+                <td>#(item.chapter.name)</td>
+                <td>#(item.published_at)</td>
+                <td class="action">
+                  <a href="#(item.url)"><i class="fa fa-eye"></i></a>
+                  <a class="danger" href="#(item.url)"><i class="fa fa-trash"></i></a>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      } ##else() {
+        #index(chapters, "0") {
+          <p>Try adding some entries!</p>
+        } ##else() {
+          <p>To create new entries you need to have at least 1 chapter!</p>
+          <a href="#adminPath("chapters/new")" class="btn btn-primary">
+            <i class="fa fa-plus"></i> New chapter
+          </a>
+        }
+      }
     </div>
   </div>
 }
