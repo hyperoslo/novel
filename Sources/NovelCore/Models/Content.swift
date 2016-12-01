@@ -3,8 +3,6 @@ import Fluent
 
 public final class Content: Model {
 
-  public static let entityName = "contents"
-
   public enum Key: String {
     case id
     case body
@@ -50,7 +48,7 @@ public final class Content: Model {
 extension Content {
 
   public static func prepare(_ database: Database) throws {
-    try database.create(Content.entityName) { entities in
+    try database.create(Content.entity) { entities in
       entities.id()
       entities.string(Key.body.snaked)
       entities.parent(Field.self, optional: false)
@@ -59,6 +57,6 @@ extension Content {
   }
 
   public static func revert(_ database: Database) throws {
-    try database.delete(Content.entityName)
+    try database.delete(Content.entity)
   }
 }

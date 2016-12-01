@@ -8,8 +8,6 @@ import Auth
 
 public final class User: Model {
 
-  public static let entityName = "users"
-
   public enum Key: String {
     case id
     case username
@@ -68,7 +66,7 @@ public final class User: Model {
 extension User {
 
   public static func prepare(_ database: Database) throws {
-    try database.create(User.entityName) { entities in
+    try database.create(User.entity) { entities in
       entities.id()
       entities.string(Key.username.value, length: 50)
       entities.string(Key.email.value, length: 50)
@@ -79,7 +77,7 @@ extension User {
   }
 
   public static func revert(_ database: Database) throws {
-    try database.delete(User.entityName)
+    try database.delete(User.entity)
   }
 }
 

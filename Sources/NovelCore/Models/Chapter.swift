@@ -3,8 +3,6 @@ import Fluent
 
 public final class Chapter: Model {
 
-  public static let entityName = "chapters"
-
   public enum Key: String {
     case id
     case name
@@ -58,7 +56,7 @@ public final class Chapter: Model {
 extension Chapter {
 
   public static func prepare(_ database: Database) throws {
-    try database.create(Chapter.entityName) { entities in
+    try database.create(Chapter.entity) { entities in
       entities.id()
       entities.string(Key.name.value, length: 50)
       entities.string(Key.handle.value, length: 50)
@@ -67,6 +65,6 @@ extension Chapter {
   }
 
   public static func revert(_ database: Database) throws {
-    try database.delete(Chapter.entityName)
+    try database.delete(Chapter.entity)
   }
 }

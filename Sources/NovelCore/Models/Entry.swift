@@ -5,9 +5,13 @@ public final class Entry: Model {
 
   public static let entityName = "entries"
 
+  public static var entity: String {
+    return "entries"
+  }
+
   public enum Key: String {
     case id
-    case slug
+    case title
     case createdAt
     case updatedAt
     case publishedAt
@@ -18,7 +22,7 @@ public final class Entry: Model {
 
   // Fields
   public var id: Node?
-  public var slug: String
+  public var title: String
   public var createdAt: Int
   public var updatedAt: Int
   public var publishedAt: Int
@@ -39,7 +43,7 @@ public final class Entry: Model {
    */
   public init(node: Node, in context: Context) throws {
     id = node[Key.id.value]
-    slug = try node.extract(Key.slug.value)
+    title = try node.extract(Key.title.value)
     createdAt = try node.extract(Key.createdAt.value)
     updatedAt = try node.extract(Key.updatedAt.value)
     publishedAt = try node.extract(Key.publishedAt.value)
@@ -52,7 +56,7 @@ public final class Entry: Model {
   public func makeNode(context: Context) throws -> Node {
     return try Node(node: [
       Key.id.value: id,
-      Key.slug.value: slug,
+      Key.title.value: title,
       Key.createdAt.value: createdAt,
       Key.updatedAt.value: updatedAt,
       Key.publishedAt.value: publishedAt,
@@ -68,7 +72,7 @@ extension Entry {
   public static func prepare(_ database: Database) throws {
     try database.create(Entry.entityName) { users in
       users.id()
-      users.string(Key.slug.value, length: 100)
+      users.string(Key.title.value, length: 100)
       users.int(Key.createdAt.value)
       users.int(Key.updatedAt.value)
       users.int(Key.publishedAt.value)
