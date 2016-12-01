@@ -20,6 +20,8 @@ struct RouteConfigurator: Configurator {
     return request.auth.isAuthenticated
   }
 
+  // MARK: - Configuration
+
   func configure(drop: Droplet) throws {
     let loginController = LoginController(drop: drop)
 
@@ -47,14 +49,19 @@ struct RouteConfigurator: Configurator {
       let dashboardController = DashboardController(drop: drop)
       admin.get(handler: dashboardController.index)
 
-      // Entries
-      let entryController = EntryController(drop: drop)
-      admin.get(Route.entries.relative, handler: entryController.index)
-
       // Chapters
       let chapterController = ChapterController(drop: drop)
       admin.resource(Route.chapters.relative, chapterController)
       admin.get(Route.chapters.new(isRelative: true), handler: chapterController.new)
+
+      // Entries
+      let entryController = EntryController(drop: drop)
+      admin.get(Route.entries.relative, handler: entryController.index)
+
+      admin.group(Route.chapters.relative) { chapters in
+        chapters.get(Chapter.self, Route.entries.relative, handler: entryController.index)
+        chapters.get(Chapter.self, Route.entries.new(isRelative: true), handler: entryController.new)
+      }
 
       // Users
       let userController = UserController(drop: drop)
