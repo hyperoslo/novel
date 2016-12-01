@@ -2,7 +2,7 @@
   <button aria-label="Close" class="close remove-field-btn" type="button">
     <span aria-hidden="true">×</span>
   </button>
-  <div class="form-group col-sm-4 required #index(errors.fields, field.index) { has-error }">
+  <div class="form-group col-sm-4 required">
     <label>Name</label>
     <input type="text" class="form-control" name="field_names[]" value="#(field.name)" placeholder="Enter name">
     #index(errors.fields, field.index) {
@@ -12,7 +12,7 @@
       This is how the new field will be called in the entry.
     </small>
   </div>
-  <div class="form-group col-sm-4 required #index(errors.fields, field.index) { has-error }">
+  <div class="form-group col-sm-4 required">
     <label>Handle</label>
     <input type="text" class="form-control" name="field_handles[]" value="#(field.handle)" placeholder="Enter handle">
     #index(errors.fields, field.index) {

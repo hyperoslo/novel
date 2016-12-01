@@ -1,7 +1,7 @@
 #extend("admin/main/_layout")
 
 #export("body") {
-  <ol class="breadcrumb box">
+  <ol class="box breadcrumb">
     <li class="breadcrumb-item active">
       <a href="#adminPath("chapters")">Chapters</a>
     </li>
@@ -23,7 +23,7 @@
     <div class="box segment">
       #embed("admin/common/flash")
       <div class="row">
-        <div class="form-group col-sm-6 required row #if(errors.name) { has-error }">
+        <div class="form-group col-sm-6 required row">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" name="name" value="#(data.name)" aria-describedby="name-help" placeholder="Enter name">
           #if(errors.name) {
@@ -33,7 +33,7 @@
             This is how the new chapter will be called in the system.
           </small>
         </div>
-        <div class="form-group col-sm-6 required row #if(errors.handle) { has-error }">
+        <div class="form-group col-sm-6 required row">
           <label for="handle">Handle</label>
           <input type="text" class="form-control" id="handle" name="handle" value="#(data.handle)" aria-describedby="handle-help" placeholder="Enter handle">
           #if(errors.handle) {
@@ -61,7 +61,7 @@
     <div id="field-section" class="box segment">
       #if(data.fields) {
         #loop(data.fields, "field") {
-          #embed("admin/main/chapter/field", ["field": field, "errors": errors])
+          #embed("admin/main/chapter/field")
         }
       } ##else() {
         #embed("admin/main/chapter/field")
