@@ -1,9 +1,12 @@
-//
-//  ContentValidator.swift
-//  Novel
-//
-//  Created by Vadym Markov on 01/12/2016.
-//
-//
+import Vapor
+import NovelCore
 
-import Foundation
+struct ContentValidator: NodeValidator {
+
+  let node: Node
+  var errors: [String: Node] = [:]
+
+  init(node: Node) {
+    self.node = node
+  }
+}
