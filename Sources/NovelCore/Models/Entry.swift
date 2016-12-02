@@ -38,6 +38,10 @@ public final class Entry: Model {
     chapterId = chapter.id
   }
 
+  func contents() -> Children<Content> {
+    return children()
+  }
+
   /**
     Initializer.
    */
