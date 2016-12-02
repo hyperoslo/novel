@@ -20,11 +20,11 @@ public final class Chapter: Model {
 
   // Relations
 
-  func fields() -> Children<Field> {
+  public func fields() -> Children<Field> {
     return children()
   }
 
-  func entries() -> Children<Entry> {
+  public func entries() -> Children<Entry> {
     return children()
   }
 

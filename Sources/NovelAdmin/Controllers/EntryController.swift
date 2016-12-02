@@ -19,7 +19,7 @@ final class EntryController: Controller {
   func index(request: Request, chapter: Chapter) throws -> ResponseRepresentable {
     let context = [
       "chapters": try Chapter.all().makeNode(),
-      "entries": try Entry.all().makeNode()
+      "entries": try chapter.entries().all().makeNode(),
     ]
 
     return try drop.view.make(
@@ -30,7 +30,8 @@ final class EntryController: Controller {
 
   func new(request: Request, chapter: Chapter) throws -> ResponseRepresentable {
     let context = [
-      "chapter": try chapter.makeNode()
+      "chapter": try chapter.makeNode(),
+      "fields": try chapter.fields().all().makeNode()
     ]
 
     return try drop.view.make(
@@ -50,6 +51,7 @@ final class EntryController: Controller {
       let context = [
         "data": node,
         "chapter": try chapter.makeNode(),
+        "fields": try chapter.fields().all().makeNode(),
         "flash": "Please fill the required fields",
         "errors": Node.object(error.errors)
       ]

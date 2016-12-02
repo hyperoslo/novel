@@ -3,12 +3,12 @@
 #export("body") {
   <ol class="box breadcrumb">
     <li class="breadcrumb-item active">
-      <a href="#adminPath("chapters/#(chapter.id)/entries")">Entries</a>
+      <a href="/admin/chapters/#(chapter.id)/entries">Entries</a>
     </li>
     <li class="breadcrumb-item active">New</li>
   </ol>
 
-  <form method="post" action="#adminPath("chapters/#(chapter.id)/entries")" accept-charset="UTF-8">
+  <form method="post" action="/admin/chapters/#(chapter.id)/entries" accept-charset="UTF-8">
     <div class="box page-header">
       <div class="page-title">
         <h1>New entry</h1>
@@ -32,7 +32,7 @@
           Title is a default field for entry of any type.
         </small>
       </div>
-      #loop(chapter.fields, "field") {
+      #loop(fields, "field") {
         #embed("admin/main/entry/field")
       }
     </div>
