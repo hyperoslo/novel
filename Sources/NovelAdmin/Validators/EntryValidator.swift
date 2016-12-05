@@ -22,7 +22,7 @@ struct EntryValidator: NodeValidator {
       return
     }
 
-    contentNodes = fields
+    contentNodes = fields.map({ return ContentValidator.transform(node: $0) })
 
     var fieldErrors = [Node]()
 

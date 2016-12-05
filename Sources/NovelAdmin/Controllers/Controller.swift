@@ -17,6 +17,14 @@ extension Controller {
     return Response(redirect: route.absolute)
   }
 
+  func redirect(_ route: Route, id: Node?) -> ResponseRepresentable {
+    guard let id = id?.int else {
+      return redirect(route)
+    }
+
+    return Response(redirect: route.show(id: id))
+  }
+
   func makeContext(from context: Context = [:], request: Request) throws -> Context {
     var context = context
 

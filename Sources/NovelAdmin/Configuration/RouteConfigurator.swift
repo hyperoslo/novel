@@ -56,7 +56,7 @@ struct RouteConfigurator: Configurator {
 
       // Entries
       let entryController = EntryController(drop: drop)
-      admin.get(Route.entries.relative, handler: entryController.index)
+      admin.resource(Route.entries.relative, entryController)
 
       admin.group(Route.chapters.relative) { chapters in
         chapters.get(Chapter.self, Route.entries.relative, handler: entryController.index)

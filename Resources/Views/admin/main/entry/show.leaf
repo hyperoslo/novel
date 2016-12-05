@@ -5,7 +5,7 @@
     <li class="breadcrumb-item active">
       <a href="/admin/chapters/#(chapter.id)/entries">Entries</a>
     </li>
-    <li class="breadcrumb-item active">New</li>
+    <li class="breadcrumb-item active">#(entry.title)</li>
   </ol>
 
   #embed("admin/main/entry/form")
