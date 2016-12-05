@@ -88,3 +88,19 @@ extension Entry {
     try database.delete(Entry.entityName)
   }
 }
+
+// MARK: - Helpers
+
+extension Entry {
+
+  static func new() throws -> Entry {
+    let node = try Node(node: [
+      Key.title.value: "",
+      Key.createdAt.value: 0,
+      Key.updatedAt.value: 0,
+      Key.publishedAt.value: 0
+    ])
+
+    return try Entry(node: node)
+  }
+}

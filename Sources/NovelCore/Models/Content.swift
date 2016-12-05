@@ -20,6 +20,10 @@ public final class Content: Model {
   public var fieldId: Node?
   public var entryId: Node?
 
+  public func field() throws -> Parent<Field> {
+    return try parent(fieldId)
+  }
+
   public func set(field: Field) {
     fieldId = field.id
   }
@@ -43,10 +47,10 @@ public final class Content: Model {
    */
   public func makeNode(context: Context) throws -> Node {
     return try Node(node: [
-      Key.id.snaked: id,
-      Key.body.snaked: body,
-      Key.fieldId.snaked: fieldId,
-      Key.entryId.snaked: entryId
+      Key.id.value: id,
+      Key.body.value: body,
+      Key.fieldId.value: fieldId,
+      Key.entryId.value: entryId
       ])
   }
 }
@@ -66,5 +70,15 @@ extension Content {
 
   public static func revert(_ database: Database) throws {
     try database.delete(Content.entity)
+  }
+}
+
+// MARK: - Helpers
+
+extension Content {
+
+  static func new() throws -> Content {
+    let node = try Node(node: [Key.body.value: ""])
+    return try Content(node: node)
   }
 }

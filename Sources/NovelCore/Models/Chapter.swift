@@ -68,3 +68,16 @@ extension Chapter {
     try database.delete(Chapter.entity)
   }
 }
+
+// MARK: - Helpers
+
+extension Chapter {
+
+  static func new() throws -> Chapter {
+    let node = try Node(node: [
+      Key.name.value: "",
+      Key.handle.value: ""])
+
+    return try Chapter(node: node)
+  }
+}

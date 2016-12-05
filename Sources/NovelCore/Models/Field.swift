@@ -88,3 +88,17 @@ extension Field {
     try database.delete(Field.entity)
   }
 }
+
+// MARK: - Helpers
+
+extension Field {
+
+  static func new() throws -> Field {
+    let node = try Node(node: [
+      Key.kind.value: FieldKind.plainText.rawValue,
+      Key.name.value: "",
+      Key.handle.value: ""])
+
+    return try Field(node: node)
+  }
+}
