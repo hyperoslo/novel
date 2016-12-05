@@ -1,8 +1,8 @@
 <div class="form-group">
   <label for="#(field.handle)">#(field.name)</label>
   #equal(field.kind, "0") {
-    <input type="text" class="form-control" id="fields[#(field.handle)]" name="fields[#(field.handle)]" value="">
+    <input type="text" class="form-control" id="field_#(field.handle)" name="fields[]" value="">
   } ##else() {
-    <textarea class="form-control" id="fields[#(field.handle)]" name="fields[#(field.handle)]" value="" rows="2" cols="50"></textarea>
+    <textarea class="form-control" id="field_#(field.handle)" name="fields[]" value="" rows="2" cols="50"></textarea>
   }
 </div>

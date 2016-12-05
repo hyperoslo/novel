@@ -30,15 +30,15 @@ public final class Entry: Model {
   // Relations
   public var chapterId: Node?
 
-  func chapter() throws -> Parent<Chapter> {
+  public func chapter() throws -> Parent<Chapter> {
     return try parent(chapterId)
   }
 
-  func set(chapter: Chapter) {
+  public func set(chapter: Chapter) {
     chapterId = chapter.id
   }
 
-  func contents() -> Children<Content> {
+  public func contents() -> Children<Content> {
     return children()
   }
 

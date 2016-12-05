@@ -20,6 +20,14 @@ public final class Content: Model {
   public var fieldId: Node?
   public var entryId: Node?
 
+  public func set(field: Field) {
+    fieldId = field.id
+  }
+
+  public func set(entry: Entry) {
+    entryId = entry.id
+  }
+
   /**
    Initializer.
    */

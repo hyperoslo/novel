@@ -1,3 +1,4 @@
+import Foundation
 import Vapor
 
 public struct NameValidation: ValidationSuite {

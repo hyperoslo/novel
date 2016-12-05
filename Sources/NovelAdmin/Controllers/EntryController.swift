@@ -46,7 +46,7 @@ final class EntryController: Controller {
     }
 
     do {
-      try EntryManager().create(node: node)
+      try EntryManager(chapter: chapter).create(node: node)
     } catch let error as InputError {
       let context = [
         "data": node,

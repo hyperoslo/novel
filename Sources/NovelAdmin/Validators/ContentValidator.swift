@@ -7,6 +7,7 @@ struct ContentValidator: NodeValidator {
   var errors: [String: Node] = [:]
 
   init(node: Node) {
-    self.node = node
+    let body = node.string ?? ""
+    self.node = Node.object(["body": Node.string(body)])
   }
 }

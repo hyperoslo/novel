@@ -19,7 +19,6 @@ struct EntryValidator: NodeValidator {
 
   fileprivate mutating func validateFields() {
     guard let fields = node["fields"]?.nodeArray, !fields.isEmpty else {
-      errors["fields"] = Node.string(EntryError.noFields.rawValue)
       return
     }
 
