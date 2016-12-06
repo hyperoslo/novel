@@ -21,9 +21,9 @@
   				<li>
   					<a href="#adminPath("entries")"> All entries</a>
   				</li>
-          #loop(chapters, "item") {
+          #loop(chapters, "chapter") {
     				<li>
-    					<a href="/admin/chapters/#(item.id)/entries">#(item.name)</a>
+    					<a href="/admin/entries/#(chapter.id)">#(chapter.name)</a>
     				</li>
           }
   			</ul>
@@ -46,7 +46,7 @@
               <tr>
                 <td>#(item.id)</td>
                 <td>
-                  <a href="/admin/entries/#(item.id)">#(item.title)</a>
+                  <a href="/admin/entries/#(item.chapter.id)/#(item.id)">#(item.title)</a>
                 </td>
                 <td>#(item.chapter.name)</td>
                 <td>#(item.publishedAt)</td>

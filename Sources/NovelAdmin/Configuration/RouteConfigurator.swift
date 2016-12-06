@@ -60,8 +60,9 @@ struct RouteConfigurator: Configurator {
         let entryController = EntryController(drop: drop)
 
         entries.get(handler: entryController.index)
+
         entries.get(Chapter.self, handler: entryController.index)
-        entries.get(Chapter.self, Route.entries.new(isRelative: true), handler: entryController.new)
+        entries.get(Chapter.self, "new", handler: entryController.new)
         entries.get(Chapter.self, Entry.self, handler: entryController.show)
         entries.post(Chapter.self, handler: entryController.store)
         entries.post(Chapter.self, Entry.self, handler: entryController.replace)

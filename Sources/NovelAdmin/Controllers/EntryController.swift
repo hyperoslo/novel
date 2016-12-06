@@ -29,8 +29,11 @@ final class EntryController: Controller {
   }
 
   func new(request: Request, chapter: Chapter) throws -> ResponseRepresentable {
+    let entry = try Entry.new()
+    entry.set(chapter: chapter)
+
     let context = [
-      "entry": try EntryPresenter(model: Entry.new()).makeNode()
+      "entry": try EntryPresenter(model: entry).makeNode()
     ]
 
     return try drop.view.make(

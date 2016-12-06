@@ -4,8 +4,8 @@
       New entry
     </button>
     <div class="dropdown-menu" aria-labelledby="btnNew">
-      #loop(chapters, "item") {
-        <a class="dropdown-item" href="/admin/chapters/#(item.id)/entries/new">#(item.name)</a>
+      #loop(chapters, "chapter") {
+        <a class="dropdown-item" href="/admin/entries/#(chapter.id)/new">#(chapter.name)</a>
       }
     </div>
   </div>

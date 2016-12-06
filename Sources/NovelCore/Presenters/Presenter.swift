@@ -77,7 +77,7 @@ public struct EntryPresenter: Presenter {
     node["chapter"] = try ChapterPresenter(model: chapter).makeNode()
 
     let fields = try chapter.fields().all()
-    let contents = try model.contents().all()
+    let contents: [Content] = model.id == nil ? [] : try model.contents().all()
     var fieldNodes = [Node]()
 
     for (index, field) in fields.enumerated() {
