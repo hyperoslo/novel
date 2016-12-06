@@ -11,7 +11,7 @@
   "dependencies": {
     "bootstrap": "v4.0.0-alpha.5",
     "font-awesome": "~4.3.0",
-    "quill": "~1.1.5"
+    "quill": "https://github.com/quilljs/quill/releases/download/v1.1.5/quill.tar.gz"
   },
   "overrides": {
     "bootstrap": {
@@ -23,9 +23,8 @@
     },
     "quill": {
       "main": [
-        "dist/quill.js",
-        "dist/quill.base.css",
-        "dist/quill.snow.css"
+        "quill.js",
+        "quill.snow.css"
       ]
     }
   },
