@@ -13,16 +13,11 @@ $(function() {
     });
 	});
 
-  var form = document.querySelector('form');
-  form.onsubmit = function() {
-    $('#app').find('.editor-container').each(function() {
+  $("#form").submit(function(event) {
+    $(this).find('.editor-container').each(function() {
       var id = 'field_' + this.id.replace('editor_', '');
-      var value = JSON.stringify(this.getContents());
+      var value = $(this).find(".ql-editor").html();
       $('#' + id).val(value);
     })
-
-    console.log("Submitted", $(form).serialize(), $(form).serializeArray());
-    alert('Open the console to see the submit data!')
-    return false;
-  };
+  });
 });

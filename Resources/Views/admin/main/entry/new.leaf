@@ -3,7 +3,7 @@
 #export("body") {
   <ol class="box breadcrumb">
     <li class="breadcrumb-item active">
-      <a href="/admin/chapters/#(chapter.id)/entries">Entries</a>
+      <a href="/admin/entries/#(chapter.id)">Entries</a>
     </li>
     <li class="breadcrumb-item active">New</li>
   </ol>
