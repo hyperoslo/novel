@@ -19,7 +19,7 @@ final class EntryController: Controller {
   func index(request: Request, chapter: Chapter) throws -> ResponseRepresentable {
     let context = [
       "chapters": try Chapter.all().makeNode(),
-      "entries": try EntryPresenter.makeNodes(from: try Entry.all())
+      "entries": try EntryPresenter.makeNodes(from: try chapter.entries().all())
     ]
 
     return try drop.view.make(
@@ -67,7 +67,7 @@ final class EntryController: Controller {
     return redirect(.entries)
   }
 
-  func show(request: Request, entry: Entry) throws -> ResponseRepresentable {
+  func show(request: Request, chapter: Chapter, entry: Entry) throws -> ResponseRepresentable {
     let context: Context = [
       "entry": try EntryPresenter(model: entry).makeNode()
     ]
@@ -78,7 +78,7 @@ final class EntryController: Controller {
     )
   }
 
-  func replace(request: Request, entry: Entry) throws -> ResponseRepresentable {
+  func replace(request: Request, chapter: Chapter, entry: Entry) throws -> ResponseRepresentable {
     guard let node = request.formURLEncoded else {
       throw Abort.badRequest
     }
@@ -103,15 +103,5 @@ final class EntryController: Controller {
     }
 
     return redirect(.entries, id: entry.id)
-  }
-}
-
-extension EntryController: ResourceRepresentable {
-
-  func makeResource() -> Resource<Entry> {
-    return Resource(
-      index: index,
-      show: show
-    )
   }
 }

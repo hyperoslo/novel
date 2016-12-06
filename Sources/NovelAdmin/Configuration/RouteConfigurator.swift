@@ -55,13 +55,17 @@ struct RouteConfigurator: Configurator {
       admin.get(Route.chapters.new(isRelative: true), handler: chapterController.new)
 
       // Entries
-      let entryController = EntryController(drop: drop)
-      admin.resource(Route.entries.relative, entryController)
-      admin.post(Route.entries.relative, Entry.self, handler: entryController.replace)
 
-      admin.get(Route.entries.relative, Chapter.self, Route.entries.relative,  handler: entryController.index)
-      //admin.get(Chapter.self, Route.entries.new(isRelative: true), handler: entryController.new)
-      //admin.post(Chapter.self, Route.entries.relative, handler: entryController.store)
+      admin.group(Route.entries.relative) { entries in
+        let entryController = EntryController(drop: drop)
+
+        entries.get(handler: entryController.index)
+        entries.get(Chapter.self, handler: entryController.index)
+        entries.get(Chapter.self, Route.entries.new(isRelative: true), handler: entryController.new)
+        entries.get(Chapter.self, Entry.self, handler: entryController.show)
+        entries.post(Chapter.self, handler: entryController.store)
+        entries.post(Chapter.self, Entry.self, handler: entryController.replace)
+      }
 
       // Users
       let userController = UserController(drop: drop)
