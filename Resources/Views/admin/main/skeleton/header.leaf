@@ -7,6 +7,11 @@
 
 	<div class="topbar topbar-left">
 		<ul>
+			<li class="hidden-sm-down">
+				<a href="/" class="brand">
+	        Novel CMS
+				</a>
+			</li>
 			<li>
 			  <a href="/">
 			    <i class="fa fa-home"></i> Home
