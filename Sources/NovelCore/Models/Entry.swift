@@ -1,26 +1,7 @@
 import Vapor
 import Fluent
 
-public protocol Model: Vapor.Model {
-  func validate() throws
-}
-
-extension Model {
-
-  public func updated(from node: Node, exists: Bool = false) throws -> Self {
-    var updatedNode = try makeNode()
-    updatedNode.merge(with: node)
-
-    var model = try Self(node: updatedNode)
-    model.exists = exists
-
-    return model
-  }
-}
-
 public final class Entry: Model {
-
-  public static let entityName = "entries"
 
   public static var entity: String {
     return "entries"
@@ -91,7 +72,7 @@ public final class Entry: Model {
 extension Entry {
 
   public static func prepare(_ database: Database) throws {
-    try database.create(Entry.entityName) { users in
+    try database.create(Entry.entity) { users in
       users.id()
       users.string(Key.title.value, length: 100)
       users.int(Key.createdAt.value)
@@ -102,7 +83,7 @@ extension Entry {
   }
 
   public static func revert(_ database: Database) throws {
-    try database.delete(Entry.entityName)
+    try database.delete(Entry.entity)
   }
 }
 
