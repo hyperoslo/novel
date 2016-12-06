@@ -8,7 +8,7 @@
 	<div class="topbar topbar-left">
 		<ul>
 			<li class="hidden-sm-down">
-				<a href="/" class="brand">
+				<a href="/admin" class="brand">
 	        Novel CMS
 				</a>
 			</li>

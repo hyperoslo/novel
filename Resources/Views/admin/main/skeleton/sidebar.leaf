@@ -21,6 +21,18 @@
 				</li>
 
 				<li>
+					<a href="#adminPath("users")">
+						<i class="fa fa-globe"></i> Globals
+					</a>
+				</li>
+
+				<li>
+					<a href="#adminPath("users")">
+						<i class="fa fa-user"></i> Users
+					</a>
+				</li>
+
+				<li>
 					<a href="#adminPath("settings")">
 						<i class="fa fa-cog"></i> Settings
 					</a>
