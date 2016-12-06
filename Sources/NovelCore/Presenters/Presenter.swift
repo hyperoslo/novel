@@ -47,6 +47,11 @@ public struct ChapterPresenter: Presenter {
 
 public struct EntryPresenter: Presenter {
 
+  public static func makeNodes(from models: [Entry]) throws -> Node {
+    let nodes = try models.map({ try EntryPresenter(model: $0).makeNode() })
+    return try nodes.makeNode()
+  }
+
   public typealias Key = Entry.Key
   public let model: Entry
   public let data: Node?

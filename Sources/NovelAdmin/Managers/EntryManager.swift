@@ -2,20 +2,24 @@ import Vapor
 import NovelCore
 import Foundation
 
-struct EntryManager {
+final class EntryManager {
 
+  var entry: Entry
   let date = Date()
 
-  @discardableResult func create(chapter: Chapter, node: Node) throws -> Entry {
+  init(entry: Entry) {
+    self.entry = entry
+  }
+
+  @discardableResult func create(from node: Node, chapter: Chapter) throws -> Entry {
     var node = node
 
     node[Entry.Key.createdAt.snaked] = try Int(date.timeIntervalSince1970).makeNode()
     node[Entry.Key.updatedAt.snaked] = try Int(date.timeIntervalSince1970).makeNode()
     node[Entry.Key.publishedAt.snaked] = try Int(date.timeIntervalSince1970).makeNode()
 
-    var entry = try Entry(node: node)
-    try entry.validate()
     entry.set(chapter: chapter)
+    try entry.validate()
     try entry.save()
 
     for (index, field) in try chapter.fields().all().enumerated() {
@@ -30,18 +34,17 @@ struct EntryManager {
     return entry
   }
 
-  @discardableResult func update(entry: Entry, node: Node) throws -> Entry {
+  @discardableResult func update(from node: Node) throws -> Entry {
     var node = node
     node[Entry.Key.updatedAt.snaked] = try Int(date.timeIntervalSince1970).makeNode()
 
-    var entry = try entry.updated(from: node)
+    entry = try entry.updated(from: node, exists: true)
+    try entry.validate()
     try entry.save()
 
     for (index, content) in try entry.contents().all().enumerated() {
-      let updatedNode = fieldNode(from: node, index: index)
-      var contentNode = try content.makeNode()
-      contentNode.merge(with: updatedNode)
-      var content = try Content(node: contentNode)
+      let contentNode = fieldNode(from: node, index: index)
+      var content = try content.updated(from: contentNode, exists: true)
       try content.validate()
       try content.save()
     }
@@ -53,7 +56,7 @@ struct EntryManager {
     var result: Node
 
     func transform(fieldNode: Node) -> Node {
-      return Node.object(["body": node])
+      return Node.object(["body": fieldNode])
     }
 
     if let fieldNodes = node["fields"]?.nodeArray, index < fieldNodes.count {

@@ -37,7 +37,7 @@ public final class Content: Model {
    */
   public init(node: Node, in context: Context) throws {
     id = node[Key.id.snaked]
-    body = try node.extract(Key.body.snaked)
+    body = node[Key.body.snaked]?.string ?? ""
     fieldId = node[Key.fieldId.snaked]
     entryId = node[Key.entryId.snaked]
   }

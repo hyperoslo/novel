@@ -45,9 +45,11 @@
             #loop(entries, "item") {
               <tr>
                 <td>#(item.id)</td>
-                <td>#(item.title)</td>
+                <td>
+                  <a href="/admin/entries/#(item.id)">#(item.title)</a>
+                </td>
                 <td>#(item.chapter.name)</td>
-                <td>#(item.published_at)</td>
+                <td>#(item.publishedAt)</td>
                 <td class="action">
                   <a href="#(item.url)"><i class="fa fa-eye"></i></a>
                   <a class="danger" href="#(item.url)"><i class="fa fa-trash"></i></a>

@@ -5,9 +5,9 @@ import NovelCore
 final class EntryController: Controller {
 
   func index(request: Request) throws -> ResponseRepresentable {
-    let context = [
+    let context: Context = [
       "chapters": try Chapter.all().makeNode(),
-      "entries": try Entry.all().makeNode()
+      "entries": try EntryPresenter.makeNodes(from: try Entry.all())
     ]
 
     return try drop.view.make(
@@ -19,7 +19,7 @@ final class EntryController: Controller {
   func index(request: Request, chapter: Chapter) throws -> ResponseRepresentable {
     let context = [
       "chapters": try Chapter.all().makeNode(),
-      "entries": try chapter.entries().all().makeNode(),
+      "entries": try EntryPresenter.makeNodes(from: try Entry.all())
     ]
 
     return try drop.view.make(
@@ -44,13 +44,14 @@ final class EntryController: Controller {
       throw Abort.badRequest
     }
 
+    let entry = try Entry.new()
+    let manager = EntryManager(entry: entry)
+
     do {
-      try EntryManager().create(chapter: chapter, node: node)
+      try manager.create(from: node, chapter: chapter)
     } catch let error as InputError {
       let context = [
-        "entry": try EntryPresenter(model: Entry.new()).makeNode(),
-        "data": node,
-        "fields": try chapter.fields().all().makeNode(),
+        "entry": try EntryPresenter(model: manager.entry).makeNode(),
         "flash": "Please fill the required fields",
         "errors": Node.object(error.errors)
       ]
@@ -67,14 +68,9 @@ final class EntryController: Controller {
   }
 
   func show(request: Request, entry: Entry) throws -> ResponseRepresentable {
-    var context: Context = [
+    let context: Context = [
       "entry": try EntryPresenter(model: entry).makeNode()
     ]
-
-    if let chapter = try entry.chapter().get() {
-      context["chapter"] = try chapter.makeNode()
-      context["fields"] = try chapter.fields().all().makeNode()
-    }
 
     return try drop.view.make(
       Template.Main.entry.show,
@@ -83,17 +79,17 @@ final class EntryController: Controller {
   }
 
   func replace(request: Request, entry: Entry) throws -> ResponseRepresentable {
-    guard let node = request.formURLEncoded, let chapter = try entry.chapter().get() else {
+    guard let node = request.formURLEncoded else {
       throw Abort.badRequest
     }
 
+    let manager = EntryManager(entry: entry)
+
     do {
-      try EntryManager().update(entry: entry, node: node)
+      try manager.update(from: node)
     } catch let error as InputError {
       let context = [
-        "data": node,
-        "entry": try EntryPresenter(model: entry).makeNode(),
-        "fields": try chapter.fields().all().makeNode(),
+        "entry": try EntryPresenter(model: manager.entry).makeNode(),
         "flash": "Please fill the required fields",
         "errors": Node.object(error.errors)
       ]
@@ -115,8 +111,7 @@ extension EntryController: ResourceRepresentable {
   func makeResource() -> Resource<Entry> {
     return Resource(
       index: index,
-      show: show,
-      replace: replace
+      show: show
     )
   }
 }

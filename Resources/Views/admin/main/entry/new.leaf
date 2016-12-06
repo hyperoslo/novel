@@ -8,5 +8,7 @@
     <li class="breadcrumb-item active">New</li>
   </ol>
 
-  #embed("admin/main/entry/form")
+  <form method="post" action="/admin/chapters/#(chapter.id)/entries" accept-charset="UTF-8">
+    #embed("admin/main/entry/form")
+  </form>
 }
