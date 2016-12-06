@@ -89,11 +89,25 @@ extension Field {
   }
 }
 
+// MARK: - Validations
+
+extension Field {
+
+  public func validate() throws {
+    let node = try makeNode()
+    let validator = FieldValidator(node: node)
+
+    if !validator.isValid {
+      throw InputError(data: node, errors: validator.errors)
+    }
+  }
+}
+
 // MARK: - Helpers
 
 extension Field {
 
-  static func new() throws -> Field {
+  public static func new() throws -> Field {
     let node = try Node(node: [
       Key.kind.value: FieldKind.plainText.rawValue,
       Key.name.value: "",

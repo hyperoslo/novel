@@ -1,12 +1,11 @@
 import Vapor
-import NovelCore
 
-struct FieldValidator: NodeValidator {
+public struct FieldValidator: NodeValidator {
 
-  let node: Node
-  var errors: [String: Node] = [:]
+  public let node: Node
+  public var errors: [String: Node] = [:]
 
-  init(node: Node) {
+  public init(node: Node) {
     self.node = node
 
     validate(key: Field.Key.name.value, by: NameValidation.self)

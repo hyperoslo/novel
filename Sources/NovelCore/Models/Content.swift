@@ -73,11 +73,25 @@ extension Content {
   }
 }
 
+// MARK: - Validations
+
+extension Content {
+
+  public func validate() throws {
+    let node = try makeNode()
+    let validator = ContentValidator(node: node)
+
+    if !validator.isValid {
+      throw InputError(data: node, errors: validator.errors)
+    }
+  }
+}
+
 // MARK: - Helpers
 
 extension Content {
 
-  static func new() throws -> Content {
+  public static func new() throws -> Content {
     let node = try Node(node: [Key.body.value: ""])
     return try Content(node: node)
   }

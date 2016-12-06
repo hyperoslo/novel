@@ -49,9 +49,11 @@ public struct EntryPresenter: Presenter {
 
   public typealias Key = Entry.Key
   public let model: Entry
+  public let data: Node?
 
-  public init(model: Entry) {
+  public init(model: Entry, data: Node? = nil) {
     self.model = model
+    self.data = data
   }
 
   public func makeNode() throws -> Node {
@@ -73,11 +75,17 @@ public struct EntryPresenter: Presenter {
     let contents = try model.contents().all()
     var fieldNodes = [Node]()
 
-    for field in fields {
+    for (index, field) in fields.enumerated() {
       var fieldNode = try FieldPresenter(model: field).makeNode()
 
       if let content = contents.first(where: { $0.fieldId == field.id }) {
         fieldNode["body"] = content.body.makeNode()
+      } else {
+        fieldNode["body"] = ""
+      }
+
+      if let items = data?["fields"]?.nodeArray, index < items.count, let value = items[index].string {
+        fieldNode["body"] = value.makeNode()
       }
 
       fieldNodes.append(fieldNode)

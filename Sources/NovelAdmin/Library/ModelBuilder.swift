@@ -1,7 +1,7 @@
 import Vapor
 import NovelCore
 
-struct ModelBuilder<T: Model> {
+struct ModelBuilder<T: NovelCore.Model> {
   let validator: NodeValidator
 
   func build() throws -> T {
@@ -14,8 +14,4 @@ struct ModelBuilder<T: Model> {
   }
 }
 
-struct InputError: Error {
 
-  let data: Node
-  let errors: [String: Node]
-}

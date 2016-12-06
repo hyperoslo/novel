@@ -69,11 +69,25 @@ extension Chapter {
   }
 }
 
+// MARK: - Validations
+
+extension Chapter {
+
+  public func validate() throws {
+    let node = try makeNode()
+    let validator = ChapterValidator(node: node)
+
+    if !validator.isValid {
+      throw InputError(data: node, errors: validator.errors)
+    }
+  }
+}
+
 // MARK: - Helpers
 
 extension Chapter {
 
-  static func new() throws -> Chapter {
+  public static func new() throws -> Chapter {
     let node = try Node(node: [
       Key.name.value: "",
       Key.handle.value: ""])

@@ -30,8 +30,7 @@ final class EntryController: Controller {
 
   func new(request: Request, chapter: Chapter) throws -> ResponseRepresentable {
     let context = [
-      "chapter": try chapter.makeNode(),
-      "fields": try chapter.fields().all().makeNode()
+      "entry": try EntryPresenter(model: Entry.new()).makeNode()
     ]
 
     return try drop.view.make(
@@ -49,8 +48,8 @@ final class EntryController: Controller {
       try EntryManager().create(chapter: chapter, node: node)
     } catch let error as InputError {
       let context = [
+        "entry": try EntryPresenter(model: Entry.new()).makeNode(),
         "data": node,
-        "chapter": try chapter.makeNode(),
         "fields": try chapter.fields().all().makeNode(),
         "flash": "Please fill the required fields",
         "errors": Node.object(error.errors)
@@ -69,7 +68,7 @@ final class EntryController: Controller {
 
   func show(request: Request, entry: Entry) throws -> ResponseRepresentable {
     var context: Context = [
-      "entry": try entry.makeNode()
+      "entry": try EntryPresenter(model: entry).makeNode()
     ]
 
     if let chapter = try entry.chapter().get() {
@@ -93,7 +92,7 @@ final class EntryController: Controller {
     } catch let error as InputError {
       let context = [
         "data": node,
-        "chapter": try chapter.makeNode(),
+        "entry": try EntryPresenter(model: entry).makeNode(),
         "fields": try chapter.fields().all().makeNode(),
         "flash": "Please fill the required fields",
         "errors": Node.object(error.errors)

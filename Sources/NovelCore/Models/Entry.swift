@@ -1,6 +1,20 @@
 import Vapor
 import Fluent
 
+public protocol Model: Vapor.Model {
+  func validate() throws
+}
+
+extension Model {
+
+  public func updated(from node: Node) throws -> Self {
+    var updatedNode = try makeNode()
+    updatedNode.merge(with: node)
+
+    return try Self(node: updatedNode)
+  }
+}
+
 public final class Entry: Model {
 
   public static let entityName = "entries"
@@ -47,10 +61,10 @@ public final class Entry: Model {
    */
   public init(node: Node, in context: Context) throws {
     id = node[Key.id.value]
-    title = try node.extract(Key.title.value)
-    createdAt = try node.extract(Key.createdAt.value)
-    updatedAt = try node.extract(Key.updatedAt.value)
-    publishedAt = try node.extract(Key.publishedAt.value)
+    title = node[Key.title.value]?.string ?? ""
+    createdAt = node[Key.createdAt.value]?.int ?? 0
+    updatedAt = node[Key.updatedAt.value]?.int ?? 0
+    publishedAt = node[Key.publishedAt.value]?.int ?? 0
     chapterId = node[Key.chapterId.value]
   }
 
@@ -89,11 +103,25 @@ extension Entry {
   }
 }
 
+// MARK: - Validations
+
+extension Entry {
+
+  public func validate() throws {
+    let node = try makeNode()
+    let validator = EntryValidator(node: node)
+
+    if !validator.isValid {
+      throw InputError(data: node, errors: validator.errors)
+    }
+  }
+}
+
 // MARK: - Helpers
 
 extension Entry {
 
-  static func new() throws -> Entry {
+  public static func new() throws -> Entry {
     let node = try Node(node: [
       Key.title.value: "",
       Key.createdAt.value: 0,

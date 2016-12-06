@@ -7,6 +7,17 @@ public protocol NodeValidator {
   init(node: Node)
 }
 
+public struct InputError: Error {
+
+  public let data: Node
+  public let errors: [String: Node]
+
+  public init(data: Node, errors: [String: Node]) {
+    self.data = data
+    self.errors = errors
+  }
+}
+
 enum NodeValidorError: String, Error {
   case missingField = "Field is missing"
 }

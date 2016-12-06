@@ -1,17 +1,16 @@
 import Vapor
-import NovelCore
 
-struct ChapterValidator: NodeValidator {
+public struct ChapterValidator: NodeValidator {
 
   enum ChapterError: String, Error {
     case noFields = "Chapter may have al least 1 field."
   }
 
-  var node: Node
-  var errors: [String: Node] = [:]
-  var fieldNodes: [Node] = []
+  public var node: Node
+  public var errors: [String: Node] = [:]
+  public var fieldNodes: [Node] = []
 
-  init(node: Node) {
+  public init(node: Node) {
     self.node = node
     validate(key: Chapter.Key.name.value, by: NameValidation.self)
     validate(key: Chapter.Key.handle.value, by: NameValidation.self)

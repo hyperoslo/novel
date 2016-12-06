@@ -1,18 +1,17 @@
 import Vapor
-import NovelCore
 
-struct UserValidator: NodeValidator {
+public struct UserValidator: NodeValidator {
 
   typealias Key = User.Key
 
-  enum ChapterError: String, Error {
+  public enum ChapterError: String, Error {
     case noFields = "Chapter may have al least 1 field."
   }
 
-  var node: Node
-  var errors: [String: Node] = [:]
+  public var node: Node
+  public var errors: [String: Node] = [:]
 
-  init(node: Node) {
+  public init(node: Node) {
     self.node = node
     validate(key: Key.username.value, by: NameValidation.self)
     validate(key: Key.email.value, by: Email.self)

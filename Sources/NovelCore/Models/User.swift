@@ -160,6 +160,20 @@ extension User: Auth.User {
   }
 }
 
+// MARK: - Validations
+
+extension User {
+
+  public func validate() throws {
+    let node = try makeNode()
+    let validator = UserValidator(node: node)
+
+    if !validator.isValid {
+      throw InputError(data: node, errors: validator.errors)
+    }
+  }
+}
+
 // MARK: - Request
 
 extension Request {
