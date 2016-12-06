@@ -1,0 +1,31 @@
+<div class="box page-header">
+  <div class="page-title">
+    #if(entry.id) {
+      <h1>#(entry.title)</h1>
+    } ##else() {
+      <h1>New entry</h1>
+    }
+  </div>
+  <div class="page-actions">
+    <button type="submit" class="btn btn-primary">
+      <i class="fa fa-floppy-o"></i> Save
+    </button>
+  </div>
+</div>
+
+<div class="box segment">
+  #embed("admin/common/flash")
+  <div class="form-group required">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" name="title" value="#(entry.title)" aria-describedby="title-help" placeholder="Enter title">
+    #if(errors.title) {
+      <span class="has-error">#(errors.title)</span>
+    }
+    <small id="title-help" class="form-text text-muted">
+      Title is a default field for entry of any type.
+    </small>
+  </div>
+  #loop(entry.fields, "field") {
+    #embed("admin/main/entry/field")
+  }
+</div>

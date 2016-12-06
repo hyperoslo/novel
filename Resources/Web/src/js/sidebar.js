@@ -9,4 +9,7 @@ $(function () {
 
 	// Set active navigation item
   $('#sidebar-menu > li > a[href="' + document.location.pathname + '"]').parent().addClass('active');
+
+	// Set active submenu item
+  $('#submenu a[href="' + document.location.pathname + '"]').parent().addClass('active');
 });

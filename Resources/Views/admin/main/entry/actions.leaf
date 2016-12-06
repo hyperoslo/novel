@@ -1,0 +1,12 @@
+#index(chapters, "0") {
+  <div class="btn-group" role="group">
+    <button id="btnNew" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      New entry
+    </button>
+    <div class="dropdown-menu" aria-labelledby="btnNew">
+      #loop(chapters, "chapter") {
+        <a class="dropdown-item" href="/admin/entries/#(chapter.id)/new">#(chapter.name)</a>
+      }
+    </div>
+  </div>
+}

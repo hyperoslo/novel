@@ -3,8 +3,6 @@ import Fluent
 
 public final class Chapter: Model {
 
-  public static let entityName = "chapters"
-
   public enum Key: String {
     case id
     case name
@@ -22,11 +20,11 @@ public final class Chapter: Model {
 
   // Relations
 
-  func fields() -> Children<Field> {
+  public func fields() -> Children<Field> {
     return children()
   }
 
-  func entries() -> Children<Entry> {
+  public func entries() -> Children<Entry> {
     return children()
   }
 
@@ -58,7 +56,7 @@ public final class Chapter: Model {
 extension Chapter {
 
   public static func prepare(_ database: Database) throws {
-    try database.create(Chapter.entityName) { entities in
+    try database.create(Chapter.entity) { entities in
       entities.id()
       entities.string(Key.name.value, length: 50)
       entities.string(Key.handle.value, length: 50)
@@ -67,6 +65,33 @@ extension Chapter {
   }
 
   public static func revert(_ database: Database) throws {
-    try database.delete(Chapter.entityName)
+    try database.delete(Chapter.entity)
+  }
+}
+
+// MARK: - Validations
+
+extension Chapter {
+
+  public func validate() throws {
+    let node = try makeNode()
+    let validator = ChapterValidator(node: node)
+
+    if !validator.isValid {
+      throw InputError(data: node, errors: validator.errors)
+    }
+  }
+}
+
+// MARK: - Helpers
+
+extension Chapter {
+
+  public static func new() throws -> Chapter {
+    let node = try Node(node: [
+      Key.name.value: "",
+      Key.handle.value: ""])
+
+    return try Chapter(node: node)
   }
 }

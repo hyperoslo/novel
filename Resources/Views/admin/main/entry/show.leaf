@@ -1,0 +1,14 @@
+#extend("admin/main/_layout")
+
+#export("body") {
+  <ol class="box breadcrumb">
+    <li class="breadcrumb-item active">
+      <a href="/admin/entries/#(entry.chapter.id)">Entries</a>
+    </li>
+    <li class="breadcrumb-item active">#(entry.title)</li>
+  </ol>
+
+  <form id="form" method="post" action="/admin/entries/#(entry.chapter.id)/#(entry.id)" accept-charset="UTF-8">
+    #embed("admin/main/entry/form")
+  </form>
+}

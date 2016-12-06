@@ -39,64 +39,22 @@
 	.nav {
 		font-size: 14px;
 
-		// Common styles
 		li {
-			a:focus,
-			.open & a:focus {
-				background-color: inherit;
-			}
-		}
-
-		// Second + menu items
-		ul {
-			padding: 0;
-			height: 0px;
-			overflow: hidden;
-
-			.loaded & {
-				height: auto;
-			}
-		}
-
-		li.active ul {
-			height: auto;
-		}
-
-		li a {
-			color: $bar-color-text;
-			text-decoration: none;
-		}
-
-		li a:hover,
-		li.open > a,
-		li.open a:hover {
-			color: $bar-color-text-active;
-			background-color: $bar-color-secondary;
-		}
-
-		&> li {
-			& > a {
+			a {
+				color: $bar-color-text;
+				text-decoration: none;
 				padding: 15px 10px 15px 20px;
 			}
 
-			&.active > a,
-			&.active > a:hover {
+			a:hover {
+				color: $bar-color-text-active;
+				background-color: $bar-color-secondary;
+			}
+
+			&.active > a, &.active > a:hover {
 				background-color: $color-primary !important;
 				color: $color-inverse !important;
 				position: relative;
-
-				&:after {
-					position: absolute;
-					top: 50%;
-					right: 0;
-					height: 0;
-					width: 0;
-					margin-top: -8px;
-					border: 8px solid transparent;
-					border-right-color: $color-bg;
-					content: " ";
-					pointer-events: none;
-				}
 			}
 
 			& > a {

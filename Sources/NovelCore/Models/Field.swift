@@ -3,8 +3,6 @@ import Fluent
 
 public final class Field: Model {
 
-  public static let entityName = "fields"
-
   public enum Key: String {
     case id
     case kind
@@ -74,7 +72,7 @@ public final class Field: Model {
 extension Field {
 
   public static func prepare(_ database: Database) throws {
-    try database.create(Field.entityName) { users in
+    try database.create(Field.entity) { users in
       users.id()
       users.int(Key.kind.value)
       users.string(Key.name.value, length: 50)
@@ -87,6 +85,34 @@ extension Field {
   }
 
   public static func revert(_ database: Database) throws {
-    try database.delete(Field.entityName)
+    try database.delete(Field.entity)
+  }
+}
+
+// MARK: - Validations
+
+extension Field {
+
+  public func validate() throws {
+    let node = try makeNode()
+    let validator = FieldValidator(node: node)
+
+    if !validator.isValid {
+      throw InputError(data: node, errors: validator.errors)
+    }
+  }
+}
+
+// MARK: - Helpers
+
+extension Field {
+
+  public static func new() throws -> Field {
+    let node = try Node(node: [
+      Key.kind.value: FieldKind.plainText.rawValue,
+      Key.name.value: "",
+      Key.handle.value: ""])
+
+    return try Field(node: node)
   }
 }

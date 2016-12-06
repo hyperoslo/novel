@@ -1,13 +1,34 @@
 import Vapor
 import Fluent
 
+public protocol Model: Vapor.Model {
+  func validate() throws
+}
+
+extension Model {
+
+  public func updated(from node: Node, exists: Bool = false) throws -> Self {
+    var updatedNode = try makeNode()
+    updatedNode.merge(with: node)
+
+    var model = try Self(node: updatedNode)
+    model.exists = exists
+
+    return model
+  }
+}
+
 public final class Entry: Model {
 
   public static let entityName = "entries"
 
+  public static var entity: String {
+    return "entries"
+  }
+
   public enum Key: String {
     case id
-    case slug
+    case title
     case createdAt
     case updatedAt
     case publishedAt
@@ -18,7 +39,7 @@ public final class Entry: Model {
 
   // Fields
   public var id: Node?
-  public var slug: String
+  public var title: String
   public var createdAt: Int
   public var updatedAt: Int
   public var publishedAt: Int
@@ -26,12 +47,16 @@ public final class Entry: Model {
   // Relations
   public var chapterId: Node?
 
-  func chapter() throws -> Parent<Chapter> {
+  public func chapter() throws -> Parent<Chapter> {
     return try parent(chapterId)
   }
 
-  func set(chapter: Chapter) {
+  public func set(chapter: Chapter) {
     chapterId = chapter.id
+  }
+
+  public func contents() -> Children<Content> {
+    return children()
   }
 
   /**
@@ -39,10 +64,10 @@ public final class Entry: Model {
    */
   public init(node: Node, in context: Context) throws {
     id = node[Key.id.value]
-    slug = try node.extract(Key.slug.value)
-    createdAt = try node.extract(Key.createdAt.value)
-    updatedAt = try node.extract(Key.updatedAt.value)
-    publishedAt = try node.extract(Key.publishedAt.value)
+    title = node[Key.title.value]?.string ?? ""
+    createdAt = node[Key.createdAt.value]?.int ?? 0
+    updatedAt = node[Key.updatedAt.value]?.int ?? 0
+    publishedAt = node[Key.publishedAt.value]?.int ?? 0
     chapterId = node[Key.chapterId.value]
   }
 
@@ -52,7 +77,7 @@ public final class Entry: Model {
   public func makeNode(context: Context) throws -> Node {
     return try Node(node: [
       Key.id.value: id,
-      Key.slug.value: slug,
+      Key.title.value: title,
       Key.createdAt.value: createdAt,
       Key.updatedAt.value: updatedAt,
       Key.publishedAt.value: publishedAt,
@@ -68,7 +93,7 @@ extension Entry {
   public static func prepare(_ database: Database) throws {
     try database.create(Entry.entityName) { users in
       users.id()
-      users.string(Key.slug.value, length: 100)
+      users.string(Key.title.value, length: 100)
       users.int(Key.createdAt.value)
       users.int(Key.updatedAt.value)
       users.int(Key.publishedAt.value)
@@ -78,5 +103,35 @@ extension Entry {
 
   public static func revert(_ database: Database) throws {
     try database.delete(Entry.entityName)
+  }
+}
+
+// MARK: - Validations
+
+extension Entry {
+
+  public func validate() throws {
+    let node = try makeNode()
+    let validator = EntryValidator(node: node)
+
+    if !validator.isValid {
+      throw InputError(data: node, errors: validator.errors)
+    }
+  }
+}
+
+// MARK: - Helpers
+
+extension Entry {
+
+  public static func new() throws -> Entry {
+    let node = try Node(node: [
+      Key.title.value: "",
+      Key.createdAt.value: 0,
+      Key.updatedAt.value: 0,
+      Key.publishedAt.value: 0
+    ])
+
+    return try Entry(node: node)
   }
 }

@@ -1,0 +1,11 @@
+<div class="form-group">
+  <label for="#(field.handle)">#(field.name)</label>
+  #equal(field.kind, "0") {
+    <input type="text" class="form-control" id="field_#(field.handle)" name="fields[]" value="#(field.body)">
+  } ##else() {
+    <input id="field_#(field.handle)" name="fields[]" type="hidden">
+    <div id="editor_#(field.handle)" class="editor-container">
+      #raw(field.body)
+    </div>
+  }
+</div>

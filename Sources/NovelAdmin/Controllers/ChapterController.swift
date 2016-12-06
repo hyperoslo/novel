@@ -55,6 +55,10 @@ final class ChapterController: Controller {
     return redirect(.chapters)
   }
 
+  func show(request: Request, chapter: Chapter) -> ResponseRepresentable {
+    return chapter
+  }
+
   func replace(request: Request, chapter: Chapter) throws -> ResponseRepresentable {
     let context = [
       "chapter": try chapter.makeNode()
@@ -73,8 +77,8 @@ extension ChapterController: ResourceRepresentable {
     return Resource(
       index: index,
       store: store,
+      show: show,
       replace: replace
     )
   }
 }
-

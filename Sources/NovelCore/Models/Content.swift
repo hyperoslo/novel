@@ -3,8 +3,6 @@ import Fluent
 
 public final class Content: Model {
 
-  public static let entityName = "contents"
-
   public enum Key: String {
     case id
     case body
@@ -22,12 +20,24 @@ public final class Content: Model {
   public var fieldId: Node?
   public var entryId: Node?
 
+  public func field() throws -> Parent<Field> {
+    return try parent(fieldId)
+  }
+
+  public func set(field: Field) {
+    fieldId = field.id
+  }
+
+  public func set(entry: Entry) {
+    entryId = entry.id
+  }
+
   /**
    Initializer.
    */
   public init(node: Node, in context: Context) throws {
     id = node[Key.id.snaked]
-    body = try node.extract(Key.body.snaked)
+    body = node[Key.body.snaked]?.string ?? ""
     fieldId = node[Key.fieldId.snaked]
     entryId = node[Key.entryId.snaked]
   }
@@ -37,10 +47,10 @@ public final class Content: Model {
    */
   public func makeNode(context: Context) throws -> Node {
     return try Node(node: [
-      Key.id.snaked: id,
-      Key.body.snaked: body,
-      Key.fieldId.snaked: fieldId,
-      Key.entryId.snaked: entryId
+      Key.id.value: id,
+      Key.body.value: body,
+      Key.fieldId.value: fieldId,
+      Key.entryId.value: entryId
       ])
   }
 }
@@ -50,7 +60,7 @@ public final class Content: Model {
 extension Content {
 
   public static func prepare(_ database: Database) throws {
-    try database.create(Content.entityName) { entities in
+    try database.create(Content.entity) { entities in
       entities.id()
       entities.string(Key.body.snaked)
       entities.parent(Field.self, optional: false)
@@ -59,6 +69,30 @@ extension Content {
   }
 
   public static func revert(_ database: Database) throws {
-    try database.delete(Content.entityName)
+    try database.delete(Content.entity)
+  }
+}
+
+// MARK: - Validations
+
+extension Content {
+
+  public func validate() throws {
+    let node = try makeNode()
+    let validator = ContentValidator(node: node)
+
+    if !validator.isValid {
+      throw InputError(data: node, errors: validator.errors)
+    }
+  }
+}
+
+// MARK: - Helpers
+
+extension Content {
+
+  public static func new() throws -> Content {
+    let node = try Node(node: [Key.body.value: ""])
+    return try Content(node: node)
   }
 }
