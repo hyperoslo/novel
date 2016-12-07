@@ -1,0 +1,36 @@
+#extend("admin/main/_layout")
+
+#export("body") {
+  <ol class="box breadcrumb">
+    <li class="breadcrumb-item active">Users</li>
+  </ol>
+
+  <div class="box page-header">
+    <div class="page-title">
+      <h1>Users</h1>
+    </div>
+  </div>
+
+  <div class="box segment">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        #loop(users, "item") {
+          <tr>
+            <td>#(item.id)</td>
+            <td>#(item.username)</td>
+            <td>#(item.email)</td>
+            <td>#(item.firstname) #(item.lastname)</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}
