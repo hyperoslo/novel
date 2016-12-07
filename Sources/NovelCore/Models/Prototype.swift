@@ -10,10 +10,7 @@ public final class Prototype: Model {
     case description
   }
 
-  public var exists: Bool = false
-
   // Fields
-  public var id: Node?
   public var name: String
   public var handle: String
   public var description: String
@@ -31,55 +28,32 @@ public final class Prototype: Model {
   /**
     Initializer.
    */
-  public init(node: Node, in context: Context) throws {
-    id = node[Key.id.value]
+  public required init(node: Node, in context: Context) throws {
     name = try node.extract(Key.name.value)
     handle = try node.extract(Key.handle.value)
     description = node[Key.description.value]?.string ?? ""
+    try super.init(node: node, in: context)
+    validator = PrototypeValidator.self
   }
 
   /**
     Serialization.
    */
-  public func makeNode(context: Context) throws -> Node {
+  public override func makeNode() throws -> Node {
     return try Node(node: [
-      Key.id.value: id,
       Key.name.value: name,
       Key.handle.value: handle,
       Key.description.value: description
       ])
   }
-}
 
-// MARK: - Preparations
-
-extension Prototype {
-
-  public static func prepare(_ database: Database) throws {
-    try database.create(Prototype.entity) { entities in
-      entities.id()
-      entities.string(Key.name.value, length: 50)
-      entities.string(Key.handle.value, length: 50)
-      entities.string(Key.description.value)
-    }
-  }
-
-  public static func revert(_ database: Database) throws {
-    try database.delete(Prototype.entity)
-  }
-}
-
-// MARK: - Validations
-
-extension Prototype {
-
-  public func validate() throws {
-    let node = try makeNode()
-    let validator = PrototypeValidator(node: node)
-
-    if !validator.isValid {
-      throw InputError(data: node, errors: validator.errors)
-    }
+  /**
+   Preparation.
+   */
+  public override class func create(schema: Schema.Creator) throws {
+    schema.string(Key.name.value, length: 50)
+    schema.string(Key.handle.value, length: 50)
+    schema.string(Key.description.value)
   }
 }
 

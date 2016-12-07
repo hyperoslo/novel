@@ -10,7 +10,7 @@ struct ModelBuilder<T: NovelCore.Model> {
       throw InputError(data: data, errors: validator.errors)
     }
 
-    return try T(node: validator.node)
+    return try T(node: validator.node, in: EmptyNode)
   }
 }
 
