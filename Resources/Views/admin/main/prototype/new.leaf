@@ -3,15 +3,15 @@
 #export("body") {
   <ol class="box breadcrumb">
     <li class="breadcrumb-item active">
-      <a href="#adminPath("chapters")">Chapters</a>
+      <a href="#adminPath("prototypes")">Prototypes</a>
     </li>
     <li class="breadcrumb-item active">New</li>
   </ol>
 
-  <form method="post" action="#adminPath("chapters")" accept-charset="UTF-8">
+  <form method="post" action="#adminPath("prototypes")" accept-charset="UTF-8">
     <div class="box page-header">
       <div class="page-title">
-        <h1>New chapter</h1>
+        <h1>New prototype</h1>
       </div>
       <div class="page-actions">
         <button type="submit" class="btn btn-primary">
@@ -30,7 +30,7 @@
             <span class="has-error">#(errors.name)</span>
           }
           <small id="name-help" class="form-text text-muted">
-            This is how the new chapter will be called in the system.
+            This is how the new prototype will be called in the system.
           </small>
         </div>
         <div class="form-group col-sm-6 required row">
@@ -40,7 +40,7 @@
             <span class="has-error">#(errors.handle)</span>
           }
           <small id="handle-help" class="form-text text-muted">
-            This is how the new chapter will be refered in the templates.
+            This is how the new prototype will be refered in the templates.
           </small>
         </div>
       </div>
@@ -49,7 +49,7 @@
         <label for="description">Description</label>
         <textarea class="form-control" id="description" name="description" value="#(data.description)" aria-describedby="description-help" placeholder="Enter description" rows="2" cols="50"></textarea>
         <small id="description-help" class="form-text text-muted">
-          Short helper text to describe the new chapter.
+          Short helper text to describe the new prototype.
         </small>
       </div>
     </div>
@@ -61,12 +61,12 @@
     <div id="field-section" class="box segment">
       #if(data.fields) {
         #loop(data.fields, "field") {
-          #embed("admin/main/chapter/field")
+          #embed("admin/main/prototype/field")
         }
       } ##else() {
-        #embed("admin/main/chapter/field")
+        #embed("admin/main/prototype/field")
       }
-      <a href="#adminPath("chapters/new")" id="new-field-btn" class="btn btn-primary-outline">
+      <a href="#adminPath("prototypes/new")" id="new-field-btn" class="btn btn-primary-outline">
         <i class="fa fa-plus"></i> New field
       </a>
     </div>

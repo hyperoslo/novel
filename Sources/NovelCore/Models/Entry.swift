@@ -13,7 +13,7 @@ public final class Entry: Model {
     case createdAt
     case updatedAt
     case publishedAt
-    case chapterId
+    case prototypeId
   }
 
   public var exists: Bool = false
@@ -26,14 +26,14 @@ public final class Entry: Model {
   public var publishedAt: Int
 
   // Relations
-  public var chapterId: Node?
+  public var prototypeId: Node?
 
-  public func chapter() throws -> Parent<Chapter> {
-    return try parent(chapterId)
+  public func prototype() throws -> Parent<Prototype> {
+    return try parent(prototypeId)
   }
 
-  public func set(chapter: Chapter) {
-    chapterId = chapter.id
+  public func set(prototype: Prototype) {
+    prototypeId = prototype.id
   }
 
   public func contents() -> Children<Content> {
@@ -49,7 +49,7 @@ public final class Entry: Model {
     createdAt = node[Key.createdAt.value]?.int ?? 0
     updatedAt = node[Key.updatedAt.value]?.int ?? 0
     publishedAt = node[Key.publishedAt.value]?.int ?? 0
-    chapterId = node[Key.chapterId.value]
+    prototypeId = node[Key.prototypeId.value]
   }
 
   /**
@@ -62,7 +62,7 @@ public final class Entry: Model {
       Key.createdAt.value: createdAt,
       Key.updatedAt.value: updatedAt,
       Key.publishedAt.value: publishedAt,
-      Key.chapterId.value: chapterId,
+      Key.prototypeId.value: prototypeId,
     ])
   }
 }
@@ -78,7 +78,7 @@ extension Entry {
       users.int(Key.createdAt.value)
       users.int(Key.updatedAt.value)
       users.int(Key.publishedAt.value)
-      users.parent(Chapter.self, optional: false)
+      users.parent(Prototype.self, optional: false)
     }
   }
 

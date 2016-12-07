@@ -1,12 +1,7 @@
 import Vapor
 
 public struct UserValidator: NodeValidator {
-
   typealias Key = User.Key
-
-  public enum ChapterError: String, Error {
-    case noFields = "Chapter may have al least 1 field."
-  }
 
   public var node: Node
   public var errors: [String: Node] = [:]

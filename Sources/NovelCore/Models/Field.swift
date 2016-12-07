@@ -11,7 +11,7 @@ public final class Field: Model {
     case isRequired
     case minLength
     case maxLength
-    case chapterId
+    case prototypeId
   }
 
   public var exists: Bool = false
@@ -26,14 +26,14 @@ public final class Field: Model {
   public var maxLength: Int?
 
   // Relations
-  public var chapterId: Node?
+  public var prototypeId: Node?
 
-  public func chapter() throws -> Parent<Chapter> {
-    return try parent(chapterId)
+  public func prototype() throws -> Parent<Prototype> {
+    return try parent(prototypeId)
   }
 
-  public func set(chapter: Chapter) {
-    chapterId = chapter.id
+  public func set(prototype: Prototype) {
+    prototypeId = prototype.id
   }
 
   /**
@@ -47,7 +47,7 @@ public final class Field: Model {
     isRequired = try? node.extract(Key.isRequired.value)
     minLength = try? node.extract(Key.minLength.value)
     maxLength = try? node.extract(Key.maxLength.value)
-    chapterId = node[Key.chapterId.value]
+    prototypeId = node[Key.prototypeId.value]
   }
 
   /**
@@ -62,7 +62,7 @@ public final class Field: Model {
       Key.isRequired.value: isRequired,
       Key.minLength.value: minLength,
       Key.maxLength.value: maxLength,
-      Key.chapterId.value: chapterId
+      Key.prototypeId.value: prototypeId
       ])
   }
 }
@@ -80,7 +80,7 @@ extension Field {
       users.bool(Key.isRequired.value, optional: true)
       users.int(Key.minLength.value, optional: true)
       users.int(Key.maxLength.value, optional: true)
-      users.parent(Chapter.self, optional: false)
+      users.parent(Prototype.self, optional: false)
     }
   }
 

@@ -15,8 +15,8 @@
 				</li>
 
 				<li>
-					<a href="#adminPath("chapters")">
-						<i class="fa fa-th-large"></i> Chapters
+					<a href="#adminPath("prototypes")">
+						<i class="fa fa-th-large"></i> Prototypes
 					</a>
 				</li>
 

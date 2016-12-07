@@ -6,7 +6,7 @@ enum Route: String {
   case reset
   case users
   case entries
-  case chapters
+  case prototypes
   case settings
 
   var relative: String {

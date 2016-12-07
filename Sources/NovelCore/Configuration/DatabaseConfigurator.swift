@@ -7,6 +7,6 @@ struct DatabaseConfigurator: Configurator {
 
   func configure(drop: Droplet) throws {
     try drop.addProvider(VaporSQLite.Provider.self)
-    drop.preparations = [User.self, Session.self, Entry.self, Chapter.self, Field.self, Content.self]
+    drop.preparations = [User.self, Session.self, Entry.self, Prototype.self, Field.self, Content.self]
   }
 }

@@ -17,14 +17,14 @@ extension Presenter {
   }
 }
 
-// MARK: - Chapter
+// MARK: - Prototype
 
-public struct ChapterPresenter: Presenter {
+public struct PrototypePresenter: Presenter {
 
-  public typealias Key = Chapter.Key
-  public let model: Chapter
+  public typealias Key = Prototype.Key
+  public let model: Prototype
 
-  public init(model: Chapter) {
+  public init(model: Prototype) {
     self.model = model
   }
 
@@ -70,13 +70,13 @@ public struct EntryPresenter: Presenter {
       Key.publishedAt.rawValue: Date(timeIntervalSince1970: TimeInterval(model.createdAt)).rfc1123,
       ])
 
-    guard let chapter = try model.chapter().get() else {
+    guard let prototype = try model.prototype().get() else {
       return node
     }
 
-    node["chapter"] = try ChapterPresenter(model: chapter).makeNode()
+    node["prototype"] = try PrototypePresenter(model: prototype).makeNode()
 
-    let fields = try chapter.fields().all()
+    let fields = try prototype.fields().all()
     let contents: [Content] = model.id == nil ? [] : try model.contents().all()
     var fieldNodes = [Node]()
 

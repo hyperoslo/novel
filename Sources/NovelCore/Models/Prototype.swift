@@ -1,7 +1,7 @@
 import Vapor
 import Fluent
 
-public final class Chapter: Model {
+public final class Prototype: Model {
 
   public enum Key: String {
     case id
@@ -53,10 +53,10 @@ public final class Chapter: Model {
 
 // MARK: - Preparations
 
-extension Chapter {
+extension Prototype {
 
   public static func prepare(_ database: Database) throws {
-    try database.create(Chapter.entity) { entities in
+    try database.create(Prototype.entity) { entities in
       entities.id()
       entities.string(Key.name.value, length: 50)
       entities.string(Key.handle.value, length: 50)
@@ -65,17 +65,17 @@ extension Chapter {
   }
 
   public static func revert(_ database: Database) throws {
-    try database.delete(Chapter.entity)
+    try database.delete(Prototype.entity)
   }
 }
 
 // MARK: - Validations
 
-extension Chapter {
+extension Prototype {
 
   public func validate() throws {
     let node = try makeNode()
-    let validator = ChapterValidator(node: node)
+    let validator = PrototypeValidator(node: node)
 
     if !validator.isValid {
       throw InputError(data: node, errors: validator.errors)
@@ -85,13 +85,13 @@ extension Chapter {
 
 // MARK: - Helpers
 
-extension Chapter {
+extension Prototype {
 
-  public static func new() throws -> Chapter {
+  public static func new() throws -> Prototype {
     let node = try Node(node: [
       Key.name.value: "",
       Key.handle.value: ""])
 
-    return try Chapter(node: node)
+    return try Prototype(node: node)
   }
 }
