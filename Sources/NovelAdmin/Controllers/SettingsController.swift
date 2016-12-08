@@ -6,7 +6,7 @@ final class SettingsController: Controller {
 
   func index(request: Request) throws -> ResponseRepresentable {
     let context = [
-      "settings": try SettingsManager().all()
+      "settings": try SettingsPresenter().general()
     ]
 
     return try makeSettings(context: context, request: request)

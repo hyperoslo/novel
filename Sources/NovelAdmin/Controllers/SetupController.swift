@@ -11,7 +11,7 @@ final class SetupController: Controller {
   func index(request: Request) throws -> ResponseRepresentable {
     let context: Context = [
       "title": drop.localization[request.lang, "login", "title"],
-      "settings": try SettingsManager().all()
+      "settings": try SettingsPresenter().general()
     ]
 
     return try makeSetup(context: context, request: request)
