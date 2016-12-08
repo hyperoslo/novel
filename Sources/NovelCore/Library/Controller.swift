@@ -1,9 +1,29 @@
-//
-//  Controller.swift
-//  Novel
-//
-//  Created by Vadym Markov on 08/12/2016.
-//
-//
+import Vapor
+import HTTP
 
-import Foundation
+open class Controller {
+  public let drop: Droplet
+
+  public init(drop: Droplet) {
+    self.drop = drop
+  }
+}
+
+// MARK: - Helpers
+
+public extension Controller {
+
+  public typealias Context = [String: NodeRepresentable]
+
+  public func redirect(_ route: RouteRepresentable) -> ResponseRepresentable {
+    return Response(redirect: route.absolute)
+  }
+
+  public func redirect(_ route: RouteRepresentable, id: Node?) -> ResponseRepresentable {
+    guard let id = id?.int else {
+      return redirect(route)
+    }
+
+    return Response(redirect: route.show(id: id, isRelative: false))
+  }
+}
