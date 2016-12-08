@@ -67,7 +67,7 @@ final class SetupController: Controller {
     do {
       try UserManager().create(node: node)
       try request.auth.login(node)
-      response = redirect(Route.admin)
+      response = redirect(Route.root)
     } catch let error as InputError  {
       context["errors"] = Node.object(error.errors)
       response = try makeSignup(context: context, request: request)

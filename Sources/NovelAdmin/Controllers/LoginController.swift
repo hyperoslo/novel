@@ -21,7 +21,7 @@ final class LoginController: Controller {
 
     do {
       try request.auth.login(node)
-      response = redirect(Route.admin)
+      response = redirect(Route.root)
     } catch let error as CustomStringConvertible {
       let context = ["flash": error.description]
       response = try makeLogin(context: context, request: request)

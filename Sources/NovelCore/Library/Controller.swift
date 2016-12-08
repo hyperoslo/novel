@@ -19,6 +19,10 @@ public extension Controller {
     return Response(redirect: route.absolute)
   }
 
+  public func redirect(_ route: String) -> ResponseRepresentable {
+    return Response(redirect: route)
+  }
+
   public func redirect(_ route: RouteRepresentable, id: Node?) -> ResponseRepresentable {
     guard let id = id?.int else {
       return redirect(route)
