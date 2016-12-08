@@ -3,9 +3,9 @@ import PackageDescription
 let package = Package(
   name: "Novel",
   targets: [
-    Target(name: "Blog", dependencies: ["NovelCore", "NovelAdmin"]),
+    Target(name: "Demo", dependencies: ["NovelCore", "NovelAdmin", "NovelTheme"]),
+    Target(name: "NovelTheme", dependencies: ["NovelCore"]),
     Target(name: "NovelAPI", dependencies: ["NovelCore"]),
-    Target(name: "Novel", dependencies: ["NovelCore"]),
     Target(name: "NovelAdmin", dependencies: ["NovelCore"]),
     Target(name: "NovelCore"),
   ],
