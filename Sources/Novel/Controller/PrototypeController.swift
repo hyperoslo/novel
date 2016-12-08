@@ -11,7 +11,7 @@ final class PrototypeController: Controller {
       "prototypes": try PrototypePresenter.makeNodes(from: try Prototype.all())
     ]
 
-    return try JSON(node: context)
+    return try drop.view.make("app/prototype/index", context)
   }
 
   // Single entry
@@ -20,11 +20,11 @@ final class PrototypeController: Controller {
     guard let prototype = try Prototype.find(handle: handle) else {
       throw Abort.notFound
     }
-    
+
     let context: Context = [
       "prototype": try PrototypePresenter(model: prototype).makeNode()
     ]
 
-    return try JSON(node: context)
+    return try drop.view.make("app/prototype/show", context)
   }
 }
