@@ -24,6 +24,13 @@ struct RouteConfigurator: Configurator {
         entries.get(handler: controller.index)
         entries.get(String.self, handler: controller.show)
       }
+
+      // Settings
+      root.group(Route.settings.relative) { entries in
+        let controller = SettingsController(drop: drop)
+
+        entries.get(handler: controller.index)
+      }
     }
   }
 }
