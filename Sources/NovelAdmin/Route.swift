@@ -1,4 +1,6 @@
-enum Route: String {
+import NovelCore
+
+enum Route: String, RouteRepresentable  {
   case admin
   case login
   case logout
