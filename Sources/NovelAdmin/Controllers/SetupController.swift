@@ -4,7 +4,7 @@ import HTTP
 import Turnstile
 import NovelCore
 
-final class SignupController: Controller {
+final class SetupController: Controller {
 
   // MARK: - Routes
 

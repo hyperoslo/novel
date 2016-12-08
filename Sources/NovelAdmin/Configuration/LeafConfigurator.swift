@@ -13,7 +13,6 @@ struct LeafConfigurator: Configurator {
       AdminPathTag(),
       LoginPathTag(),
       LogoutPathTag(),
-      SignupPathTag(),
       ResetPathTag(),
       ProfilePathTag()
     ]

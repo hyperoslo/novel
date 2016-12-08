@@ -4,7 +4,7 @@ import NovelCore
 
 struct RouteConfigurator: Configurator {
 
-  let statusMiddleware = FallbackMiddleware(fallback: Route.signup.absolute) { request in
+  let statusMiddleware = FallbackMiddleware(fallback: Route.setup.absolute) { request in
     return SetupMonitor.isCompleted
   }
 
@@ -28,9 +28,9 @@ struct RouteConfigurator: Configurator {
     // Setup
     drop.grouped(setupMiddleware).group(Route.admin.absolute) { admin in
       // Signup
-      let signupController = SignupController(drop: drop)
-      admin.get(Route.signup.relative, handler: signupController.index)
-      admin.post(Route.signup.relative, handler: signupController.register)
+      let signupController = SetupController(drop: drop)
+      admin.get(Route.setup.relative, handler: signupController.index)
+      admin.post(Route.setup.relative, handler: signupController.register)
     }
 
     // Auth

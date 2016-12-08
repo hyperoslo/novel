@@ -9,7 +9,8 @@ public struct AdminConfigurator: Configurator {
   public func configure(drop: Droplet) throws {
     let configurators: [Configurator] = [
       RouteConfigurator(),
-      LeafConfigurator()
+      LeafConfigurator(),
+      SettingsConfigurator()
     ]
 
     for configurator in configurators {
