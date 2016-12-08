@@ -21,6 +21,11 @@ extension Presenter {
 
 public struct PrototypePresenter: Presenter {
 
+  public static func makeNodes(from models: [Prototype]) throws -> Node {
+    let nodes = try models.map({ try PrototypePresenter(model: $0).makeNode() })
+    return try nodes.makeNode()
+  }
+
   public typealias Key = Prototype.Key
   public let model: Prototype
 

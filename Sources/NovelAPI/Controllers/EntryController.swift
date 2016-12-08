@@ -2,7 +2,7 @@ import Vapor
 import HTTP
 import NovelCore
 
-final class EntryController: Controller {
+final class EntryController: Controller, PrototypeResponder {
 
   // All entries
 
@@ -17,9 +17,7 @@ final class EntryController: Controller {
   // All entries by prototype handle
 
   func index(request: Request, handle: String) throws -> ResponseRepresentable {
-    guard let prototype = try Prototype.query().filter(Prototype.Key.handle.value, handle).first() else {
-      throw Abort.notFound
-    }
+    let prototype = try findPrototype(by: handle)
 
     let context = [
       "entries": try EntryPresenter.makeNodes(from: try prototype.entries().all())
@@ -42,15 +40,5 @@ final class EntryController: Controller {
     ]
 
     return try JSON(node: context)
-  }
-
-  // MARK: - Helpers
-
-  func findPrototype(by handle: String) throws -> Prototype {
-    guard let prototype = try Prototype.query().filter(Prototype.Key.handle.value, handle).first() else {
-      throw Abort.notFound
-    }
-
-    return prototype
   }
 }
