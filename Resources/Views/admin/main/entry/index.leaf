@@ -21,9 +21,9 @@
   				<li>
   					<a href="#adminPath("entries")"> All entries</a>
   				</li>
-          #loop(chapters, "chapter") {
+          #loop(prototypes, "item") {
     				<li>
-    					<a href="/admin/entries/#(chapter.id)">#(chapter.name)</a>
+    					<a href="/admin/entries/#(item.id)">#(item.name)</a>
     				</li>
           }
   			</ul>
@@ -36,7 +36,7 @@
             <tr>
               <th>ID</th>
               <th>Title</th>
-              <th>Chapter</th>
+              <th>Prototype</th>
               <th>Publish date</th>
               <th>Actions</th>
             </tr>
@@ -46,9 +46,9 @@
               <tr>
                 <td>#(item.id)</td>
                 <td>
-                  <a href="/admin/entries/#(item.chapter.id)/#(item.id)">#(item.title)</a>
+                  <a href="/admin/entries/#(item.prototype.id)/#(item.id)">#(item.title)</a>
                 </td>
-                <td>#(item.chapter.name)</td>
+                <td>#(item.prototype.name)</td>
                 <td>#(item.publishedAt)</td>
                 <td class="action">
                   <a href="#(item.url)"><i class="fa fa-eye"></i></a>
@@ -59,12 +59,12 @@
           </tbody>
         </table>
       } ##else() {
-        #index(chapters, "0") {
+        #index(prototypes, "0") {
           <p>Try adding some entries!</p>
         } ##else() {
-          <p>To create new entries you need to have at least 1 chapter!</p>
-          <a href="#adminPath("chapters/new")" class="btn btn-primary">
-            <i class="fa fa-plus"></i> New chapter
+          <p>To create new entries you need to have at least 1 prototype!</p>
+          <a href="#adminPath("prototypes/new")" class="btn btn-primary">
+            <i class="fa fa-plus"></i> New prototype
           </a>
         }
       }

@@ -1,12 +1,19 @@
 import Vapor
 import Fluent
 import VaporPostgreSQL
-import VaporSQLite
 
 struct DatabaseConfigurator: Configurator {
 
   func configure(drop: Droplet) throws {
-    try drop.addProvider(VaporSQLite.Provider.self)
-    drop.preparations = [User.self, Session.self, Entry.self, Chapter.self, Field.self, Content.self]
+    try drop.addProvider(VaporPostgreSQL.Provider.self)
+    drop.preparations = [
+      Content.self,
+      Entry.self,
+      Field.self,
+      Prototype.self,
+      Session.self,
+      Setting.self,
+      User.self
+    ]
   }
 }

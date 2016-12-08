@@ -9,10 +9,10 @@
     </header>
     <div class="card">
       <div class="content">
-        <p class="text-xs-center">CREATE YOUR ADMIN USER</p>
+        <h2 class="text-xs-center">Create your admin account</h2><br/>
         #embed("admin/common/flash")
         <form id="signup-form" method="POST">
-          <div class="form-group">
+          <div class="form-group required">
             <label for="username">Username</label>
             <input type="text" name="username" id="username" value="#(data.username)" class="form-control" placeholder="Enter username" required="">
             #if(errors.username) {
@@ -20,7 +20,7 @@
             }
           </div>
 
-          <div class="form-group">
+          <div class="form-group required">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" value="#(data.email)" class="form-control" placeholder="Enter email address" required="">
             #if(errors.email) {
@@ -28,7 +28,7 @@
             }
           </div>
 
-          <div class="form-group">
+          <div class="form-group required">
             <label for="password">Password</label>
             <input type="password" name="password" id="password" value="#(data.password)" class="form-control" placeholder="Enter password" required="">
             #if(errors.password) {
@@ -36,7 +36,7 @@
             }
           </div>
 
-          <div class="form-group">
+          <div class="form-group required">
             <label for="password">Password confirmation</label>
             <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Re-type password" required="">
           </div>

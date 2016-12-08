@@ -2,11 +2,12 @@ enum Route: String {
   case admin
   case login
   case logout
+  case setup
   case signup
   case reset
   case users
   case entries
-  case chapters
+  case prototypes
   case settings
 
   var relative: String {

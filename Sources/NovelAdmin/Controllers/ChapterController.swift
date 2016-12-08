@@ -2,7 +2,7 @@ import Vapor
 import HTTP
 import NovelCore
 
-final class ChapterController: Controller {
+final class PrototypeController: Controller {
 
   func buildContext() throws -> Context {
     return [
@@ -12,11 +12,11 @@ final class ChapterController: Controller {
 
   func index(request: Request) throws -> ResponseRepresentable {
     let context = [
-      "chapters": try Chapter.all().makeNode()
+      "prototypes": try Prototype.all().makeNode()
     ]
 
     return try drop.view.make(
-      Template.Main.chapter.index,
+      Template.Main.prototype.index,
       makeContext(from: context, request: request)
     )
   }
@@ -25,7 +25,7 @@ final class ChapterController: Controller {
     let context = try buildContext()
 
     return try drop.view.make(
-      Template.Main.chapter.new,
+      Template.Main.prototype.new,
       makeContext(from: context, request: request)
     )
   }
@@ -36,7 +36,7 @@ final class ChapterController: Controller {
     }
 
     do {
-      try ChapterManager().create(node: node)
+      try PrototypeManager().create(node: node)
     } catch let error as InputError {
       var context = try buildContext()
 
@@ -45,35 +45,35 @@ final class ChapterController: Controller {
       context["data"] = error.data
 
       return try drop.view.make(
-        Template.Main.chapter.new,
+        Template.Main.prototype.new,
         makeContext(from: context, request: request)
       )
     } catch {
       throw Abort.serverError
     }
 
-    return redirect(.chapters)
+    return redirect(.prototypes)
   }
 
-  func show(request: Request, chapter: Chapter) -> ResponseRepresentable {
-    return chapter
+  func show(request: Request, prototype: Prototype) -> ResponseRepresentable {
+    return prototype
   }
 
-  func replace(request: Request, chapter: Chapter) throws -> ResponseRepresentable {
+  func replace(request: Request, prototype: Prototype) throws -> ResponseRepresentable {
     let context = [
-      "chapter": try chapter.makeNode()
+      "prototype": try prototype.makeNode()
     ]
 
     return try drop.view.make(
-      Template.Main.chapter.edit,
+      Template.Main.prototype.edit,
       makeContext(from: context, request: request)
     )
   }
 }
 
-extension ChapterController: ResourceRepresentable {
+extension PrototypeController: ResourceRepresentable {
 
-  func makeResource() -> Resource<Chapter> {
+  func makeResource() -> Resource<Prototype> {
     return Resource(
       index: index,
       store: store,

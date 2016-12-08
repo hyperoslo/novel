@@ -21,10 +21,7 @@ public final class User: Model {
     case invalidUserType
   }
 
-  public var exists: Bool = false
-
   // Fields
-  public var id: Node?
   public var username: String
   public var email: String
   public var password: String = ""
@@ -38,46 +35,37 @@ public final class User: Model {
   /**
     Initializer.
    */
-  public init(node: Node, in context: Context) throws {
-    id = node[Key.id.value]
+  public required init(node: Node, in context: Context) throws {
     username = try node.extract(Key.username.value)
     email = try node.extract(Key.email.value)
     password = try node.extract(Key.password.value)
     firstname = node[Key.firstname.value]?.string ?? ""
     lastname = node[Key.lastname.value]?.string ?? ""
+    try super.init(node: node, in: context)
+    validator = UserValidator.self
   }
 
   /**
     Serialization.
    */
-  public func makeNode(context: Context) throws -> Node {
+  public override func makeNode() throws -> Node {
     return try Node(node: [
-      Key.id.value: id,
       Key.username.value: username,
       Key.email.value: email,
       Key.password.value: password,
       Key.firstname.value: firstname,
       Key.lastname.value: lastname])
   }
-}
 
-// MARK: - Preparations
-
-extension User {
-
-  public static func prepare(_ database: Database) throws {
-    try database.create(User.entity) { entities in
-      entities.id()
-      entities.string(Key.username.value, length: 50)
-      entities.string(Key.email.value, length: 50)
-      entities.string(Key.password.value)
-      entities.string(Key.firstname.value, length: 50)
-      entities.string(Key.lastname.value, length: 50)
-    }
-  }
-
-  public static func revert(_ database: Database) throws {
-    try database.delete(User.entity)
+  /**
+   Preparation.
+   */
+  public override class func create(schema: Schema.Creator) throws {
+    schema.string(Key.username.value, length: 50, unique: true)
+    schema.string(Key.email.value, length: 50, unique: true)
+    schema.string(Key.password.value)
+    schema.string(Key.firstname.value, length: 50)
+    schema.string(Key.lastname.value, length: 50)
   }
 }
 
@@ -157,20 +145,6 @@ extension User: Auth.User {
     }
 
     return user
-  }
-}
-
-// MARK: - Validations
-
-extension User {
-
-  public func validate() throws {
-    let node = try makeNode()
-    let validator = UserValidator(node: node)
-
-    if !validator.isValid {
-      throw InputError(data: node, errors: validator.errors)
-    }
   }
 }
 

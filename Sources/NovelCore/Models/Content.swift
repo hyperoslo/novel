@@ -10,10 +10,7 @@ public final class Content: Model {
     case entryId
   }
 
-  public var exists: Bool = false
-
   // Fields
-  public var id: Node?
   public var body: String
 
   // Relations
@@ -35,55 +32,32 @@ public final class Content: Model {
   /**
    Initializer.
    */
-  public init(node: Node, in context: Context) throws {
-    id = node[Key.id.snaked]
+  public required init(node: Node, in context: Context) throws {
     body = node[Key.body.snaked]?.string ?? ""
     fieldId = node[Key.fieldId.snaked]
     entryId = node[Key.entryId.snaked]
+    try super.init(node: node, in: context)
+    validator = ContentValidator.self
   }
 
   /**
    Serialization.
    */
-  public func makeNode(context: Context) throws -> Node {
+  public override func makeNode() throws -> Node {
     return try Node(node: [
-      Key.id.value: id,
       Key.body.value: body,
       Key.fieldId.value: fieldId,
       Key.entryId.value: entryId
       ])
   }
-}
 
-// MARK: - Preparations
-
-extension Content {
-
-  public static func prepare(_ database: Database) throws {
-    try database.create(Content.entity) { entities in
-      entities.id()
-      entities.string(Key.body.snaked)
-      entities.parent(Field.self, optional: false)
-      entities.parent(Entry.self, optional: false)
-    }
-  }
-
-  public static func revert(_ database: Database) throws {
-    try database.delete(Content.entity)
-  }
-}
-
-// MARK: - Validations
-
-extension Content {
-
-  public func validate() throws {
-    let node = try makeNode()
-    let validator = ContentValidator(node: node)
-
-    if !validator.isValid {
-      throw InputError(data: node, errors: validator.errors)
-    }
+  /**
+   Preparation.
+   */
+  public override class func create(schema: Schema.Creator) throws {
+    schema.string(Key.body.snaked)
+    schema.parent(Field.self, optional: false)
+    schema.parent(Entry.self, optional: false)
   }
 }
 

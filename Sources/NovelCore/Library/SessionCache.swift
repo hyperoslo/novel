@@ -21,11 +21,8 @@ public final class SessionCache: CacheProtocol {
   public func set(_ key: String, _ value: Node) throws {
     storage[key] = value
 
-    let date = Date()
     let node: Node = [
       Session.Key.token.value: Node.string(key),
-      Session.Key.createdAt.value: try Int(date.timeIntervalSince1970).makeNode(),
-      Session.Key.updatedAt.value: try Int(date.timeIntervalSince1970).makeNode(),
       Session.Key.userId.value: value
     ]
 

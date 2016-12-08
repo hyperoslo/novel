@@ -1,0 +1,38 @@
+#extend("admin/main/_layout")
+
+#export("body") {
+  <ol class="box breadcrumb">
+    <li class="breadcrumb-item active">Settings</li>
+  </ol>
+
+  <form method="post" action="/admin/settings" accept-charset="UTF-8">
+    <div class="box page-header">
+      <div class="page-title">
+        <h1>General settings</h1>
+      </div>
+      <div class="page-actions">
+        <button type="submit" class="btn btn-primary">
+          <i class="fa fa-floppy-o"></i> Save
+        </button>
+      </div>
+    </div>
+
+    <div class="box segment">
+      <div class="form-group required">
+        <label for="site_name">Site name</label>
+        <input type="text" name="site_name" id="site_name" value="#(settings.site_name)" class="form-control" placeholder="Enter the name of your site" required="">
+        #if(errors.site_name) {
+          <span class="has-error">#(errors.site_name)</span>
+        }
+      </div>
+
+      <div class="form-group required">
+        <label for="site_url">Site URL</label>
+        <input type="url" name="site_url" id="site_url" value="#(settings.site_url)" class="form-control" placeholder="Enter the site URL" required="">
+        #if(errors.site_url) {
+          <span class="has-error">#(errors.site_url)</span>
+        }
+      </div>
+    </div>
+  </form>
+}

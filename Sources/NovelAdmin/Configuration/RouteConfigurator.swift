@@ -4,7 +4,7 @@ import NovelCore
 
 struct RouteConfigurator: Configurator {
 
-  let statusMiddleware = FallbackMiddleware(fallback: Route.signup.absolute) { request in
+  let statusMiddleware = FallbackMiddleware(fallback: Route.setup.absolute) { request in
     return SetupMonitor.isCompleted
   }
 
@@ -28,9 +28,11 @@ struct RouteConfigurator: Configurator {
     // Setup
     drop.grouped(setupMiddleware).group(Route.admin.absolute) { admin in
       // Signup
-      let signupController = SignupController(drop: drop)
-      admin.get(Route.signup.relative, handler: signupController.index)
-      admin.post(Route.signup.relative, handler: signupController.register)
+      let setupController = SetupController(drop: drop)
+      admin.get(Route.setup.relative, handler: setupController.index)
+      admin.post(Route.setup.relative, handler: setupController.setup)
+      admin.get(Route.signup.relative, handler: setupController.signup)
+      admin.post(Route.signup.relative, handler: setupController.register)
     }
 
     // Auth
@@ -49,10 +51,10 @@ struct RouteConfigurator: Configurator {
       let dashboardController = DashboardController(drop: drop)
       admin.get(handler: dashboardController.index)
 
-      // Chapters
-      let chapterController = ChapterController(drop: drop)
-      admin.resource(Route.chapters.relative, chapterController)
-      admin.get(Route.chapters.new(isRelative: true), handler: chapterController.new)
+      // Prototypes
+      let prototypeController = PrototypeController(drop: drop)
+      admin.resource(Route.prototypes.relative, prototypeController)
+      admin.get(Route.prototypes.new(isRelative: true), handler: prototypeController.new)
 
       // Entries
 
@@ -60,12 +62,11 @@ struct RouteConfigurator: Configurator {
         let entryController = EntryController(drop: drop)
 
         entries.get(handler: entryController.index)
-
-        entries.get(Chapter.self, handler: entryController.index)
-        entries.get(Chapter.self, "new", handler: entryController.new)
-        entries.get(Chapter.self, Entry.self, handler: entryController.show)
-        entries.post(Chapter.self, handler: entryController.store)
-        entries.post(Chapter.self, Entry.self, handler: entryController.replace)
+        entries.get(Prototype.self, handler: entryController.index)
+        entries.get(Prototype.self, "new", handler: entryController.new)
+        entries.get(Prototype.self, Entry.self, handler: entryController.show)
+        entries.post(Prototype.self, handler: entryController.store)
+        entries.post(Prototype.self, Entry.self, handler: entryController.replace)
       }
 
       // Users
@@ -75,6 +76,7 @@ struct RouteConfigurator: Configurator {
       // Settings
       let settingsController = SettingsController(drop: drop)
       admin.get(Route.settings.relative, handler: settingsController.index)
+      admin.post(Route.settings.relative, handler: settingsController.store)
     }
   }
 }

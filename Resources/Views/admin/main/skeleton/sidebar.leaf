@@ -9,14 +9,26 @@
 				</li>
 
 				<li>
-					<a href="#adminPath("chapters")">
-						<i class="fa fa-th-large"></i> Chapters
+					<a href="#adminPath("entries")">
+						<i class="fa fa-pencil-square-o"></i> Entries
 					</a>
 				</li>
 
 				<li>
-					<a href="#adminPath("entries")">
-						<i class="fa fa-pencil-square-o"></i> Entries
+					<a href="#adminPath("prototypes")">
+						<i class="fa fa-th-large"></i> Prototypes
+					</a>
+				</li>
+
+				<li>
+					<a href="#adminPath("globals")">
+						<i class="fa fa-globe"></i> Globals
+					</a>
+				</li>
+
+				<li>
+					<a href="#adminPath("users")">
+						<i class="fa fa-user"></i> Users
 					</a>
 				</li>
 

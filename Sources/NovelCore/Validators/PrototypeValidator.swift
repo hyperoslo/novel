@@ -1,9 +1,9 @@
 import Vapor
 
-public struct ChapterValidator: NodeValidator {
+public struct PrototypeValidator: NodeValidator {
 
-  enum ChapterError: String, Error {
-    case noFields = "Chapter may have al least 1 field."
+  enum PrototypeError: String, Error {
+    case noFields = "Prototype may have al least 1 field."
   }
 
   public var node: Node
@@ -12,8 +12,8 @@ public struct ChapterValidator: NodeValidator {
 
   public init(node: Node) {
     self.node = node
-    validate(key: Chapter.Key.name.value, by: NameValidation.self)
-    validate(key: Chapter.Key.handle.value, by: NameValidation.self)
+    validate(key: Prototype.Key.name.value, by: NameValidation.self)
+    validate(key: Prototype.Key.handle.value, by: NameValidation.self)
     validateFields()
   }
 
@@ -23,7 +23,7 @@ public struct ChapterValidator: NodeValidator {
     let kinds = node["field_kinds"]?.nodeArray
 
     guard let array = kinds ?? names ?? handles, !array.isEmpty else {
-      errors["fields"] = Node.string(ChapterError.noFields.rawValue)
+      errors["fields"] = Node.string(PrototypeError.noFields.rawValue)
       return
     }
 

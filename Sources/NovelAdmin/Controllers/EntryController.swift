@@ -6,7 +6,7 @@ final class EntryController: Controller {
 
   func index(request: Request) throws -> ResponseRepresentable {
     let context: Context = [
-      "chapters": try Chapter.all().makeNode(),
+      "prototypes": try Prototype.all().makeNode(),
       "entries": try EntryPresenter.makeNodes(from: try Entry.all())
     ]
 
@@ -16,10 +16,10 @@ final class EntryController: Controller {
     )
   }
 
-  func index(request: Request, chapter: Chapter) throws -> ResponseRepresentable {
+  func index(request: Request, prototype: Prototype) throws -> ResponseRepresentable {
     let context = [
-      "chapters": try Chapter.all().makeNode(),
-      "entries": try EntryPresenter.makeNodes(from: try chapter.entries().all())
+      "prototypes": try Prototype.all().makeNode(),
+      "entries": try EntryPresenter.makeNodes(from: try prototype.entries().all())
     ]
 
     return try drop.view.make(
@@ -28,9 +28,9 @@ final class EntryController: Controller {
     )
   }
 
-  func new(request: Request, chapter: Chapter) throws -> ResponseRepresentable {
+  func new(request: Request, prototype: Prototype) throws -> ResponseRepresentable {
     let entry = try Entry.new()
-    entry.set(chapter: chapter)
+    entry.set(prototype: prototype)
 
     let context = [
       "entry": try EntryPresenter(model: entry).makeNode()
@@ -42,7 +42,7 @@ final class EntryController: Controller {
     )
   }
 
-  func store(request: Request, chapter: Chapter) throws -> ResponseRepresentable {
+  func store(request: Request, prototype: Prototype) throws -> ResponseRepresentable {
     guard let node = request.formURLEncoded else {
       throw Abort.badRequest
     }
@@ -51,7 +51,7 @@ final class EntryController: Controller {
     let manager = EntryManager(entry: entry)
 
     do {
-      try manager.create(from: node, chapter: chapter)
+      try manager.create(from: node, prototype: prototype)
     } catch let error as InputError {
       let context = [
         "entry": try EntryPresenter(model: manager.entry).makeNode(),
@@ -70,7 +70,7 @@ final class EntryController: Controller {
     return redirect(.entries)
   }
 
-  func show(request: Request, chapter: Chapter, entry: Entry) throws -> ResponseRepresentable {
+  func show(request: Request, prototype: Prototype, entry: Entry) throws -> ResponseRepresentable {
     let context: Context = [
       "entry": try EntryPresenter(model: entry).makeNode()
     ]
@@ -81,7 +81,7 @@ final class EntryController: Controller {
     )
   }
 
-  func replace(request: Request, chapter: Chapter, entry: Entry) throws -> ResponseRepresentable {
+  func replace(request: Request, prototype: Prototype, entry: Entry) throws -> ResponseRepresentable {
     guard let node = request.formURLEncoded else {
       throw Abort.badRequest
     }

@@ -11,18 +11,18 @@ final class EntryManager {
     self.entry = entry
   }
 
-  @discardableResult func create(from node: Node, chapter: Chapter) throws -> Entry {
+  @discardableResult func create(from node: Node, prototype: Prototype) throws -> Entry {
     var node = node
 
     node[Entry.Key.createdAt.snaked] = try Int(date.timeIntervalSince1970).makeNode()
     node[Entry.Key.updatedAt.snaked] = try Int(date.timeIntervalSince1970).makeNode()
     node[Entry.Key.publishedAt.snaked] = try Int(date.timeIntervalSince1970).makeNode()
 
-    entry.set(chapter: chapter)
+    entry.set(prototype: prototype)
     try entry.validate()
     try entry.save()
 
-    for (index, field) in try chapter.fields().all().enumerated() {
+    for (index, field) in try prototype.fields().all().enumerated() {
       let contentNode = fieldNode(from: node, index: index)
       var content = try Content(node: contentNode)
       try content.validate()

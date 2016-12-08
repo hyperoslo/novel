@@ -31,14 +31,6 @@ final class LogoutPathTag: BasicTag {
   }
 }
 
-final class SignupPathTag: BasicTag {
-  let name = "adminSignupPath"
-
-  func run(arguments: [Argument]) throws -> Node? {
-    return Node.string(Route.signup.absolute)
-  }
-}
-
 final class ResetPathTag: BasicTag {
   let name = "adminResetPath"
 
