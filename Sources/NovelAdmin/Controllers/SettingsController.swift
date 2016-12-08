@@ -26,7 +26,7 @@ final class SettingsController: Controller {
 
     do {
       try SettingsManager().create(node: node)
-      response = redirect(.settings)
+      response = redirect(Route.settings)
     } catch let error as InputError  {
       context["errors"] = Node.object(error.errors)
       response = try makeSettings(context: context, request: request)

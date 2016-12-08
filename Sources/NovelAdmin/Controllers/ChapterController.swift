@@ -52,7 +52,7 @@ final class PrototypeController: Controller {
       throw Abort.serverError
     }
 
-    return redirect(.prototypes)
+    return redirect(Route.prototypes)
   }
 
   func show(request: Request, prototype: Prototype) -> ResponseRepresentable {

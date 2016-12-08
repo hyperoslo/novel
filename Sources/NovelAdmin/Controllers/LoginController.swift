@@ -1,6 +1,7 @@
 import Vapor
 import HTTP
 import Turnstile
+import NovelCore
 
 final class LoginController: Controller {
 
@@ -20,7 +21,7 @@ final class LoginController: Controller {
 
     do {
       try request.auth.login(node)
-      response = redirect(.admin)
+      response = redirect(Route.admin)
     } catch let error as CustomStringConvertible {
       let context = ["flash": error.description]
       response = try makeLogin(context: context, request: request)
@@ -34,7 +35,7 @@ final class LoginController: Controller {
 
   func logout(request: Request) throws -> ResponseRepresentable {
     try request.auth.logout()
-    return redirect(.login)
+    return redirect(Route.login)
   }
 
   // MARK: - Helpers

@@ -67,7 +67,7 @@ final class EntryController: Controller {
       throw Abort.serverError
     }
 
-    return redirect(.entries)
+    return redirect(Route.entries)
   }
 
   func show(request: Request, prototype: Prototype, entry: Entry) throws -> ResponseRepresentable {
@@ -105,6 +105,6 @@ final class EntryController: Controller {
       throw Abort.serverError
     }
 
-    return redirect(.entries, id: entry.id)
+    return redirect(Route.entries, id: entry.id)
   }
 }
