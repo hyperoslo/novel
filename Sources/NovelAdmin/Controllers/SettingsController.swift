@@ -6,7 +6,7 @@ final class SettingsController: Controller {
 
   func index(request: Request) throws -> ResponseRepresentable {
     let context = [
-      "settings": try SettingsManager().all()
+      "settings": try SettingsPresenter().general()
     ]
 
     return try makeSettings(context: context, request: request)
@@ -26,7 +26,7 @@ final class SettingsController: Controller {
 
     do {
       try SettingsManager().create(node: node)
-      response = redirect(.settings)
+      response = redirect(Route.settings)
     } catch let error as InputError  {
       context["errors"] = Node.object(error.errors)
       response = try makeSettings(context: context, request: request)

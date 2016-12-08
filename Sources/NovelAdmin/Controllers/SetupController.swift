@@ -11,7 +11,7 @@ final class SetupController: Controller {
   func index(request: Request) throws -> ResponseRepresentable {
     let context: Context = [
       "title": drop.localization[request.lang, "login", "title"],
-      "settings": try SettingsManager().all()
+      "settings": try SettingsPresenter().general()
     ]
 
     return try makeSetup(context: context, request: request)
@@ -31,7 +31,7 @@ final class SetupController: Controller {
 
     do {
       try SettingsManager().create(node: node)
-      response = redirect(.signup)
+      response = redirect(Route.signup)
     } catch let error as InputError  {
       context["errors"] = Node.object(error.errors)
       response = try makeSetup(context: context, request: request)
@@ -67,7 +67,7 @@ final class SetupController: Controller {
     do {
       try UserManager().create(node: node)
       try request.auth.login(node)
-      response = redirect(.admin)
+      response = redirect(Route.root)
     } catch let error as InputError  {
       context["errors"] = Node.object(error.errors)
       response = try makeSignup(context: context, request: request)

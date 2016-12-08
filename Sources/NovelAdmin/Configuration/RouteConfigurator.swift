@@ -8,11 +8,11 @@ struct RouteConfigurator: Configurator {
     return SetupMonitor.isCompleted
   }
 
-  let setupMiddleware = FallbackMiddleware(fallback: Route.admin.absolute) { request in
+  let setupMiddleware = FallbackMiddleware(fallback: Route.root) { request in
     return !SetupMonitor.isCompleted
   }
 
-  let authMiddleware = FallbackMiddleware(fallback: Route.admin.absolute) { request in
+  let authMiddleware = FallbackMiddleware(fallback: Route.root) { request in
     return !request.auth.isAuthenticated
   }
 
@@ -26,7 +26,7 @@ struct RouteConfigurator: Configurator {
     let loginController = LoginController(drop: drop)
 
     // Setup
-    drop.grouped(setupMiddleware).group(Route.admin.absolute) { admin in
+    drop.grouped(setupMiddleware).group(Route.root) { admin in
       // Signup
       let setupController = SetupController(drop: drop)
       admin.get(Route.setup.relative, handler: setupController.index)
@@ -36,14 +36,14 @@ struct RouteConfigurator: Configurator {
     }
 
     // Auth
-    drop.grouped(statusMiddleware, authMiddleware).group(Route.admin.absolute) { admin in
+    drop.grouped(statusMiddleware, authMiddleware).group(Route.root) { admin in
       // Login
       admin.get(Route.login.relative, handler: loginController.index)
       admin.post(Route.login.relative, handler: loginController.login)
     }
 
     // Main
-    drop.grouped(statusMiddleware, adminMiddleware).group(Route.admin.absolute) { admin in
+    drop.grouped(statusMiddleware, adminMiddleware).group(Route.root) { admin in
       // Logout
       admin.get(Route.logout.relative, handler: loginController.logout)
 
