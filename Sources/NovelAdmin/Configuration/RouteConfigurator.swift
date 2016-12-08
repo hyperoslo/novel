@@ -76,6 +76,7 @@ struct RouteConfigurator: Configurator {
       // Settings
       let settingsController = SettingsController(drop: drop)
       admin.get(Route.settings.relative, handler: settingsController.index)
+      admin.post(Route.settings.relative, handler: settingsController.store)
     }
   }
 }

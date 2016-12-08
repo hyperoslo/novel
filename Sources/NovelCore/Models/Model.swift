@@ -11,7 +11,11 @@ public class Model: Vapor.Model {
   }
 
   public class var entityName: String {
-    return entity
+    return name + "s"
+  }
+
+  public static var entity: String {
+    return entityName
   }
 
   public var exists: Bool = false

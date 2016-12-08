@@ -61,8 +61,8 @@ public final class User: Model {
    Preparation.
    */
   public override class func create(schema: Schema.Creator) throws {
-    schema.string(Key.username.value, length: 50)
-    schema.string(Key.email.value, length: 50)
+    schema.string(Key.username.value, length: 50, unique: true)
+    schema.string(Key.email.value, length: 50, unique: true)
     schema.string(Key.password.value)
     schema.string(Key.firstname.value, length: 50)
     schema.string(Key.lastname.value, length: 50)

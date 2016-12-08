@@ -52,7 +52,7 @@ public final class Prototype: Model {
    */
   public override class func create(schema: Schema.Creator) throws {
     schema.string(Key.name.value, length: 50)
-    schema.string(Key.handle.value, length: 50)
+    schema.string(Key.handle.value, length: 50, unique: true)
     schema.string(Key.description.value)
   }
 }

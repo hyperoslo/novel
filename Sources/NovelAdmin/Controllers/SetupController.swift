@@ -9,17 +9,9 @@ final class SetupController: Controller {
   // MARK: - General
 
   func index(request: Request) throws -> ResponseRepresentable {
-    let siteName = try Setting.query().filter(
-      Setting.Key.handle.value, Setting.General.siteName.rawValue).first()?.value
-    let siteUrl = try Setting.query().filter(
-      Setting.Key.handle.value, Setting.General.siteUrl.rawValue).first()?.value
-
     let context: Context = [
       "title": drop.localization[request.lang, "login", "title"],
-      "settings": try Node(node: [
-        Setting.General.siteName.value : siteName ?? "",
-        Setting.General.siteUrl.value : siteUrl ?? "",
-        ])
+      "settings": try SettingsManager().all()
     ]
 
     return try makeSetup(context: context, request: request)
