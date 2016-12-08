@@ -1,0 +1,38 @@
+#extend("admin/auth/_layout")
+
+#export("body") {
+  <div class="container signup">
+    <header>
+      <h1 class="brand">
+        Novel CMS
+      </h1>
+    </header>
+    <div class="card">
+      <div class="content">
+        <h2 class="text-xs-center">Setup your site</h2><br/>
+        #embed("admin/common/flash")
+        <form id="signup-form" method="POST">
+          <div class="form-group">
+            <label for="site_name">Site name</label>
+            <input type="text" name="site_name" id="site_name" value="#(settings.site_name)" class="form-control" placeholder="Enter the name of your site" required="">
+            #if(errors.site_name) {
+              <span class="has-error">#(errors.site_name)</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="site_url">Site URL</label>
+            <input type="url" name="site_url" id="site_url" value="#(settings.site_url)" class="form-control" placeholder="Enter the site URL" required="">
+            #if(errors.site_url) {
+              <span class="has-error">#(errors.site_url)</span>
+            }
+          </div>
+
+          <div class="form-group submit-group">
+            <button type="submit" class="btn btn-block btn-primary btn-lg">Next</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+}

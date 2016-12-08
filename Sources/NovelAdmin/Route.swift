@@ -3,6 +3,7 @@ enum Route: String {
   case login
   case logout
   case setup
+  case signup
   case reset
   case users
   case entries

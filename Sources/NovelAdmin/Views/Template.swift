@@ -2,6 +2,7 @@ struct Template {
 
   enum Auth: String {
     case login
+    case setup
     case signup
 
     var path: String {

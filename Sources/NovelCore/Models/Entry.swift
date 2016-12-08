@@ -3,7 +3,7 @@ import Fluent
 
 public final class Entry: Model {
 
-  public static var entity: String {
+  public override class var entityName: String {
     return "entries"
   }
 

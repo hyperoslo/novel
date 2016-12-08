@@ -9,7 +9,7 @@
     </header>
     <div class="card">
       <div class="content">
-        <p class="text-xs-center">CREATE YOUR ADMIN USER</p>
+        <h2 class="text-xs-center">Create your admin account</h2><br/>
         #embed("admin/common/flash")
         <form id="signup-form" method="POST">
           <div class="form-group">

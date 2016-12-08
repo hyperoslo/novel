@@ -28,9 +28,11 @@ struct RouteConfigurator: Configurator {
     // Setup
     drop.grouped(setupMiddleware).group(Route.admin.absolute) { admin in
       // Signup
-      let signupController = SetupController(drop: drop)
-      admin.get(Route.setup.relative, handler: signupController.index)
-      admin.post(Route.setup.relative, handler: signupController.register)
+      let setupController = SetupController(drop: drop)
+      admin.get(Route.setup.relative, handler: setupController.index)
+      admin.post(Route.setup.relative, handler: setupController.setup)
+      admin.get(Route.signup.relative, handler: setupController.signup)
+      admin.post(Route.signup.relative, handler: setupController.register)
     }
 
     // Auth

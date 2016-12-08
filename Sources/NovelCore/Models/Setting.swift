@@ -4,6 +4,24 @@ import Fluent
 
 public final class Setting: Model {
 
+  public enum General: String {
+    case siteName
+    case siteUrl
+
+    public var title: String {
+      let result: String
+
+      switch self {
+      case .siteName:
+        result = "Site name"
+      case .siteUrl:
+        result = "Site URL"
+      }
+
+      return result
+    }
+  }
+
   public enum Key: String {
     case name
     case handle

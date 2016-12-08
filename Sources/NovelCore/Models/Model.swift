@@ -10,6 +10,10 @@ public class Model: Vapor.Model {
     case updatedAt
   }
 
+  public class var entityName: String {
+    return entity
+  }
+
   public var exists: Bool = false
 
   // Fields
@@ -55,7 +59,7 @@ public class Model: Vapor.Model {
   // MARK: - Preparations
 
   public static func prepare(_ database: Database) throws {
-    try database.create(self.entity) { schema in
+    try database.create(entityName) { schema in
       schema.id(unique: true)
       schema.timestamp(Required.createdAt.value)
       schema.timestamp(Required.updatedAt.value)
@@ -64,7 +68,7 @@ public class Model: Vapor.Model {
   }
 
   public static func revert(_ database: Database) throws {
-    try database.delete(self.entity)
+    try database.delete(entityName)
   }
 
   public class func create(schema: Schema.Creator) throws {
