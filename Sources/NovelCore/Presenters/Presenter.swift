@@ -65,9 +65,9 @@ public struct EntryPresenter: Presenter {
     var node = try Node(node: [
       Key.id.rawValue: model.id,
       Key.title.rawValue : model.title,
-      Key.createdAt.rawValue: model.createdAt.rfc1123,
-      Key.updatedAt.rawValue: model.updatedAt.rfc1123,
-      Key.publishedAt.rawValue: Date(timeIntervalSince1970: TimeInterval(model.publishedAt)).rfc1123,
+      Key.createdAt.rawValue: model.createdAt.iso8601,
+      Key.updatedAt.rawValue: model.updatedAt.iso8601,
+      Key.publishedAt.rawValue: model.publishedAt.iso8601,
       ])
 
     guard let prototype = try model.prototype().get() else {

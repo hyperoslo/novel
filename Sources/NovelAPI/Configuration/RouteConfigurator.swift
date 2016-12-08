@@ -13,8 +13,8 @@ struct RouteConfigurator: Configurator {
         let entryController = EntryController(drop: drop)
 
         entries.get(handler: entryController.index)
-        entries.get(Prototype.self, handler: entryController.index)
-        entries.get(Prototype.self, Entry.self, handler: entryController.show)
+        entries.get(String.self, handler: entryController.index)
+        entries.get(String.self, Int.self, handler: entryController.show)
       }
     }
   }
