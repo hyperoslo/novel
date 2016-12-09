@@ -13,18 +13,4 @@ final class PrototypeController: Controller {
 
     return try drop.view.make("app/prototype/index", context)
   }
-
-  // Single entry
-
-  func show(request: Request, handle: String) throws -> ResponseRepresentable {
-    guard let prototype = try Prototype.find(handle: handle) else {
-      throw Abort.notFound
-    }
-
-    let context: Context = [
-      "prototype": try PrototypePresenter(model: prototype).makeNode()
-    ]
-
-    return try drop.view.make("app/prototype/show", context)
-  }
 }

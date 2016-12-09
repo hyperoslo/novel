@@ -54,13 +54,14 @@ final class SettingsTag: BasicTag {
 
   func run(arguments: [Argument]) throws -> Node? {
     guard
-      arguments.count == 0,
+      arguments.count == 1,
+      let key = arguments[0].value?.string,
       let node = try? SettingsPresenter().general()
       else {
         return EmptyNode
     }
 
-    return node
+    return node[key]
   }
 }
 

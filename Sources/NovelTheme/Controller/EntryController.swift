@@ -22,6 +22,7 @@ final class EntryController: Controller {
     }
 
     let context = [
+      "prototype": try PrototypePresenter(model: prototype).makeNode(),
       "entries": try EntryPresenter.makeNodes(from: try prototype.entries().all())
     ]
 

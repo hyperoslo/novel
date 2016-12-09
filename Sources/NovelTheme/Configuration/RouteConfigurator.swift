@@ -26,7 +26,6 @@ struct RouteConfigurator: Configurator {
         let controller = PrototypeController(drop: drop)
 
         entries.get(handler: controller.index)
-        entries.get(String.self, handler: controller.show)
       }
     }
   }

@@ -1,0 +1,40 @@
+#extend("app/_layout")
+
+#export("body") {
+  <h1>
+    #if(prototype) {
+      #(prototype.name)
+    } ##else() {
+      Entries
+    }
+  </h1>
+
+  #index(entries, "0") {
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          #if(prototype) {
+            <th>Prototype</th>
+          }
+          <th>Publish date</th>
+        </tr>
+      </thead>
+      <tbody>
+        #loop(entries, "item") {
+          <tr>
+            <td>
+              <a href="/entries/#(item.prototype.handle)/#(item.id)">#(item.title)</a>
+            </td>
+            #if(prototype) {
+              <td><a href="/entries/#(item.prototype.handle)">#(item.prototype.name)</a></td>
+            }
+            <td>#(item.publishedAt)</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } ##else() {
+    <p>:(</p>
+  }
+}

@@ -1,0 +1,21 @@
+#extend("app/_layout")
+
+#export("body") {
+  <h1>#(entry.title)</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      #loop(entry.contents, "item") {
+        <tr>
+          <td>#(item.name)</td>
+          <td>#(item.body)</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

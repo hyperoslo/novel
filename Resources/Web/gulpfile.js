@@ -10,8 +10,15 @@ var cleanCSS = require('gulp-clean-css');
 
 var paths = {
   root: './',
-   scss: './src/scss',
-  js: './src/js',
+  src: './src',
+  admin: {
+    scss: './src/admin/scss',
+    js: './src/admin/js',
+  },
+  demo: {
+    scss: './src/demo/scss',
+    js: './src/demo/js',
+  },
    vendor: './bower_components' ,
   dest: '../../Public'
 }
@@ -63,13 +70,13 @@ gulp.task('vendor-js', function() {
     .pipe(gulp.dest(paths.dest + '/js'));
 });
 
-// App
+// Admin
 
-gulp.task('app-css', function() { 
-  return sass(paths.scss + '/main.scss', {
+gulp.task('admin-css', function() { 
+  return sass(paths.admin.scss + '/admin.scss', {
      style: 'compressed',
      loadPath: [
-       paths.scss,
+       paths.admin.scss,
        paths.vendor
      ]
    }) 
@@ -77,9 +84,30 @@ gulp.task('app-css', function() { 
    .pipe(gulp.dest(paths.dest + '/css')); 
 });
 
-gulp.task('app-js', function() {
-  return gulp.src(paths.js + '/**/*.js')
-    .pipe(concat('main.js'))
+gulp.task('admin-js', function() {
+  return gulp.src(paths.admin.js + '/**/*.js')
+    .pipe(concat('admin.js'))
+    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop())
+    .pipe(gulp.dest(paths.dest + '/js'));
+});
+
+// Demo
+
+gulp.task('demo-css', function() { 
+  return sass(paths.demo.scss + '/demo.scss', {
+     style: 'compressed',
+     loadPath: [
+       paths.demo.scss,
+       paths.vendor
+     ]
+   }) 
+  .on('error', sass.logError)
+   .pipe(gulp.dest(paths.dest + '/css')); 
+});
+
+gulp.task('demo-js', function() {
+  return gulp.src(paths.demo.js + '/**/*.js')
+    .pipe(concat('demo.js'))
     .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop())
     .pipe(gulp.dest(paths.dest + '/js'));
 });
@@ -87,11 +115,11 @@ gulp.task('app-js', function() {
 // Tasks
 
  gulp.task('watch-css', function() {
-   gulp.watch(paths.scss + '/**/*.scss', ['app-css']); 
+   gulp.watch(paths.src + '/**/*.scss', ['admin-css', 'demo-css']); 
 });
 
 gulp.task('watch-js', function() {
-   gulp.watch(paths.js + '/**/*.js', ['app-js']); 
+   gulp.watch(paths.src + '/**/*.js', ['admin-js', 'demo-js']); 
 });
 
 gulp.task('watch', [
@@ -104,6 +132,8 @@ gulp.task('watch', [
   'vendor-fonts',
   'vendor-css',
   'vendor-js',
-  'app-css',
-  'app-js'
+  'admin-css',
+  'admin-js',
+  'demo-css',
+  'demo-js'
 ]);

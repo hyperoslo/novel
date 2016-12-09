@@ -1,0 +1,9 @@
+#extend("app/_layout")
+
+#export("body") {
+  <h1>Novel CMS</h1>
+  <p class="lead">Novel is a content management system (CMS) built on top of <a href="https://github.com/vapor/vapor">Vapor</a> Swift web framework.</p>
+  <p class="lead">
+    <a href="https://github.com/vadymmarkov/vapor" class="btn btn-lg btn-secondary">Read more</a>
+  </p>
+}
