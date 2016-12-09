@@ -8,7 +8,7 @@
     <li class="breadcrumb-item active">New</li>
   </ol>
 
-  <form method="post" action="/admin/entries/#(entry.prototype.handle)" accept-charset="UTF-8">
+  <form id="form" method="post" action="/admin/entries/#(entry.prototype.handle)" accept-charset="UTF-8">
     #embed("admin/main/entry/form")
   </form>
 }
