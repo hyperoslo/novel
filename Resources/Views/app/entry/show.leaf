@@ -10,10 +10,10 @@
       </tr>
     </thead>
     <tbody>
-      #loop(entry.contents, "item") {
+      #loop(entry.fields, "item") {
         <tr>
           <td>#(item.name)</td>
-          <td>#(item.body)</td>
+          <td>#raw(item.body)</td>
         </tr>
       }
     </tbody>

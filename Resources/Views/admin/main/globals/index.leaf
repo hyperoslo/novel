@@ -1,0 +1,7 @@
+#extend("admin/main/_layout")
+
+#export("body") {
+  <div class="box">
+    <h1>Globals</h1>
+  </div>
+}

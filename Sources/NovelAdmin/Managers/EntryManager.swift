@@ -12,13 +12,10 @@ final class EntryManager {
   }
 
   @discardableResult func create(from node: Node, prototype: Prototype) throws -> Entry {
-    var node = node
-
-    node[Entry.Key.createdAt.snaked] = try Int(date.timeIntervalSince1970).makeNode()
-    node[Entry.Key.updatedAt.snaked] = try Int(date.timeIntervalSince1970).makeNode()
-    node[Entry.Key.publishedAt.snaked] = try Int(date.timeIntervalSince1970).makeNode()
+    let node = node
 
     entry.set(prototype: prototype)
+    entry = try entry.updated(from: node)
     try entry.validate()
     try entry.save()
 
@@ -36,7 +33,7 @@ final class EntryManager {
 
   @discardableResult func update(from node: Node) throws -> Entry {
     var node = node
-    node[Entry.Key.updatedAt.snaked] = try Int(date.timeIntervalSince1970).makeNode()
+    node[Entry.Key.updatedAt.snaked] = Date().iso8601.makeNode()
 
     entry = try entry.updated(from: node, exists: true)
     try entry.validate()

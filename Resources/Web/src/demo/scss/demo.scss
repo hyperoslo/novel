@@ -12,6 +12,20 @@ a, a:focus, a:hover {
   color: #fff;
 }
 
+table {
+  th {
+    text-align: center;
+  }
+
+  td, th {
+    border-top: 0 !important;
+  }
+
+  th {
+    border-bottom: 0 !important;
+  }
+}
+
 .btn-secondary, .btn-secondary:hover, .btn-secondary:focus {
   color: #333;
   background-color: #fff;

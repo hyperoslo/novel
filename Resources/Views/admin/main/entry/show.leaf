@@ -3,12 +3,12 @@
 #export("body") {
   <ol class="box breadcrumb">
     <li class="breadcrumb-item active">
-      <a href="/admin/entries/#(entry.prototype.id)">Entries</a>
+      <a href="/admin/entries/#(entry.prototype.handle)">Entries</a>
     </li>
     <li class="breadcrumb-item active">#(entry.title)</li>
   </ol>
 
-  <form id="form" method="post" action="/admin/entries/#(entry.prototype.id)/#(entry.id)" accept-charset="UTF-8">
+  <form id="form" method="post" action="/admin/entries/#(entry.prototype.handle)/#(entry.id)" accept-charset="UTF-8">
     #embed("admin/main/entry/form")
   </form>
 }

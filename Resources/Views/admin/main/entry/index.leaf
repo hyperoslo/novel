@@ -23,7 +23,7 @@
   				</li>
           #loop(prototypes, "item") {
     				<li>
-    					<a href="/admin/entries/#(item.id)">#(item.name)</a>
+    					<a href="/admin/entries/#(item.handle)">#(item.name)</a>
     				</li>
           }
   			</ul>
@@ -46,7 +46,7 @@
               <tr>
                 <td>#(item.id)</td>
                 <td>
-                  <a href="/admin/entries/#(item.prototype.id)/#(item.id)">#(item.title)</a>
+                  <a href="/admin/entries/#(item.prototype.handle)/#(item.id)">#(item.title)</a>
                 </td>
                 <td>#(item.prototype.name)</td>
                 <td>#(item.publishedAt)</td>

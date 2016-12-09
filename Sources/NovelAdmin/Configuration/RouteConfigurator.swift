@@ -57,17 +57,20 @@ struct RouteConfigurator: Configurator {
       admin.get(Route.prototypes.new(isRelative: true), handler: prototypeController.new)
 
       // Entries
-
       admin.group(Route.entries.relative) { entries in
         let entryController = EntryController(drop: drop)
 
         entries.get(handler: entryController.index)
-        entries.get(Prototype.self, handler: entryController.index)
-        entries.get(Prototype.self, "new", handler: entryController.new)
-        entries.get(Prototype.self, Entry.self, handler: entryController.show)
-        entries.post(Prototype.self, handler: entryController.store)
-        entries.post(Prototype.self, Entry.self, handler: entryController.replace)
+        entries.get(String.self, handler: entryController.index)
+        entries.get(String.self, "new", handler: entryController.new)
+        entries.get(String.self, Int.self, handler: entryController.show)
+        entries.post(String.self, handler: entryController.store)
+        entries.post(String.self, Int.self, handler: entryController.replace)
       }
+
+      // Globals
+      let globalsController = GlobalsController(drop: drop)
+      admin.get(Route.globals.relative, handler: globalsController.index)
 
       // Users
       let userController = UserController(drop: drop)

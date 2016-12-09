@@ -98,7 +98,7 @@ extension Model {
   }
 
   public func updated(from node: Node, exists: Bool = false) throws -> Self {
-    var updatedNode = try makeNode()
+    var updatedNode = try makeNode(context: EmptyNode)
     updatedNode.merge(with: node)
 
     let model = try type(of: self).init(node: updatedNode, in: EmptyNode)

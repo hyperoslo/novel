@@ -14,6 +14,7 @@ struct Template {
     case dashboard
     case entry
     case prototype
+    case globals
     case user
     case settings
 
