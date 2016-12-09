@@ -16,7 +16,11 @@ final class EntryController: Controller {
     )
   }
 
-  func index(request: Request, prototype: Prototype) throws -> ResponseRepresentable {
+  func index(request: Request, handle: String) throws -> ResponseRepresentable {
+    guard let prototype = try Prototype.find(handle: handle) else {
+      throw Abort.notFound
+    }
+
     let context = [
       "prototypes": try Prototype.all().makeNode(),
       "entries": try EntryPresenter.makeNodes(from: try prototype.entries().all())
@@ -28,7 +32,11 @@ final class EntryController: Controller {
     )
   }
 
-  func new(request: Request, prototype: Prototype) throws -> ResponseRepresentable {
+  func new(request: Request, handle: String) throws -> ResponseRepresentable {
+    guard let prototype = try Prototype.find(handle: handle) else {
+      throw Abort.notFound
+    }
+
     let entry = try Entry.new()
     entry.set(prototype: prototype)
 
@@ -42,7 +50,11 @@ final class EntryController: Controller {
     )
   }
 
-  func store(request: Request, prototype: Prototype) throws -> ResponseRepresentable {
+  func store(request: Request, handle: String) throws -> ResponseRepresentable {
+    guard let prototype = try Prototype.find(handle: handle) else {
+      throw Abort.notFound
+    }
+
     guard let node = request.formURLEncoded else {
       throw Abort.badRequest
     }
@@ -70,7 +82,11 @@ final class EntryController: Controller {
     return redirect(Route.entries)
   }
 
-  func show(request: Request, prototype: Prototype, entry: Entry) throws -> ResponseRepresentable {
+  func show(request: Request, handle: String, id: Int) throws -> ResponseRepresentable {
+    guard let _ = try Prototype.find(handle: handle), let entry = try Entry.find(id) else {
+      throw Abort.notFound
+    }
+
     let context: Context = [
       "entry": try EntryPresenter(model: entry).makeNode()
     ]
@@ -81,7 +97,11 @@ final class EntryController: Controller {
     )
   }
 
-  func replace(request: Request, prototype: Prototype, entry: Entry) throws -> ResponseRepresentable {
+  func replace(request: Request, handle: String, id: Int) throws -> ResponseRepresentable {
+    guard let prototype = try Prototype.find(handle: handle), let entry = try Entry.find(id) else {
+      throw Abort.notFound
+    }
+
     guard let node = request.formURLEncoded else {
       throw Abort.badRequest
     }
@@ -105,6 +125,6 @@ final class EntryController: Controller {
       throw Abort.serverError
     }
 
-    return redirect(Route.entries, id: entry.id)
+    return redirect(Route.entries.absolute + "/\(prototype.handle)/\(id)")
   }
 }

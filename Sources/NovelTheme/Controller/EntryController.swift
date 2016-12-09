@@ -11,7 +11,7 @@ final class EntryController: Controller {
       "entries": try EntryPresenter.makeNodes(from: try Entry.all())
     ]
 
-    return try JSON(node: context)
+    return try drop.view.make("app/entry/index", context)
   }
 
   // All entries by prototype handle
@@ -22,10 +22,11 @@ final class EntryController: Controller {
     }
 
     let context = [
+      "prototype": try PrototypePresenter(model: prototype).makeNode(),
       "entries": try EntryPresenter.makeNodes(from: try prototype.entries().all())
     ]
 
-    return try JSON(node: context)
+    return try drop.view.make("app/entry/index", context)
   }
 
   // Single entry
@@ -42,6 +43,6 @@ final class EntryController: Controller {
       "entry": try EntryPresenter(model: entry).makeNode()
     ]
 
-    return try JSON(node: context)
+    return try drop.view.make("app/entry/show", context)
   }
 }

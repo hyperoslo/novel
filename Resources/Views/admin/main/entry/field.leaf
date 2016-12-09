@@ -5,7 +5,11 @@
   } ##else() {
     <input id="field_#(field.handle)" name="fields[]" type="hidden">
     <div id="editor_#(field.handle)" class="editor-container">
-      #raw(field.body)
+      #if(field.body) {
+        #raw(field.body)
+      } ##else() {
+        <p></p>
+      }
     </div>
   }
 </div>

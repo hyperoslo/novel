@@ -18,6 +18,6 @@ $(function() {
       var id = 'field_' + this.id.replace('editor_', '');
       var value = $(this).find(".ql-editor").html();
       $('#' + id).val(value);
-    })
+    });
   });
 });

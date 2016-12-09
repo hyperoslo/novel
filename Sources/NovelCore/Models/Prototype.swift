@@ -68,4 +68,8 @@ extension Prototype {
 
     return try Prototype(node: node)
   }
+
+  public static func find(handle: String) throws -> Prototype? {
+    return try Prototype.query().filter(Prototype.Key.handle.value, handle).first()
+  }
 }

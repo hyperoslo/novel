@@ -2,7 +2,7 @@ import Vapor
 import HTTP
 import NovelCore
 
-final class PrototypeController: Controller, PrototypeResponder {
+final class PrototypeController: Controller {
 
   // All prototypes
 
@@ -17,10 +17,12 @@ final class PrototypeController: Controller, PrototypeResponder {
   // Single entry
 
   func show(request: Request, handle: String) throws -> ResponseRepresentable {
-    let prototype = try findPrototype(by: handle)
-
+    guard let prototype = try Prototype.find(handle: handle) else {
+      throw Abort.notFound
+    }
+    
     let context: Context = [
-      "entry": try PrototypePresenter(model: prototype).makeNode()
+      "prototype": try PrototypePresenter(model: prototype).makeNode()
     ]
 
     return try JSON(node: context)

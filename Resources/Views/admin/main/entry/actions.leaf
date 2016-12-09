@@ -5,7 +5,7 @@
     </button>
     <div class="dropdown-menu" aria-labelledby="btnNew">
       #loop(prototypes, "item") {
-        <a class="dropdown-item" href="/admin/entries/#(item.id)/new">#(item.name)</a>
+        <a class="dropdown-item" href="/admin/entries/#(item.handle)/new">#(item.name)</a>
       }
     </div>
   </div>

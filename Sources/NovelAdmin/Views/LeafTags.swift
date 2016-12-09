@@ -1,4 +1,5 @@
 import Leaf
+import NovelCore
 
 final class AdminPathTag: BasicTag {
   let name = "adminPath"
@@ -47,3 +48,20 @@ final class ProfilePathTag: BasicTag {
     return Node.string(Route.users.show(id: 1))
   }
 }
+
+final class SettingsTag: BasicTag {
+  let name = "settings"
+
+  func run(arguments: [Argument]) throws -> Node? {
+    guard
+      arguments.count == 1,
+      let key = arguments[0].value?.string,
+      let node = try? SettingsPresenter().general()
+      else {
+        return EmptyNode
+    }
+
+    return node[key]
+  }
+}
+

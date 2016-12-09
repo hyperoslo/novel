@@ -14,7 +14,8 @@ struct LeafConfigurator: Configurator {
       LoginPathTag(),
       LogoutPathTag(),
       ResetPathTag(),
-      ProfilePathTag()
+      ProfilePathTag(),
+      SettingsTag()
     ]
 
     tags.forEach { tag in

@@ -9,6 +9,7 @@ enum Route: String, RouteRepresentable  {
   case users
   case entries
   case prototypes
+  case globals
   case settings
 
   static var root: String {

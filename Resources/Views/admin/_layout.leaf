@@ -11,11 +11,11 @@
 
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
 		<link rel="stylesheet" href="/css/vendor.css">
-		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="/css/admin.css">
 	</head>
 	<body>
 		#import("body")
 		<script src="/js/vendor.js"></script>
-		<script src="/js/main.js"></script>
+		<script src="/js/admin.js"></script>
 	</body>
 </html>

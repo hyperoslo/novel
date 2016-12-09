@@ -1,0 +1,26 @@
+#extend("app/_layout")
+
+#export("body") {
+  <h1>Prototypes</h1>
+
+  #index(prototypes, "0") {
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        #loop(prototypes, "item") {
+          <tr>
+            <td><a href="/entries/#(item.handle)">#(item.name)</td>
+            <td>#(item.handle)</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } ##else() {
+    <p>:(</p>
+  }
+}
