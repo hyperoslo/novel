@@ -18,7 +18,7 @@
 foundation.
 * More features are coming...
 
-**Please note** that this is a work in progress, `Novel` is under continuous
+**Please note** that this is a work in progress, **Novel** is under continuous
 development and **is not ready** for production usage.
 
 * [Requirements](#requirements)
@@ -35,14 +35,16 @@ development and **is not ready** for production usage.
 
 ## Development
 
-1. Setup database:
+- Setup database:
+
 ```sh
 createdb test
 cd path/to/novel/Config
 cp postgresql-sample.json ./secrets/postgresql.json
 ```
 
-2. Compile assets
+- Compile assets
+
 ```sh
 cd path/to/novel/Resources/Web
 npm install
@@ -50,14 +52,16 @@ bower install
 gulp
 ```
 
-3. Generate XCode project:
+- Generate XCode project:
+
 ```sh
 cd path/to/novel
 swift package generate-xcodeproj
 open Novel.xcodeproj
 ```
 
-4. Run demo:
+- Run demo:
+
 ```sh
 ./.build/debug/Demo
 ```
