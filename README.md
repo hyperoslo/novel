@@ -1,5 +1,6 @@
 ![Novel](https://github.com/vadymmarkov/Novel/blob/master/Art/Cover.png)
 
+# Novel CMS
 [![CI Status](http://img.shields.io/travis/vadymmarkov/Novel.svg?style=flat)](https://travis-ci.org/vadymmarkov/Novel)
 ![Linux](https://img.shields.io/badge/os-linux-green.svg?style=flat)
 ![Mac OS X](https://img.shields.io/badge/os-Mac%20OS%20X-green.svg?style=flat)
