@@ -35,7 +35,7 @@
 		}
 
 		&.topbar-left {
-			margin-left: 15px;
+			margin-left: 10px;
 			margin-right: auto;
 		}
 
@@ -44,8 +44,9 @@
 			font-size: 12px;
 		}
 
-		a.brand {
-			font-size: 16px;
+		@include logo(24px) {
+			margin: 0px 5px 0 0;
+			padding: 0;
 		}
 
 		ul {
@@ -59,8 +60,9 @@
 		}
 
 		& > ul > li {
-			display: table-cell;
+			float: left;
 			position: relative;
+			padding: 0;
 		}
 
 		& > ul > li > a {
