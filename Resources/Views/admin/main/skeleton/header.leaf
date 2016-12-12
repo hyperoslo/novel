@@ -8,9 +8,7 @@
 	<div class="topbar topbar-left">
 		<ul>
 			<li class="hidden-sm-down">
-				<a href="/admin" class="brand">
-	        Novel CMS
-				</a>
+				<a class="logo" href="https://github.com/vadymmarkov/novel" target="_blank"></a>
 			</li>
 			<li>
 			  <a href="/">

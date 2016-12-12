@@ -14,6 +14,10 @@
 		padding: 0 10px;
 		line-height: 30px;
 		font-size: 28px;
+
+		@include logo($auth-logo-size) {
+			margin: 0 auto;
+		}
 	}
 
 	label {

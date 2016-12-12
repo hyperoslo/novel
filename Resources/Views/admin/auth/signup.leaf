@@ -4,7 +4,8 @@
   <div class="container signup">
     <header>
       <h1 class="brand">
-        Novel CMS
+        <a class="logo" href="http://github.com/vadymmarkov/Novel" target="_blank">
+        </a>
       </h1>
     </header>
     <div class="card">

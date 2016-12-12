@@ -1,5 +1,22 @@
 @import 'bootstrap/scss/mixins';
 
+@mixin logo($size) {
+	a.logo {
+		display: block;
+		background: url(/images/logo.svg);
+		width: $size;
+		height: $size;
+		background-position: center top;
+		background-repeat: no-repeat;
+		background-size: $size;
+		@content;
+	}
+
+	a.logo:hover {
+		opacity:0.9;
+	}
+}
+
 @mixin media($name) {
 	@include media-breakpoint-only($name) {
 		@content;
