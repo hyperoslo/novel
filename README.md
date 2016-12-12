@@ -35,7 +35,7 @@ development and **is not ready** for production usage.
 
 ## Development
 
-- Setup database:
+Setup database:
 
 ```sh
 createdb test
@@ -43,7 +43,7 @@ cd path/to/novel/Config
 cp postgresql-sample.json ./secrets/postgresql.json
 ```
 
-- Compile assets
+Compile assets
 
 ```sh
 cd path/to/novel/Resources/Web
@@ -52,7 +52,7 @@ bower install
 gulp
 ```
 
-- Generate XCode project:
+Generate XCode project:
 
 ```sh
 cd path/to/novel
@@ -60,7 +60,7 @@ swift package generate-xcodeproj
 open Novel.xcodeproj
 ```
 
-- Run demo:
+Run demo:
 
 ```sh
 ./.build/debug/Demo
