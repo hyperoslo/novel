@@ -1,5 +1,3 @@
-# Novel CMS
-
 ![Novel](https://github.com/vadymmarkov/Novel/blob/master/Art/Cover.png)
 
 [![CI Status](http://img.shields.io/travis/vadymmarkov/Novel.svg?style=flat)](https://travis-ci.org/vadymmarkov/Novel)
