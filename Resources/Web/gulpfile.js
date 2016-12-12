@@ -14,6 +14,7 @@ var paths = {
   admin: {
     scss: './src/admin/scss',
     js: './src/admin/js',
+    images: './src/admin/images'
   },
   demo: {
     scss: './src/demo/scss',
@@ -91,6 +92,11 @@ gulp.task('admin-js', function() {
     .pipe(gulp.dest(paths.dest + '/js'));
 });
 
+gulp.task('admin-images', function() {
+   gulp.src(paths.admin.images + '/**/*.{png,jpg,svg}')
+   .pipe(gulp.dest(paths.dest + '/images'));
+});
+
 // Demo
 
 gulp.task('demo-css', function() { 
@@ -134,6 +140,7 @@ gulp.task('watch', [
   'vendor-js',
   'admin-css',
   'admin-js',
+  'admin-images',
   'demo-css',
   'demo-js'
 ]);
