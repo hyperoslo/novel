@@ -16,6 +16,8 @@ class MiddlewareConfiguratorTests: XCTestCase {
     configurator = MiddlewareConfigurator()
   }
 
+  // MARK: - Tests
+
   func testConfigure() throws {
     let drop = Droplet()
     try configurator.configure(drop: drop)

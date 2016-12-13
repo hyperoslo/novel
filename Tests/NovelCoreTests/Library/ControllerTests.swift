@@ -6,7 +6,10 @@ import HTTP
 class ControllerTests: XCTestCase {
 
   static let allTests = [
+    ("testRedirectWithString", testRedirectWithString),
     ("testRedirectWithRoute", testRedirectWithRoute),
+    ("testRedirectWithRouteAndId", testRedirectWithRouteAndId),
+    ("testRedirectWithRouteAndNoId", testRedirectWithRouteAndNoId),
   ]
 
   var controller: Controller!
@@ -16,6 +19,8 @@ class ControllerTests: XCTestCase {
     super.setUp()
     controller = TestController(drop: drop)
   }
+
+  // MARK: - Tests
 
   func testRedirectWithString() throws {
     let response = controller.redirect(TestRoute.users.absolute) as! Response

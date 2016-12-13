@@ -6,7 +6,9 @@ class ISO8601Tests: XCTestCase {
 
   static let allTests = [
     ("testInit", testInit),
-    ]
+    ("testDate", testDate),
+    ("testString", testString),
+  ]
 
   var iso8601: ISO8601!
 
@@ -14,6 +16,8 @@ class ISO8601Tests: XCTestCase {
     super.setUp()
     iso8601 = ISO8601()
   }
+
+  // MARK: - Tests
 
   func testInit() throws {
     XCTAssertEqual(iso8601.formatter.dateFormat, "yyyy-MM-dd HH:mm:ss")

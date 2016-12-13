@@ -16,6 +16,8 @@ class AuthHelperTests: XCTestCase {
     super.setUp()
   }
 
+  // MARK: - Tests
+
   func testIsAuthenticatedWithoutUser() throws {
     let request = try Request(method: .get, uri: "http://novel.loc")
     helper = Helper(request: request)

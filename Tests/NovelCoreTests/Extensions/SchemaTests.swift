@@ -15,6 +15,8 @@ class SchemaTests: XCTestCase {
     creator = Schema.Creator("user")
   }
 
+  // MARK: - Tests
+
   func testTimestamp() throws {
     creator.timestamp("createdAt", optional: false, unique: false, default: "2016-12-01 23:01:00")
     XCTAssertEqual(creator.fields.count, 1)

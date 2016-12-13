@@ -16,6 +16,8 @@ class NodeTests: XCTestCase {
     super.setUp()
   }
 
+  // MARK: - Tests
+
   func testMerge() throws {
     node = try Node(node: ["key1": "value1", "key2": "value2"])
     let node2 = try Node(node: ["key1": "value2", "key3": "value3"])

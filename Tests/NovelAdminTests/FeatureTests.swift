@@ -14,6 +14,8 @@ class FeatureTests: XCTestCase {
     feature = Feature()
   }
 
+  // MARK: - Tests
+
   func testConfigurators() {
     let configurators = feature.configurators
     XCTAssertEqual(configurators.count, 3)

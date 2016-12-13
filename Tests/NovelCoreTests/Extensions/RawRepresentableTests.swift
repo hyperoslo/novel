@@ -10,7 +10,7 @@ class RawRepresentableTests: XCTestCase {
   static let allTests = [
     ("testSnaked", testSnaked),
     ("testValue", testValue),
-    ]
+  ]
 
   fileprivate var key: Key!
 
@@ -18,6 +18,8 @@ class RawRepresentableTests: XCTestCase {
     super.setUp()
     key = .firstName
   }
+
+  // MARK: - Tests
 
   func testSnaked() throws {
     XCTAssertEqual(key.snaked, "first_name")

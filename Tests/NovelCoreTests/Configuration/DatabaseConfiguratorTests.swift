@@ -16,6 +16,8 @@ class DatabaseConfiguratorTests: XCTestCase {
     configurator = DatabaseConfigurator()
   }
 
+  // MARK: - Tests
+
   func testConfigure() throws {
     let drop = Droplet()
     try configurator.configure(drop: drop)

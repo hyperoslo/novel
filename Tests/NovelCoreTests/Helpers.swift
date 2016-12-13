@@ -25,7 +25,7 @@ enum TestRoute: String, RouteRepresentable  {
   case users
 
   static var root: String {
-    return "/"
+    return "/admin"
   }
 }
 
