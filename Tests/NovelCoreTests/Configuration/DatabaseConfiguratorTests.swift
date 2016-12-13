@@ -19,7 +19,7 @@ class DatabaseConfiguratorTests: XCTestCase {
   // MARK: - Tests
 
   func testConfigure() throws {
-    let drop = Droplet()
+    let drop = createDroplet()
     try configurator.configure(drop: drop)
     XCTAssertTrue(drop.providers.contains(where: { $0 is  VaporPostgreSQL.Provider }))
     XCTAssertEqual(drop.preparations.count, 7)

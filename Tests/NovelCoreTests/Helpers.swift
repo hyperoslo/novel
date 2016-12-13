@@ -1,4 +1,5 @@
 import Vapor
+import Fluent
 @testable import NovelCore
 
 final class TestConfigurator: Configurator {
@@ -32,6 +33,7 @@ enum TestRoute: String, RouteRepresentable  {
 
 func createDroplet() -> Droplet {
   let drop = Droplet()
+  drop.database = Database(MemoryDriver())
   return drop
 }
 

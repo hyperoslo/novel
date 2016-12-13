@@ -19,7 +19,7 @@ class MiddlewareConfiguratorTests: XCTestCase {
   // MARK: - Tests
 
   func testConfigure() throws {
-    let drop = Droplet()
+    let drop = createDroplet()
     try configurator.configure(drop: drop)
     XCTAssertTrue(drop.middleware.contains(where: { $0 is AuthMiddleware<NovelCore.User> }))
   }

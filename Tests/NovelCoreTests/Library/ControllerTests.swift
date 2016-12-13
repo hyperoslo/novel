@@ -13,7 +13,7 @@ class ControllerTests: XCTestCase {
   ]
 
   var controller: Controller!
-  let drop = Droplet()
+  let drop = createDroplet()
 
   override func setUp() {
     super.setUp()
