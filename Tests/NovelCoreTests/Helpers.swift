@@ -30,10 +30,23 @@ enum TestRoute: String, RouteRepresentable  {
   }
 }
 
+// MARK: - Functions
 
 func createDroplet() -> Droplet {
   let drop = Droplet()
   drop.database = Database(MemoryDriver())
   return drop
+}
+
+func createUser() throws -> User {
+  let node = try Node(node: [
+    User.Key.username.value : "admin",
+    User.Key.email.value : "test@example.org",
+    User.Key.password.value: "secret",
+    User.Key.firstname.value: "Super",
+    User.Key.lastname.value: "Admin"
+  ])
+
+  return try User(node: node, in: EmptyNode)
 }
 
