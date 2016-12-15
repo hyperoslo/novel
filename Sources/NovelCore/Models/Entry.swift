@@ -9,10 +9,7 @@ public final class Entry: Model {
   }
 
   public enum Key: String {
-    case id
     case title
-    case createdAt
-    case updatedAt
     case publishedAt
     case prototypeId
   }
@@ -41,7 +38,7 @@ public final class Entry: Model {
    */
   public required init(node: Node, in context: Context) throws {
     title = node[Key.title.value]?.string ?? ""
-    publishedAt = node[Required.createdAt.value]?.string?.iso8601 ?? Date()
+    publishedAt = node[Key.publishedAt.value]?.string?.iso8601 ?? Date()
     prototypeId = node[Key.prototypeId.value]
     try super.init(node: node, in: context)
     validator = EntryValidator.self

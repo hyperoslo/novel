@@ -4,7 +4,6 @@ import Fluent
 public final class Field: Model {
 
   public enum Key: String {
-    case id
     case kind
     case name
     case handle
@@ -18,7 +17,7 @@ public final class Field: Model {
   public var kind: Int
   public var name: String
   public var handle: String
-  public var isRequired: Bool?
+  public var isRequired: Bool
   public var minLength: Int?
   public var maxLength: Int?
 
@@ -40,7 +39,7 @@ public final class Field: Model {
     kind = try node.extract(Key.kind.value)
     name = try node.extract(Key.name.value)
     handle = try node.extract(Key.handle.value)
-    isRequired = try? node.extract(Key.isRequired.value)
+    isRequired = node[Key.isRequired.value]?.bool ?? false
     minLength = try? node.extract(Key.minLength.value)
     maxLength = try? node.extract(Key.maxLength.value)
     prototypeId = node[Key.prototypeId.value]
@@ -70,7 +69,7 @@ public final class Field: Model {
     schema.int(Key.kind.value)
     schema.string(Key.name.value, length: 50)
     schema.string(Key.handle.value, length: 50)
-    schema.bool(Key.isRequired.value, optional: true)
+    schema.bool(Key.isRequired.value, default: false)
     schema.int(Key.minLength.value, optional: true)
     schema.int(Key.maxLength.value, optional: true)
     schema.parent(Prototype.self, optional: false)

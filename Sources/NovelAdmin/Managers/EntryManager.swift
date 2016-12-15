@@ -33,7 +33,7 @@ final class EntryManager {
 
   @discardableResult func update(from node: Node) throws -> Entry {
     var node = node
-    node[Entry.Key.updatedAt.snaked] = Date().iso8601.makeNode()
+    node[Entry.Required.updatedAt.snaked] = Date().iso8601.makeNode()
 
     entry = try entry.updated(from: node, exists: true)
     try entry.validate()

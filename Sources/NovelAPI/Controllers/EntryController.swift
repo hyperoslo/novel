@@ -33,7 +33,7 @@ final class EntryController: Controller {
   func show(request: Request, handle: String, id: Int) throws -> ResponseRepresentable {
     guard
       let prototype = try Prototype.find(handle: handle),
-      let entry = try prototype.entries().filter(Entry.Key.id.value, id).first()
+      let entry = try prototype.entries().filter(Entry.Required.id.value, id).first()
       else {
         throw Abort.notFound
     }

@@ -4,6 +4,8 @@ import Foundation
 public struct ContentPresenter: Presenter {
 
   public typealias Key = Content.Key
+  public typealias Required = Content.Required
+
   public let model: Content
 
   public init(model: Content) {
@@ -12,7 +14,7 @@ public struct ContentPresenter: Presenter {
 
   public func makeNode() throws -> Node {
     var node = try Node(node: [
-      Key.id.rawValue: model.id,
+      Required.id.rawValue: model.id,
       Key.body.rawValue: model.body
       ])
 

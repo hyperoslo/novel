@@ -16,10 +16,7 @@ public enum FieldKind: Int {
   public static func all() -> [FieldKind] {
     return [
       .plainText,
-      .richText,
-      .date,
-      .number,
-      .flag
+      .richText
     ]
   }
 }
