@@ -115,7 +115,7 @@ func createUser() throws -> User {
   let node = try Node(node: [
     User.Key.username.value : "admin",
     User.Key.email.value : "test@example.org",
-    User.Key.password.value: "secret",
+    User.Key.password.value: "password",
     User.Key.firstname.value: "Super",
     User.Key.lastname.value: "Admin"
   ])

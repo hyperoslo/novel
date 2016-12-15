@@ -7,6 +7,8 @@ class ContentTests: XCTestCase {
   typealias Key = Content.Key
 
   static let allTests = [
+    ("testEntityName", testEntityName),
+    ("testValidator", testValidator),
     ("testSetField", testSetField),
     ("testSetEntry", testSetEntry),
     ("testInitWhenValid", testInitWhenValid),
@@ -32,6 +34,14 @@ class ContentTests: XCTestCase {
   }
 
   // MARK: - Tests
+
+  func testEntityName() throws {
+    XCTAssertEqual(Content.entityName, "contents")
+  }
+
+  func testValidator() {
+    XCTAssertNotNil(entity.validator)
+  }
 
   func testSetField() throws {
     let field = try Field.new()

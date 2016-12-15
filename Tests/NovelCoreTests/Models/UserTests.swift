@@ -12,6 +12,8 @@ class UserTests: XCTestCase {
   typealias Key = User.Key
 
   static let allTests = [
+    ("testEntityName", testEntityName),
+    ("testValidator", testValidator),
     ("testInitWhenValid", testInitWhenValid),
     ("testInitWhenInvalid", testInitWhenInvalid),
     ("testName", testName),
@@ -28,7 +30,7 @@ class UserTests: XCTestCase {
     node = try! Node(node: [
       Key.username.value : "admin",
       Key.email.value: "test@example.org",
-      Key.password.value: "secret",
+      Key.password.value: "password",
       Key.firstname.value: "Super",
       Key.lastname.value: "Admin"
     ])
@@ -44,10 +46,18 @@ class UserTests: XCTestCase {
 
   // MARK: - Tests
 
+  func testEntityName() throws {
+    XCTAssertEqual(User.entityName, "users")
+  }
+
+  func testValidator() {
+    XCTAssertNotNil(entity.validator)
+  }
+
   func testInitWhenValid() throws {
     XCTAssertEqual(entity.username, "admin")
     XCTAssertEqual(entity.email, "test@example.org")
-    XCTAssertEqual(entity.password, "secret")
+    XCTAssertEqual(entity.password, "password")
     XCTAssertEqual(entity.firstname, "Super")
     XCTAssertEqual(entity.lastname, "Admin")
   }
@@ -73,7 +83,7 @@ class UserTests: XCTestCase {
     XCTAssertEqual(result.object?.count, 5)
     XCTAssertEqual(result[Key.username.value], "admin")
     XCTAssertEqual(result[Key.email.value], "test@example.org")
-    XCTAssertEqual(result[Key.password.value], "secret")
+    XCTAssertEqual(result[Key.password.value], "password")
     XCTAssertEqual(result[Key.firstname.value], "Super")
     XCTAssertEqual(result[Key.lastname.value], "Admin")
   }
@@ -96,7 +106,7 @@ class UserTests: XCTestCase {
     let user = try register()
     let result = try User.authenticate(credentials: [
       "username": user.username,
-      "password": "secret",
+      "password": "password",
     ].makeNode())
     XCTAssertEqual(result.uniqueID, user.id?.string)
     try user.delete()
@@ -104,14 +114,14 @@ class UserTests: XCTestCase {
 
   func testAuthenticateWithUsernamePassword() throws {
     let user = try register()
-    let credentials = UsernamePassword(username: "admin", password: "secret")
+    let credentials = UsernamePassword(username: "admin", password: "password")
     let result = try User.authenticate(credentials: credentials)
     XCTAssertEqual(result.uniqueID, user.id?.string)
     try user.delete()
   }
 
   func testAuthenticateWithNoUser() throws {
-    let credentials = UsernamePassword(username: "admin", password: "secret")
+    let credentials = UsernamePassword(username: "admin", password: "password")
     do {
       _ = try User.authenticate(credentials: credentials)
       XCTFail("Must throw an error")
@@ -127,7 +137,7 @@ class UserTests: XCTestCase {
   }
 
   func testRegisterWithUnsupportedCredentials() throws {
-    let credentials = UsernamePassword(username: "admin", password: "secret")
+    let credentials = UsernamePassword(username: "admin", password: "password")
     do {
       _ = try User.register(credentials: credentials)
       XCTFail("Must throw an error")
@@ -166,7 +176,7 @@ class UserTests: XCTestCase {
 
   func findIdentityByEmail() throws {
     let user = try register()
-    let credentials = UsernamePassword(username: "test@example.org", password: "secret")
+    let credentials = UsernamePassword(username: "test@example.org", password: "password")
     let result = try User.findIdentity(with: credentials)
     XCTAssertEqual(result?.uniqueID, user.id?.string)
     try user.delete()
@@ -174,14 +184,14 @@ class UserTests: XCTestCase {
 
   func findIdentityByUsername() throws {
     let user = try register()
-    let credentials = UsernamePassword(username: "admin", password: "secret")
+    let credentials = UsernamePassword(username: "admin", password: "password")
     let result = try User.findIdentity(with: credentials)
     XCTAssertEqual(result?.uniqueID, user.id?.string)
     try user.delete()
   }
 
   func findIdentityWithNoUser() throws {
-    let credentials = UsernamePassword(username: "test@example.org", password: "secret")
+    let credentials = UsernamePassword(username: "test@example.org", password: "password")
     let result = try User.findIdentity(with: credentials)
     XCTAssertNil(result)
   }

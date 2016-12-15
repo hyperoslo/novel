@@ -7,6 +7,7 @@ class SessionTests: XCTestCase {
   typealias Key = Session.Key
 
   static let allTests = [
+    ("testEntityName", testEntityName),
     ("testSetUser", testSetUser),
     ("testInitWhenValid", testInitWhenValid),
     ("testInitWhenInvalid", testInitWhenInvalid),
@@ -29,6 +30,10 @@ class SessionTests: XCTestCase {
   }
 
   // MARK: - Tests
+
+  func testEntityName() throws {
+    XCTAssertEqual(Session.entityName, "sessions")
+  }
 
   func testSetUser() throws {
     let user = try createUser()

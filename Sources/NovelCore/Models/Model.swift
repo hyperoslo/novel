@@ -4,6 +4,10 @@ import Fluent
 
 public class Model: Vapor.Model {
 
+  public enum ModelError: Error {
+    case createNotImplemented
+  }
+
   public enum Required: String {
     case id
     case createdAt
@@ -64,9 +68,7 @@ public class Model: Vapor.Model {
 
   public static func prepare(_ database: Database) throws {
     try database.create(entityName) { schema in
-      schema.id(unique: true)
-      schema.timestamp(Required.createdAt.value)
-      schema.timestamp(Required.updatedAt.value)
+      try self.prepare(schema: schema)
       try self.create(schema: schema)
     }
   }
@@ -76,7 +78,13 @@ public class Model: Vapor.Model {
   }
 
   public class func create(schema: Schema.Creator) throws {
-    fatalError("Must be implemented in subclass")
+    throw ModelError.createNotImplemented
+  }
+
+  public static func prepare(schema: Schema.Creator) throws {
+    schema.id(unique: true)
+    schema.timestamp(Required.createdAt.value)
+    schema.timestamp(Required.updatedAt.value)
   }
 }
 
