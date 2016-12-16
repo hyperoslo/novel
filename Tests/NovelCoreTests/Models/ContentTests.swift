@@ -18,19 +18,11 @@ class ContentTests: XCTestCase {
     ("testNew", testNew)
   ]
 
-  var node: Node!
   var entity: Content!
 
   override func setUp() {
     super.setUp()
-
-    node = try! Node(node: [
-      Key.body.value : "Content",
-      Key.fieldId.value: 1,
-      Key.entryId.value: 1,
-    ])
-
-    entity = try! Content(node: node, in: EmptyNode)
+    entity = try! createContent()
   }
 
   // MARK: - Tests

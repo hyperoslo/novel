@@ -20,6 +20,8 @@ public struct ContentPresenter: Presenter {
 
     if let field = try model.field().get() {
       node["field"] = try FieldPresenter(model: field).makeNode()
+    } else {
+      node["field"] = nil
     }
 
     return node

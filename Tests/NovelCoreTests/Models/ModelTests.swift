@@ -16,9 +16,9 @@ class ModelTests: XCTestCase {
     ("testPrepareDatabase", testPrepareDatabase),
     ("testCreate", testCreate),
     ("testPrepareSchema", testPrepareSchema),
-    ("testPrepareSchema", testValidateWhenInvalid),
-    ("testPrepareSchema", testUpdatedWhenExists),
-    ("testPrepareSchema", testUpdatedWhenNotExist)
+    ("testValidateWhenInvalid", testValidateWhenInvalid),
+    ("testUpdatedWhenExists", testUpdatedWhenExists),
+    ("testUpdatedWhenNotExist", testUpdatedWhenNotExist)
   ]
 
   var node: Node!

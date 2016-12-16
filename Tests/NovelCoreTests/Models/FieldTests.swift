@@ -17,23 +17,11 @@ class FieldTests: XCTestCase {
     ("testNew", testNew)
   ]
 
-  var node: Node!
   var entity: Field!
 
   override func setUp() {
     super.setUp()
-
-    node = try! Node(node: [
-      Key.kind.value : FieldKind.plainText.rawValue,
-      Key.name.value: "Title",
-      Key.handle.value: "title",
-      Key.isRequired.value: true,
-      Key.minLength.value: 5,
-      Key.maxLength.value: 20,
-      Key.prototypeId.value: 1
-    ])
-
-    entity = try! Field(node: node, in: EmptyNode)
+    entity = try! createField()
   }
 
   // MARK: - Tests

@@ -16,19 +16,11 @@ class PrototypeTests: XCTestCase {
     ("testNew", testNew)
   ]
 
-  var node: Node!
   var entity: Prototype!
 
   override func setUp() {
     super.setUp()
-
-    node = try! Node(node: [
-      Key.name.value : "Post",
-      Key.handle.value: "post",
-      Key.description.value: "Text",
-      ])
-
-    entity = try! Prototype(node: node, in: EmptyNode)
+    entity = try! createPrototype()
   }
 
   // MARK: - Tests
