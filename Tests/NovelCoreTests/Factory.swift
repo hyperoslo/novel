@@ -54,3 +54,21 @@ func createPrototype() throws -> NovelCore.Prototype {
 
   return try! Prototype(node: node, in: EmptyNode)
 }
+
+func createSetting(name: String, handle: String? = nil, value: String? = nil) throws -> NovelCore.Setting {
+  let node = try! Node(node: [
+    Setting.Key.name.value : name,
+    Setting.Key.handle.value: handle ?? name.lowercased(),
+    Setting.Key.value.value: value ?? "Text",
+    ])
+
+  return try! Setting(node: node, in: EmptyNode)
+}
+
+func createSetting(general: Setting.General) throws -> NovelCore.Setting {
+  return try createSetting(
+    name: general.title,
+    handle: general.rawValue,
+    value: general.title
+  )
+}

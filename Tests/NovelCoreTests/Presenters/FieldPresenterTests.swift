@@ -24,7 +24,7 @@ class FieldPresenterTests: XCTestCase {
   // MARK: - Tests
 
   func testMakeNode() throws {
-    var field = try! createField()
+    var field = try createField()
     try field.save()
     presenter = FieldPresenter(model: field)
     let node = try presenter.makeNode()

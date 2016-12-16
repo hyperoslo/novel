@@ -27,10 +27,10 @@ class PrototypePresenterTests: XCTestCase {
   // MARK: - Tests
 
   func testMakeNodeWithFields() throws {
-    var prototype = try! createPrototype()
+    var prototype = try createPrototype()
     try prototype.save()
 
-    var field = try! createField()
+    var field = try createField()
     field.set(prototype: prototype)
     try field.save()
 
@@ -57,7 +57,7 @@ class PrototypePresenterTests: XCTestCase {
   }
 
   func testMakeNodeWithoutFields() throws {
-    var prototype = try! createPrototype()
+    var prototype = try createPrototype()
     try prototype.save()
 
     presenter = PrototypePresenter(model: prototype)

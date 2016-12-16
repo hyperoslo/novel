@@ -16,19 +16,11 @@ class SettingTests: XCTestCase {
     ("testCreate", testCreate)
   ]
 
-  var node: Node!
   var entity: Setting!
 
   override func setUp() {
     super.setUp()
-
-    node = try! Node(node: [
-      Key.name.value : "Setting",
-      Key.handle.value: "setting",
-      Key.value.value: "Text",
-      ])
-
-    entity = try! Setting(node: node, in: EmptyNode)
+    entity = try! createSetting(name: "Setting")
   }
 
   // MARK: - Tests

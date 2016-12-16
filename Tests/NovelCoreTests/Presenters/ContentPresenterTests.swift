@@ -27,10 +27,10 @@ class ContentPresenterTests: XCTestCase {
   // MARK: - Tests
 
   func testMakeNodeWithField() throws {
-    var field = try! createField()
+    var field = try createField()
     try field.save()
 
-    var content = try! createContent()
+    var content = try createContent()
     content.set(field: field)
     try content.save()
 
@@ -53,7 +53,7 @@ class ContentPresenterTests: XCTestCase {
   }
 
   func testMakeNodeWithoutField() throws {
-    var content = try! createContent()
+    var content = try createContent()
     try content.save()
 
     presenter = ContentPresenter(model: content)
