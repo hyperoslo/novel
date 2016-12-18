@@ -21,6 +21,16 @@ func createUser() throws -> NovelCore.User {
   return try User(node: node, in: EmptyNode)
 }
 
+func createEntry() throws -> NovelCore.Entry {
+  let node = try! Node(node: [
+    Entry.Key.title.value : "Title",
+    Entry.Key.publishedAt.value: "2016-12-01 23:01:00",
+    Entry.Key.prototypeId.value: 1,
+    ])
+
+  return try Entry(node: node, in: EmptyNode)
+}
+
 func createContent() throws -> NovelCore.Content {
   let node = try Node(node: [
     Content.Key.body.value : "Content",
