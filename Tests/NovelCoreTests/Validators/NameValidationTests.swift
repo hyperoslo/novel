@@ -1,9 +1,36 @@
-//
-//  NameValidationTests.swift
-//  Novel
-//
-//  Created by Vadym Markov on 18/12/2016.
-//
-//
+import XCTest
+import Vapor
+@testable import NovelCore
 
-import Foundation
+class NameValidationTests: XCTestCase {
+
+  static let allTests = [
+    ("testValidateWhenValid", testValidateWhenValid),
+    ("testValidateWhenNotAlphanumeric", testValidateWhenNotAlphanumeric),
+    ("testValidateWhenInvalidCount", testValidateWhenInvalidCount)
+  ]
+
+  // MARK: - Tests
+
+  func testValidateWhenValid() throws {
+    do {
+      try NameValidation.validate(input: "test")
+    } catch {
+      XCTFail("Should not throw error")
+    }
+  }
+
+  func testValidateWhenNotAlphanumeric() throws {
+    do {
+      try NameValidation.validate(input: "test>>")
+      XCTFail("Should throw error")
+    } catch {}
+  }
+
+  func testValidateWhenInvalidCount() throws {
+    do {
+      try NameValidation.validate(input: "t")
+      XCTFail("Should throw error")
+    } catch {}
+  }
+}
