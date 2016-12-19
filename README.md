@@ -1,7 +1,7 @@
-![Novel](https://github.com/vadymmarkov/Novel/blob/master/Art/Cover.png)
+![Novel](https://github.com/hyperoslo/Novel/blob/master/Art/Cover.png)
 
 # Novel CMS
-[![CI Status](http://img.shields.io/travis/vadymmarkov/Novel.svg?style=flat)](https://travis-ci.org/vadymmarkov/Novel)
+[![CI Status](http://img.shields.io/travis/hyperoslo/Novel.svg?style=flat)](https://travis-ci.org/hyperoslo/Novel)
 ![Linux](https://img.shields.io/badge/os-linux-green.svg?style=flat)
 ![Mac OS X](https://img.shields.io/badge/os-Mac%20OS%20X-green.svg?style=flat)
 ![Swift](https://img.shields.io/badge/%20in-swift%203.0.1-orange.svg)
@@ -77,9 +77,9 @@ used web framework for Swift.
 
 ## Contributing
 
-We would love you to contribute to **Novel**, check the [CONTRIBUTING](https://github.com/vadymmarkov/Novel/blob/master/CONTRIBUTING.md)
+We would love you to contribute to **Novel**, check the [CONTRIBUTING](https://github.com/hyperoslo/Novel/blob/master/CONTRIBUTING.md)
 file for more info.
 
 ## License
 
-**Novel** is available under the MIT license. See the [LICENSE](https://github.com/vadymmarkov/Novel/blob/master/LICENSE.md) file for more info.
+**Novel** is available under the MIT license. See the [LICENSE](https://github.com/hyperoslo/Novel/blob/master/LICENSE.md) file for more info.
