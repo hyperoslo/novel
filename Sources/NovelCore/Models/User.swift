@@ -9,7 +9,6 @@ import Auth
 public final class User: Model {
 
   public enum Key: String {
-    case id
     case username
     case email
     case password
@@ -17,7 +16,7 @@ public final class User: Model {
     case lastname
   }
 
-  enum Error: Swift.Error {
+  public enum Error: Swift.Error {
     case invalidUserType
   }
 

@@ -4,6 +4,8 @@ import Foundation
 public struct FieldPresenter: Presenter {
 
   public typealias Key = Field.Key
+  public typealias Required = Field.Required
+
   public let model: Field
 
   public init(model: Field) {
@@ -12,7 +14,7 @@ public struct FieldPresenter: Presenter {
 
   public func makeNode() throws -> Node {
     let node = try Node(node: [
-      Key.id.rawValue: model.id,
+      Required.id.rawValue: model.id,
       Key.kind.rawValue: model.kind,
       Key.name.rawValue: model.name,
       Key.handle.rawValue: model.handle,

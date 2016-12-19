@@ -9,6 +9,8 @@ public struct PrototypePresenter: Presenter {
   }
 
   public typealias Key = Prototype.Key
+  public typealias Required = Prototype.Required
+
   public let model: Prototype
 
   public init(model: Prototype) {
@@ -17,7 +19,7 @@ public struct PrototypePresenter: Presenter {
 
   public func makeNode() throws -> Node {
     var node = try Node(node: [
-      Key.id.rawValue: model.id,
+      Required.id.rawValue: model.id,
       Key.name.rawValue: model.name,
       Key.handle.rawValue: model.handle,
       Key.description.rawValue: model.description

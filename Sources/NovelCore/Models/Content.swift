@@ -4,7 +4,6 @@ import Fluent
 public final class Content: Model {
 
   public enum Key: String {
-    case id
     case body
     case fieldId
     case entryId

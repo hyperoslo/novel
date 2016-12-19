@@ -9,6 +9,8 @@ public struct EntryPresenter: Presenter {
   }
 
   public typealias Key = Entry.Key
+  public typealias Required = Entry.Required
+
   public let model: Entry
   public let data: Node?
 
@@ -19,10 +21,10 @@ public struct EntryPresenter: Presenter {
 
   public func makeNode() throws -> Node {
     var node = try Node(node: [
-      Key.id.rawValue: model.id,
+      Required.id.rawValue: model.id,
       Key.title.rawValue : model.title,
-      Key.createdAt.rawValue: model.createdAt.iso8601,
-      Key.updatedAt.rawValue: model.updatedAt.iso8601,
+      Required.createdAt.rawValue: model.createdAt.iso8601,
+      Required.updatedAt.rawValue: model.updatedAt.iso8601,
       Key.publishedAt.rawValue: model.publishedAt.iso8601,
       ])
 

@@ -4,7 +4,6 @@ import Fluent
 public final class Prototype: Model {
 
   public enum Key: String {
-    case id
     case name
     case handle
     case description

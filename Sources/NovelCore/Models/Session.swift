@@ -4,10 +4,7 @@ import Fluent
 public final class Session: Model {
 
   public enum Key: String {
-    case id
     case token
-    case createdAt
-    case updatedAt
     case userId
   }
 
@@ -48,7 +45,7 @@ public final class Session: Model {
    Preparation.
    */
   public override class func create(schema: Schema.Creator) throws {
-    schema.string(Key.token.value)
+    schema.string(Key.token.value, unique: true)
     schema.parent(User.self, optional: false)
   }
 }

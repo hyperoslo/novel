@@ -18,7 +18,6 @@ let package = Package(
     "Database",
     "Localization",
     "Public",
-    "Resources",
-    "Tests",
+    "Resources"
   ]
 )
