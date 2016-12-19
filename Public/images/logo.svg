@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="280px" height="280px" viewBox="0 0 280 280" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Cache" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Main" transform="translate(-514.000000, -27.000000)">
+            <g id="Group-2" transform="translate(514.000000, -4.000000)">
+                <g id="Icon" transform="translate(0.000000, 31.000000)">
+                    <g id="Group">
+                        <circle id="Circle" fill="#7090C3" cx="140" cy="140" r="140"></circle>
+                        <rect id="Back" fill="#333333" x="50" y="78" width="180" height="137" rx="5"></rect>
+                        <g id="Angle" transform="translate(116.000000, 175.000000)">
+                            <ellipse id="Oval-3" fill="#333333" cx="24.5" cy="26" rx="24.5" ry="26"></ellipse>
+                            <rect id="Rectangle-2" fill="#DDDDDD" x="10" y="5" width="28" height="31"></rect>
+                            <ellipse id="Oval-2" fill="#333333" cx="15" cy="33.5" rx="10" ry="10.5"></ellipse>
+                            <ellipse id="Oval-2" fill="#333333" cx="34" cy="33.5" rx="10" ry="10.5"></ellipse>
+                        </g>
+                        <rect id="Body" fill="#FFFFFF" x="64" y="64" width="152" height="137"></rect>
+                        <rect id="Rectangle-3" fill="#DDDDDD" x="64" y="189" width="152" height="12"></rect>
+                        <g id="AngleTop" transform="translate(113.000000, 47.000000)">
+                            <rect id="Rectangle-2" fill="#7090C3" x="13" y="0" width="28" height="31"></rect>
+                            <circle id="Oval-2" fill="#FFFFFF" cx="14" cy="31" r="14"></circle>
+                            <circle id="Oval-2" fill="#FFFFFF" cx="40" cy="31" r="14"></circle>
+                        </g>
+                        <g id="AngleTop" transform="translate(114.000000, 171.000000)">
+                            <rect id="Rectangle-2" fill="#FFFFFF" x="13" y="0" width="28" height="31"></rect>
+                            <ellipse id="Oval-2" fill="#DDDDDD" cx="14" cy="31" rx="14" ry="13"></ellipse>
+                            <ellipse id="Oval-2" fill="#DDDDDD" cx="40" cy="31" rx="14" ry="13"></ellipse>
+                        </g>
+                        <rect id="Rectangle-4" fill="#56A2AF" x="76" y="77" width="25" height="40"></rect>
+                        <g id="Group-18" transform="translate(80.000000, 90.000000)" stroke="#FFFFFF" stroke-width="2">
+                            <path d="M4.10763001,7.5216311 C2.84989197,8.59878193 1.33362966,10.7174692 0.720980495,12.2538087 L0.403136058,13.0508667 C0.197138128,13.5674475 0.468581449,13.9631696 1.03768771,13.933251 L1.78570591,13.8939267 C3.43998589,13.8069591 5.83371551,12.9040757 7.12707489,11.8813727 L14.9077713,5.72891337 C16.2034479,4.7043781 16.3826893,2.85465828 15.3098581,1.59948428 L15.4418761,1.75394068 C14.3682659,0.497855247 12.4829171,0.348875613 11.2205966,1.42995092 L4.10763001,7.5216311 Z" id="Path-14" stroke-linecap="round"></path>
+                            <path d="M9.59951111,3.21876155 L13.1681051,7.32056578" id="Path-15"></path>
+                        </g>
+                        <rect id="Rectangle" fill="#333333" x="107" y="201" width="72" height="13"></rect>
+                        <g id="AngleTop" transform="translate(114.000000, 201.000000)">
+                            <rect id="Rectangle-2" fill="#DDDDDD" x="13" y="0" width="28" height="13"></rect>
+                            <ellipse id="Oval-2" fill="#333333" cx="14" cy="10.5" rx="14" ry="10.5"></ellipse>
+                            <ellipse id="Oval-2" fill="#333333" cx="40" cy="10.5" rx="14" ry="10.5"></ellipse>
+                        </g>
+                    </g>
+                    <path d="M166,236 C173.731986,236 180,231.29899 180,225.5 C180,219.70101 173.731986,215 166,215 C160.043262,215 160.604248,216.532227 154.272705,222.061279 C150.595385,225.272518 153.771037,224.671363 154.272705,224.528809 C154.774373,224.386254 152,224.941853 152,225.5 C152,231.29899 158.268014,236 166,236 Z" id="Oval-2" fill="#7090C3"></path>
+                    <path d="M113,236 C120.731986,236 127,231.29899 127,225.5 C127,224.328138 127.995605,223.324463 126.271753,222.14866 C121.942362,219.195673 119.169504,215 113,215 C105.268014,215 99,219.70101 99,225.5 C99,231.29899 105.268014,236 113,236 Z" id="Oval-2" fill="#7090C3"></path>
+                    <g id="Lines" transform="translate(76.000000, 77.000000)" fill="#DDDDDD">
+                        <rect id="Text-1" x="75" y="0" width="53" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="29" y="0" width="25" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="75" y="12" width="53" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="29" y="12" width="25" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="75" y="24" width="53" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="29" y="24" width="25" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="75" y="36" width="53" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="29" y="36" width="25" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="75" y="48" width="53" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="0" y="48" width="54" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="75" y="60" width="53" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="0" y="60" width="54" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="75" y="72" width="53" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="0" y="72" width="54" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="75" y="84" width="53" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="0" y="84" width="54" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="75" y="97" width="53" height="3.58333333" rx="1.79166667"></rect>
+                        <rect id="Text-1" x="0" y="97" width="54" height="3.58333333" rx="1.79166667"></rect>
+                    </g>
+                    <rect id="Rectangle-5" fill="#FFFFFF" x="130" y="75" width="21" height="106"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
