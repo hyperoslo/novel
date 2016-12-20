@@ -10,6 +10,13 @@
 **Novel** is a content management system (CMS) built on top of
 [Vapor](https://github.com/vapor/vapor) Swift web framework.
 
+Try our demo project running on Heroku:
+**Admin panel:** https://novel-demo.herokuapp.com/admin
+**Front page:** https://novel-demo.herokuapp.com
+**API:** https://novel-demo.herokuapp.com/api/entries/post
+
+## Features
+
 * 5 minutes setup.
 * Intuitive admin panel.
 * Developer friendly.
@@ -20,14 +27,6 @@ foundation.
 
 **Please note** that this is a work in progress, **Novel** is under continuous
 development and **is not ready** for production usage.
-
-* [Requirements](#requirements)
-* [Usage](#usage)
-* [Development](#development)
-* [Author](#author)
-* [Credits](#credits)
-* [Contributing](#contributing)
-* [License](#license)
 
 ## Requirements
 
