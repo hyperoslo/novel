@@ -22,6 +22,7 @@ foundation.
 development and **is not ready** for production usage.
 
 * [Requirements](#requirements)
+* [Usage](#usage)
 * [Development](#development)
 * [Author](#author)
 * [Credits](#credits)
@@ -32,6 +33,13 @@ development and **is not ready** for production usage.
 
 * Swift 3.0.1 or later.
 * PostgreSQL >= 9.4.5.
+
+## Usage
+
+Setting up a new project based on **Novel** requires a few additional steps,
+such as copying assets, database configuration, etc. The simplest way to create
+a new project is to use our [Novel CLI](https://github.com/vadymmarkov/novel-cli)
+tool, which does all the necessary tasks under the hood.
 
 ## Development
 
