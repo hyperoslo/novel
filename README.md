@@ -11,9 +11,9 @@
 [Vapor](https://github.com/vapor/vapor) Swift web framework.
 
 Try our demo project running on Heroku:
-**Admin panel:** https://novel-demo.herokuapp.com/admin
-**Front page:** https://novel-demo.herokuapp.com
-**API:** https://novel-demo.herokuapp.com/api/entries/post
+* Admin panel: https://novel-demo.herokuapp.com/admin
+* Front page: https://novel-demo.herokuapp.com
+* API: https://novel-demo.herokuapp.com/api/entries/post
 
 ## Features
 
