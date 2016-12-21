@@ -39,7 +39,7 @@ XCTMain([
   testCase(NovelCoreTests.PrototypeValidatorTests.allTests),
   testCase(NovelCoreTests.SettingValidatorTests.allTests),
   testCase(NovelCoreTests.SetupValidatorTests.allTests),
-  testCase(NovelCoreTests.UserValiadtorTests.allTests),
+  testCase(NovelCoreTests.UserValidatorTests.allTests),
   testCase(NovelCoreTests.FieldValidationTests.allTests),
   testCase(NovelCoreTests.NameValidationTests.allTests),
   testCase(NovelCoreTests.NodeValidatorTests.allTests),
