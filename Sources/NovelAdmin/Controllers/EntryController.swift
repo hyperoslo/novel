@@ -122,7 +122,8 @@ final class EntryController: Controller {
         makeContext(from: context, request: request)
       )
     } catch {
-      throw Abort.serverError
+      print(error)
+      throw error
     }
 
     return redirect(Route.entries.absolute + "/\(prototype.handle)/\(id)")
