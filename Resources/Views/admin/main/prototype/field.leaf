@@ -4,7 +4,7 @@
   </button>
   <div class="form-group col-sm-4 required">
     <label>Name</label>
-    <input type="text" class="form-control" name="field_names[]" value="#(field.name)" placeholder="Enter name">
+    <input type="text" class="form-control auto-title" name="field_names[]" value="#(field.name)" placeholder="Enter name">
     #index(errors.fields, field.index) {
       <span class="has-error">#(self.name)</span>
     }
