@@ -78,7 +78,7 @@ class ContentTests: XCTestCase {
     try Content.create(schema: schema)
 
     XCTAssertEqual(schema.fields.count, 3)
-    testField(in: schema, index: 0, name: Key.body.value, type: .string(length: nil))
+    testField(in: schema, index: 0, name: Key.body.value, type: .custom(type: "text"))
     testField(in: schema, index: 1, name: Key.fieldId.value, type: .int)
     testField(in: schema, index: 2, name: Key.entryId.value, type: .int)
   }
