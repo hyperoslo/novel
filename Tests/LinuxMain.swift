@@ -8,7 +8,6 @@ XCTMain([
 
   // Core
   testCase(NovelCoreTests.ApplicationTests.allTests),
-  testCase(NovelCoreTests.DatabaseConfiguratorTests.allTests),
   testCase(NovelCoreTests.MiddlewareConfiguratorTests.allTests),
   testCase(NovelCoreTests.AuthHelperTests.allTests),
   testCase(NovelCoreTests.NodeTests.allTests),
