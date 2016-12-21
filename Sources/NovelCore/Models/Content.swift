@@ -54,7 +54,7 @@ public final class Content: Model {
    Preparation.
    */
   public override class func create(schema: Schema.Creator) throws {
-    schema.string(Key.body.snaked)
+    schema.text(Key.body.snaked)
     schema.parent(Field.self, optional: false)
     schema.parent(Entry.self, optional: false)
   }
