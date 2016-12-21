@@ -42,6 +42,6 @@ XCTMain([
   testCase(NovelCoreTests.UserValidatorTests.allTests),
   testCase(NovelCoreTests.FieldValidationTests.allTests),
   testCase(NovelCoreTests.NameValidationTests.allTests),
-  testCase(NovelCoreTests.NodeValidatorTests.allTests),
+  testCase(NovelCoreTests.NodeValidationTests.allTests),
   testCase(NovelCoreTests.PasswordValidationTests.allTests)
 ])

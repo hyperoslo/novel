@@ -15,6 +15,7 @@ class NodeValidationTests: XCTestCase {
 
   static let allTests = [
     ("testValidateBySuite", testValidateBySuite),
+    ("testValidateByValidator", testValidateByValidator),
   ]
 
   var validator: NodeValidator!
