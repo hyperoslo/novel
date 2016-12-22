@@ -8,7 +8,7 @@
     <li class="breadcrumb-item active">New</li>
   </ol>
 
-  <form method="post" action="#adminPath("prototypes")" accept-charset="UTF-8">
+  <form id="form" method="post" action="#adminPath("prototypes")" accept-charset="UTF-8">
     <div class="box page-header">
       <div class="page-title">
         <h1>New prototype</h1>
@@ -59,6 +59,8 @@
     </div>
 
     <div id="field-section" class="box segment">
+      <input id="fields" name="fields" type="hidden">
+
       #if(data.fields) {
         #loop(data.fields, "field") {
           #embed("admin/main/prototype/field")

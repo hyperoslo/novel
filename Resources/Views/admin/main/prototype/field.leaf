@@ -2,6 +2,7 @@
   <button aria-label="Close" class="close remove-field-btn" type="button">
     <span aria-hidden="true">×</span>
   </button>
+  <input type="hidden" name="field_ids[]" value="#(field.id)">
   <div class="form-group col-sm-4 required">
     <label>Name</label>
     <input type="text" class="form-control auto-title" name="field_names[]" value="#(field.name)" placeholder="Enter name">
