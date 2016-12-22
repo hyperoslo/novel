@@ -34,12 +34,16 @@ public struct PrototypeValidator: NodeValidator {
     fieldNodes = []
 
     for (i, item)  in array.enumerated() {
-      let node: Node = [
+      var node: Node = [
         "index": Node(i),
         "name": Node.string(item["name"]?.string ?? ""),
         "handle": Node.string(item["handle"]?.string ?? ""),
         "kind": Node.string(item["kind"]?.string ?? ""),
       ]
+
+      if let id = item["id"] {
+        node["id"] = id
+      }
 
       fieldNodes.append(node)
 
