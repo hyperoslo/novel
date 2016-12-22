@@ -1,4 +1,5 @@
 import Vapor
+import Jay
 
 public struct PrototypeValidator: NodeValidator {
 
@@ -18,32 +19,26 @@ public struct PrototypeValidator: NodeValidator {
   }
 
   fileprivate mutating func validateFields() {
-    let names = node["field_names"]?.nodeArray
-    let handles = node["field_handles"]?.nodeArray
-    let kinds = node["field_kinds"]?.nodeArray
-
-    guard let array = kinds ?? names ?? handles, !array.isEmpty else {
-      errors["fields"] = Node.string(PrototypeError.noFields.rawValue)
-      return
-    }
-
-    func extract(from array: [Node]?, index: Int) -> String {
-      guard let array = array, index < array.count else {
-        return ""
-      }
-
-      return array[index].string ?? ""
+    guard
+      let bytes = node["fields"]?.string?.bytes,
+      let json = try? Jay().jsonFromData(bytes),
+      let data = try? Jay(formatting: .prettified).dataFromJson(json: json),
+      let arrayOpt = try? JSON.init(bytes: data).makeNode().nodeArray,
+      let array = arrayOpt
+      else {
+        errors["fields"] = Node.string(PrototypeError.noFields.rawValue)
+        return
     }
 
     var fieldErrors = [Node]()
     fieldNodes = []
 
-    for i in 0..<array.count {
+    for (i, item)  in array.enumerated() {
       let node: Node = [
         "index": Node(i),
-        "name": Node.string(extract(from: names, index: i)),
-        "handle": Node.string(extract(from: handles, index: i)),
-        "kind": Node.string(extract(from: kinds, index: i)),
+        "name": Node.string(item["name"]?.string ?? ""),
+        "handle": Node.string(item["handle"]?.string ?? ""),
+        "kind": Node.string(item["kind"]?.string ?? ""),
       ]
 
       fieldNodes.append(node)
