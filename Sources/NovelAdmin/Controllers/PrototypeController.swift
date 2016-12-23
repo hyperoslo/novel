@@ -4,12 +4,6 @@ import NovelCore
 
 final class PrototypeController: Controller {
 
-  func buildContext() throws -> Context {
-    return [
-      "kinds": try FieldKind.all().makeNode()
-    ]
-  }
-
   func index(request: Request) throws -> ResponseRepresentable {
     let context = [
       "prototypes": try Prototype.all().makeNode()
@@ -22,7 +16,11 @@ final class PrototypeController: Controller {
   }
 
   func new(request: Request) throws -> ResponseRepresentable {
-    let context = try buildContext()
+    let prototype = try Prototype.new()
+
+    let context: Context = [
+      "prototype": try PrototypePresenter(model: prototype).makeNode()
+    ]
 
     return try drop.view.make(
       Template.Main.prototype.new,
@@ -35,14 +33,17 @@ final class PrototypeController: Controller {
       throw Abort.badRequest
     }
 
-    do {
-      try PrototypeManager().create(node: node)
-    } catch let error as InputError {
-      var context = try buildContext()
+    let prototype = try Prototype.new()
+    let manager = PrototypeManager(prototype: prototype)
 
-      context["flash"] = "Please fill the required fields"
-      context["errors"] = Node.object(error.errors)
-      context["data"] = error.data
+    do {
+      try manager.create(from: node)
+    } catch let error as InputError {
+      let context: Context = [
+        "prototype": try PrototypePresenter(model: manager.prototype).makeNode(),
+        "flash": "Please fill the required fields",
+        "errors": Node.object(error.errors)
+      ]
 
       return try drop.view.make(
         Template.Main.prototype.new,
@@ -55,30 +56,49 @@ final class PrototypeController: Controller {
     return redirect(Route.prototypes)
   }
 
-  func show(request: Request, prototype: Prototype) -> ResponseRepresentable {
-    return prototype
-  }
+  func show(request: Request, id: Int) throws -> ResponseRepresentable {
+    guard let prototype = try Prototype.find(id) else {
+      throw Abort.notFound
+    }
 
-  func replace(request: Request, prototype: Prototype) throws -> ResponseRepresentable {
-    let context = [
-      "prototype": try prototype.makeNode()
+    let context: Context = [
+      "prototype": try PrototypePresenter(model: prototype).makeNode()
     ]
 
     return try drop.view.make(
-      Template.Main.prototype.edit,
+      Template.Main.prototype.show,
       makeContext(from: context, request: request)
     )
   }
-}
 
-extension PrototypeController: ResourceRepresentable {
+  func replace(request: Request, id: Int) throws -> ResponseRepresentable {
+    guard let prototype = try Prototype.find(id) else {
+      throw Abort.notFound
+    }
 
-  func makeResource() -> Resource<Prototype> {
-    return Resource(
-      index: index,
-      store: store,
-      show: show,
-      replace: replace
-    )
+    guard let node = request.formURLEncoded else {
+      throw Abort.badRequest
+    }
+
+    let manager = PrototypeManager(prototype: prototype)
+
+    do {
+      try manager.update(from: node)
+    } catch let error as InputError {
+      let context = [
+        "prototype": try PrototypePresenter(model: manager.prototype).makeNode(),
+        "flash": "Please fill the required fields",
+        "errors": Node.object(error.errors)
+      ]
+
+      return try drop.view.make(
+        Template.Main.prototype.new,
+        makeContext(from: context, request: request)
+      )
+    } catch {
+      throw Abort.serverError
+    }
+
+    return redirect(Route.prototypes.show(id: id, isRelative: false))
   }
 }

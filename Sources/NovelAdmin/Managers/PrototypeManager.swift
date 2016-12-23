@@ -1,24 +1,30 @@
+import Foundation
 import Vapor
 import NovelCore
 
-struct PrototypeManager {
+final class PrototypeManager {
 
-  @discardableResult func create(node: Node) throws -> Prototype {
-    let prototypeValidator = PrototypeValidator(node: node)
-    var prototype = try ModelBuilder<Prototype>(validator: prototypeValidator).build()
-    var fields: [Field] = []
+  var prototype: Prototype
 
-    for fieldNode in prototypeValidator.fieldNodes {
-      let field = try ModelBuilder<Field>(validator: FieldValidator(node: fieldNode)).build()
-      fields.append(field)
-    }
-
+  init(prototype: Prototype) {
+    self.prototype = prototype
+  }
+  
+  @discardableResult func create(from node: Node) throws -> Prototype {
+    let node = node
+    prototype = try prototype.updated(from: node)
+    try prototype.validate()
     try prototype.save()
+    return prototype
+  }
 
-    for var field in fields {
-      field.set(prototype: prototype)
-      try field.save()
-    }
+  @discardableResult func update(from node: Node) throws -> Prototype {
+    var node = node
+    node[Entry.Required.updatedAt.snaked] = Date().iso8601.makeNode()
+
+    prototype = try prototype.updated(from: node, exists: true)
+    try prototype.validate()
+    try prototype.save()
 
     return prototype
   }

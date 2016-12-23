@@ -5,10 +5,10 @@
     <li class="breadcrumb-item active">
       <a href="#adminPath("prototypes")">Prototypes</a>
     </li>
-    <li class="breadcrumb-item active">New</li>
+    <li class="breadcrumb-item active">#(prototype.name)</li>
   </ol>
 
-  <form id="form" method="post" action="#adminPath("prototypes")" accept-charset="UTF-8">
+  <form id="form" method="post" action="/admin/prototypes/#(prototype.id)" accept-charset="UTF-8">
     #embed("admin/main/prototype/form")
   </form>
 }

@@ -52,9 +52,15 @@ struct RouteConfigurator: Configurator {
       admin.get(handler: dashboardController.index)
 
       // Prototypes
-      let prototypeController = PrototypeController(drop: drop)
-      admin.resource(Route.prototypes.relative, prototypeController)
-      admin.get(Route.prototypes.new(isRelative: true), handler: prototypeController.new)
+      admin.group(Route.prototypes.relative) { prototypes in
+        let prototypeController = PrototypeController(drop: drop)
+
+        prototypes.get(handler: prototypeController.index)
+        prototypes.get("new", handler: prototypeController.new)
+        prototypes.get(Int.self, handler: prototypeController.show)
+        prototypes.post(handler: prototypeController.store)
+        prototypes.post(Int.self, handler: prototypeController.replace)
+      }
 
       // Entries
       admin.group(Route.entries.relative) { entries in

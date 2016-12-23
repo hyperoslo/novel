@@ -1,0 +1,48 @@
+<div class="box page-header">
+  <div class="page-title">
+    #if(prototype.id) {
+      <h1>#(prototype.title)</h1>
+    } ##else() {
+      <h1>New prototype</h1>
+    }
+  </div>
+  <div class="page-actions">
+    <button type="submit" class="btn btn-primary">
+      <i class="fa fa-floppy-o"></i> Save
+    </button>
+  </div>
+</div>
+
+<div class="box segment">
+  #embed("admin/common/flash")
+  <div class="row">
+    <div class="form-group col-sm-6 required row">
+      <label for="name">Name</label>
+      <input type="text" class="form-control auto-title" id="name" name="name" value="#(prototype.name)" aria-describedby="name-help" placeholder="Enter name">
+      #if(errors.name) {
+        <span class="has-error">#(errors.name)</span>
+      }
+      <small id="name-help" class="form-text text-muted">
+        This is how the new prototype will be called in the system.
+      </small>
+    </div>
+    <div class="form-group col-sm-6 required row">
+      <label for="handle">Handle</label>
+      <input type="text" class="form-control" id="handle" name="handle" value="#(prototype.handle)" aria-describedby="handle-help" placeholder="Enter handle">
+      #if(errors.handle) {
+        <span class="has-error">#(errors.handle)</span>
+      }
+      <small id="handle-help" class="form-text text-muted">
+        This is how the new prototype will be refered in the templates.
+      </small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" id="description" name="description" aria-describedby="description-help" placeholder="Enter description" rows="2" cols="50">#(prototype.description)</textarea>
+    <small id="description-help" class="form-text text-muted">
+      Short helper text to describe the new prototype.
+    </small>
+  </div>
+</div>

@@ -25,6 +25,10 @@ public struct PrototypePresenter: Presenter {
       Key.description.rawValue: model.description
       ])
 
+    guard model.id != nil else {
+      return node
+    }
+
     let fields = try model.fields().all()
     node["fields"] = try Node.array(fields.map({ try FieldPresenter(model: $0).makeNode() }))
 
